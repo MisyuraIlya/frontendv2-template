@@ -1,0 +1,520 @@
+{
+  "header": {
+    "searchProduct": "search product...",
+    "goTo": "navigate to",
+    "results": "results"
+  },
+  "alerts": {
+    "cannotAddCart": "cannot add to cart",
+    "needToAuthorize": "need to authorize",
+    "needToJoinToClient": "need to join to customer",
+    "userBlockedSuccessfuly": "user blocked successfully",
+    "userOpenSuccessfuly": "user opened successfully",
+    "notUpdated": "not updated"
+  },
+  "clientInfo": {
+    "clientTitle": "client",
+    "agentTitle": "agent",
+    "agentName": "agent name",
+    "agentNumber": "agent number",
+    "title": "Client Information",
+    "clientName": "Client Name",
+    "phone": "Phone",
+    "clientNumber": "Client Number",
+    "username": "Username",
+    "password": "Password",
+    "lastUpdated": "Last Updated"
+  },
+  "settingsModal": {
+    "title": "Login Details",
+    "clientNumber": "Customer Number: ",
+    "agentNumber": "Agent Number: ",
+    "client": "Customer: ",
+    "agent": "Agent: "
+  },
+  "forms": {
+    "email": "Email",
+    "password": "Password",
+    "confirmPassword": "Confirm Password",
+    "requiredEmail": "Email is required",
+    "invalidEmail": "Invalid email",
+    "requiredPassword": "Password is required"
+  },
+  "auth": {
+    "loginTitle": "Login",
+    "login": "Login",
+    "emailPlaceholder": "Your email",
+    "passwordPlaceholder": "Your password",
+    "notRegistered": "Not registered yet?",
+    "registerNow": "Click here to register",
+    "forgotPassword": "Forgot Password?"
+  },
+  "actions": {
+    "createCustomer": "Create Customer",
+    "createAgent": "Create Agent",
+    "activateCustomer": "Activate Customer",
+    "activateAgent": "Activate Agent",
+    "blockCustomer": "Block Customer",
+    "blockAgent": "Block Agent",
+    "resetCustomer": "Reset Customer",
+    "resetAgent": "Reset Agent"
+  },
+  "confirmations": {
+    "confirmBlock": "Are you sure you want to block",
+    "confirmReset": "Are you sure you want to reset",
+    "registrationReset": "The user \"{{name}}\" will need to register again"
+  },
+  "catalog": {
+    "filter": {
+      "clearAttributes": "clear filter",
+      "show": "size",
+      "sort": "sort",
+      "totalProducts": "total products",
+      "sorts": {
+        "name": "name",
+        "special": "special",
+        "new": "new"
+      }
+    },
+    "productCard": {
+      "sku": "sku",
+      "barcode": "barcode",
+      "packageName": "price for package",
+      "outOfStock": "out of stock",
+      "promotion": "promotion",
+      "bonus": "bonus",
+      "totalPricePackageName": "total price for package",
+      "addToCartOrder": "add to cart",
+      "addToCartPriceOffer": "add to price offer",
+      "addToCartReturn": "add to return"
+    },
+    "notification": {
+      "addToCart": "Product added to cart",
+      "nonOfStock": "out of stock"
+    }
+  },
+  "categories": "Categories",
+  "hello_name": "Hello, {{name}}!",
+  "agentStatistics": {
+    "daily": "Daily",
+    "monthly": "Monthly",
+    "yearly": "Yearly"
+  },
+  "catalogView": {
+    "categories": "Categories"
+  },
+  "homeEditPage": {
+    "title": "Home Page Management"
+  },
+  "profilePage": {
+    "title": "Profile"
+  },
+  "homePage": {
+    "specialProducts": "Special Products",
+    "newProducts": "New Products",
+    "allProducts": "All Products"
+  },
+  "footer": {
+    "title": "Have questions? Contact us",
+    "description1": "Your first description text",
+    "description2": "Your second description text",
+    "description3": "Your third description text",
+    "form": {
+      "name": "Full Name",
+      "namePlaceholder": "Full Name",
+      "phone": "Phone *",
+      "phonePlaceholder": "Phone *",
+      "phoneRequired": "Customer phone is required",
+      "phoneInvalid": "Invalid phone number",
+      "email": "Email",
+      "emailPlaceholder": "Email",
+      "emailInvalid": "Invalid email",
+      "userExtId": "Customer Internal Number",
+      "userExtIdPlaceholder": "Enter your number",
+      "business": "Business Name",
+      "businessPlaceholder": "Business Name",
+      "message": "Message",
+      "messagePlaceholder": "Message",
+      "send": "Send"
+    },
+    "accessibility": "Accessibility Statement",
+    "terms": "Terms and Conditions",
+    "addressLabel": "Address",
+    "address": "Your Address",
+    "phoneLabel": "Phone",
+    "phone": "Your Phone",
+    "emailLabel": "Email",
+    "email": "Your Email",
+    "successTitle": "Message sent successfully",
+    "errorTitle": "Error sending message"
+  },
+  "product": {
+    "soldOut": "Out of Stock",
+    "skuLabel": "Catalog Number",
+    "linkLabel": "More Info",
+    "packQuantityLabel": "Units per Package",
+    "bonusesLabel": "Bonuses",
+    "bonus": "Buy {{min}} Get {{bonus}}",
+    "cartPriceLabel": "Price per Carton",
+    "discountLabel": "Discount",
+    "totalPriceLabel": "Total per Carton",
+    "orderCartLabel": "Cart to Order",
+    "totalOrderLabel": "Total Order",
+    "shareMessage": "Share image link:\nSKU: {{sku}}\nProduct: {{title}}\nLink: {{link}}",
+    "purchaseHistory": "Purchase History",
+    "purchaseOrStock": "Purchase Orders / Available Stock"
+  },
+  "agentClients": {
+    "cartWarningTitle": "There are items in the cart",
+    "cartWarningText": "All items will be removed",
+    "clientName": "Client Name",
+    "clientNumber": "Client Number",
+    "phone": "Phone",
+    "taxNumber": "Tax ID/VAT",
+    "obligo": "Obligo",
+    "debtBalance": "Debt Balance",
+    "address": "Address",
+    "city": "City",
+    "status": "Status",
+    "turnover": "Turnover",
+    "searchPlaceholder": "Search by client name or client number",
+    "activeInactiveOption": "Active / Inactive",
+    "activeOption": "Active",
+    "inactiveOption": "Inactive",
+    "totalClients": "Total Clients: {{count}}",
+    "emptyClient": "No customers found"
+  },
+  "breadcrumbs": {
+    "home": "Home",
+    "goBack": "Go Back"
+  },
+  "pagination": {
+    "currentPage": "Page {{page}}",
+    "totalPages": "of {{total}}"
+  },
+  "cart": {
+    "documentDetails": "Document Details",
+    "rowCount": "Row Count",
+    "totalBeforeTax": "Total Before VAT",
+    "deliveryCost": "Delivery Cost",
+    "taxDue": "Tax Due",
+    "priceAfterTax": "Price After VAT",
+    "amountToPay": "Amount to Pay",
+    "noManagerApproval": "No Manager Approval",
+    "minimumOrderReminder": "You need to add another {{amount}}₪ to meet the minimum order",
+    "generalDiscount": "General Discount Percentage",
+    "selectDeliveryDate": "Select Delivery Date",
+    "datePickerLabel": "Select Date",
+    "deliveryNote": "Delivery Note",
+    "submitOrder": "Submit Order",
+    "payNow": "Pay Now",
+    "submitOfflineDocument": "Submit Offline Document",
+    "orderSuccessTitle": "Order Submitted Successfully!",
+    "orderSuccessMessage": "Order Number: {{orderNumber}}",
+    "orderFailureTitle": "Order Failed",
+    "orderFailureMessage": "Error: {{message}}",
+    "offlineOrderSuccessTitle": "Saved Successfully!",
+    "offlineOrderSuccessMessage": "{{message}}",
+    "item": "Item",
+    "quantity": "Quantity",
+    "price": "Price",
+    "discount": "Discount",
+    "unitTotal": "Unit Total",
+    "orderTotal": "Order Total",
+    "confirmDeleteTitle": "Are you sure?",
+    "confirmDeleteMessage": "All items in the cart will be removed",
+    "saveDraftTitle": "Save order as draft?",
+    "saveDraftMessage": "The draft will be saved and the current cart will be emptied",
+    "summary": "Summary",
+    "saveDraftBtn": "Save Draft",
+    "loadDraftBtn": "Load Draft",
+    "deleteCartBtn": "Delete Cart"
+  },
+  "profile": {
+    "actions": "Actions",
+    "visitAdded": "Visit added",
+    "personalArea": "Personal Area",
+    "logout": "Logout",
+    "name": "Name",
+    "email": "Email",
+    "phone": "Phone",
+    "taxNumber": "Tax ID/VAT",
+    "city": "City",
+    "address": "Address",
+    "money": "Money",
+    "productsImBuy": "Products I Buy",
+    "productsImNotBuy": "Products I Don't Buy",
+    "client": "Client",
+    "agent": "Agent",
+    "logoutFromClient": "Log out from client",
+    "logoutConfirmTitle": "Are you sure you want to log out?",
+    "logoutConfirmMessage": "",
+    "changeModeTitle": "Question",
+    "changeModeMessage": "Are you sure you want to switch to mode {{mode}}? All items in the cart will be removed.",
+    "salesIncrease": "Sales Increase",
+    "salesInactive": "Inactive Customer / Zero Sales",
+    "salesDecrease": "Sales Decrease",
+    "viewSales": "View Sales"
+  },
+  "urls": {
+    "adminEditCatalog": { "label": "Manage Catalog" },
+    "adminEditHome": { "label": "Manage Home Page" },
+    "adminEditAttributes": { "label": "Manage Attributes" },
+    "adminEditAttributeDetailed": { "label": "Manage Attributes" },
+    "adminEditProduct": { "label": "Manage Products" },
+    "adminClients": { "label": "Clients" },
+    "adminAgents": { "label": "Agents" },
+    "bonuses": { "label": "Manage Bonuses" },
+    "bonusesItemPage": { "label": "Manage Bonuses" },
+    "adminNotifications": { "label": "Notifications" },
+
+    "history": { "label": "History documents" },
+    "profile": { "label": "Profile" },
+    "documents": { "label": "ERP Documents" },
+    "cartesset": { "label": "Cartesset" },
+    "giulHovot": { "label": "Debt Collection" },
+    "home": { "label": "Cart" },
+    "catalog": { "label": "Catalog" },
+    "catalogView": { "label": "Categories" },
+    "cart": { "label": "Cart" },
+
+    "agentDashboard": { "label": "dashboard" },
+    "approve": { "label": "approve documents" },
+    "agentStatistics": { "label": "agent statistics" },
+    "agentDocumentOffline": { "label": "offline documents" }
+  },
+  "agentDashBoard": {
+    "mainInfo": {
+      "totalPriceMonth": "Monthly Total",
+      "total": "Yearly Total",
+      "averageBasket": "Average Basket",
+      "totalPriceDay": "Daily Total",
+      "totalDayCount": "Daily Transaction Count",
+      "totalMonthCount": "Monthly Transaction Count",
+      "targetPrecent": "Target Achievement"
+    },
+    "tabs": {
+      "dashboard": "Dashboard",
+      "missions": "Missions",
+      "visitTemplates": "Visit Templates",
+      "targets": "Targets"
+    },
+    "daily": {
+      "visits": {
+        "title": "Visits",
+        "chartLabel": "Visits"
+      },
+      "tasks": {
+        "title": "Tasks",
+        "chartLabel": "Tasks"
+      },
+      "completed": "Completed",
+      "pending": "Pending"
+    },
+    "tasks": {
+      "openToday": "Your open tasks for today",
+      "task": "Task",
+      "visit": "Visit",
+      "noOpenTasks": "No open tasks for today",
+      "updatedSuccessfully": "Updated successfully"
+    },
+    "targets": {
+      "title": "Target Achievement",
+      "sales": "Sales",
+      "target": "Target",
+      "salesTarget": "Sales Target"
+    },
+    "list": {
+      "date": "Date",
+      "turnover": "Turnover",
+      "target": "Target",
+      "status": "Status",
+      "actions": "Actions"
+    },
+    "cardTarget": {
+      "updateTarget": "Update Target",
+      "targetUpdatedSuccess": "Target updated successfully",
+      "targetPlaceholder": "Target",
+      "monthLabel": "Monthly",
+      "targetStatus": {
+        "waiting": "Waiting",
+        "achieved": "Achieved",
+        "notAchieved": "Not Achieved"
+      }
+    }
+  },
+  "agentMissions": {
+    "create": {
+      "title": "Create Task",
+      "datePickerLabel": "Select Date",
+      "fromTime": "From",
+      "toTime": "To",
+      "taskDetails": "Task Details",
+      "saveButton": "Save",
+      "successMessage": "Task created successfully"
+    }
+  },
+  "visits": {
+    "client": "Client",
+    "address": "Address",
+    "phone": "Phone",
+    "hours": "Hours",
+    "day": "Day",
+    "actions": "Actions",
+    "noResults": "No results found"
+  },
+  "visitCreate": {
+    "createTitle": "Create Visit",
+    "updateTitle": "Update Visit",
+    "selectDay": "Select day of the week",
+    "selectHourFrom": "Select start hour",
+    "selectHourTo": "Select end hour",
+    "createButton": "Create Visit",
+    "deleteButton": "Delete Visit"
+  },
+  "documents": {
+    "notFoundDocument": "No such document type found",
+    "search": "search",
+    "document": "document",
+    "fromDate": "from date",
+    "toDate": "to date",
+    "documentNumber": "Document Number",
+    "purchaseNumber": "Customer Purchase Number",
+    "agent": "Agent",
+    "type": "Type",
+    "documentDate": "Document Date",
+    "deliveryDate": "Delivery Date",
+    "paymentDate": "Payment Date",
+    "total": "Total",
+    "status": "Status",
+    "error": "Error",
+    "userMenu": {
+      "clientExtId": "client id",
+      "name": "name",
+      "phone": "phone",
+      "bussniesId": "bussnies id",
+      "city": "city",
+      "address": "address",
+      "contact": "contact",
+      "enterClient": "join to client"
+    }
+  },
+  "DocumentItem": {
+    "summaryTitle": "Summary",
+    "lineCount": "Line Count",
+    "total": "Total",
+    "generalDiscount": "General Discount",
+    "afterDiscount": "After Discount",
+    "tax": "VAT",
+    "amountToPay": "Amount to Pay",
+    "deliveryDate": "Delivery Date",
+    "commentTitle": "Comment",
+    "product": "Product",
+    "quantity": "Quantity",
+    "unitPrice": "Unit Price",
+    "discount": "Discount",
+    "noItemsFound": "No items found for this document",
+    "documentsProducts": "Document Products",
+    "generateExcel": "XL",
+    "generatePdf": "PDF",
+    "restoreOrder": "Restore Order",
+    "approveOrder": "Approve Order",
+    "searchPlaceholder": "Search...",
+    "restoreSuccessTitle": "Order restored successfully",
+    "restoreSuccessDesc": "Price updated.",
+    "restoreErrorTitle": "Error restoring data",
+    "restoreErrorDesc": "Please try again later.",
+    "approveOrderSuccess": "Order approved successfully",
+    "approveOrderError": "Transmission error"
+  },
+  "agentClines": {
+    "salesIncrease": "Sales increase",
+    "inactiveCustomer": "Inactive customer / 0 sales",
+    "salesDecrease": "Sales decrease"
+  },
+  "statistics": {
+    "agentPerformanceDetails": "Agent Performance Details",
+    "agent": "Agent",
+    "revenue": "Revenue",
+    "orderCount": "Order Count",
+    "cartAverage": "Cart Average",
+    "totalCustomers": "Total Customers",
+    "january": "January",
+    "february": "February",
+    "march": "March",
+    "april": "April",
+    "may": "May",
+    "june": "June",
+    "july": "July",
+    "august": "August",
+    "september": "September",
+    "october": "October",
+    "november": "November",
+    "december": "December"
+  },
+  "offline": {
+    "canotAcces": "offline mode, cannot access"
+  },
+  "productCardTabs": {
+    "warehouse": "Warehouse inventory",
+    "purchaseHistory": "Purchase Orders"
+  },
+  "purchaseHistory": {
+    "description": "Purchase History Details",
+    "document": "document number",
+    "date": "date",
+    "quatity": "quantity",
+    "price": "price",
+    "priceAfterTax": "price after tax",
+    "discount": "discount",
+    "totalInCount": "total in count",
+    "totalInCountAfterTax": "total in count after tax"
+  },
+  "purchaseOrders": {
+    "description": "Purchase Order Details",
+    "document": "document",
+    "quantity": "quantity",
+    "date": "date",
+    "warehouse": "warehouse",
+    "status": "status",
+    "address": "address"
+  },
+  "warehouse": {
+    "warehouseCode": "warehouse code",
+    "warehouseName": "warehouse name",
+    "city": "city",
+    "address": "address",
+    "street": "street",
+    "stock": "in stock",
+    "commited": "commited",
+    "ordered": "ordered"
+  },
+  "breadCrumbs": {
+    "myClient": "my clients",
+    "cartesset": "summary",
+    "cart": "cart",
+    "documents": "documents",
+    "debit": "debits",
+    "notifications": "notifications",
+    "profile": "profile",
+    "agents": "agents",
+    "clients": "clients"
+  },
+  "notification": {
+    "notification": "notification",
+    "noNotification": "no notification"
+  },
+  "salesKeper": {
+    "month": "month",
+    "average3Month": "average 3 months",
+    "cycle": "cycle",
+    "quantities": "quantities"
+  },
+  "quantityKeeper": {
+    "sku": "sku",
+    "name": "name",
+    "month": "month",
+    "average3Month": "average 3 months",
+    "searchBySkuOrName": "search by sku or partname"
+  }
+}

@@ -1,0 +1,501 @@
+{
+  "header": {
+    "searchProduct": "חפש מוצר...",
+    "goTo": "'מעבר לכל ה",
+    "results": "תוצאות"
+  },
+  "alerts": {
+    "cannotAddCart": "לא ניתן להוסיף לסל",
+    "needToAuthorize": "צריך להכנס למערכת",
+    "needToJoinToClient": "צריך להכנס ללקוח",
+    "userBlockedSuccessfuly": "המשתמש נחסם בהצלחה",
+    "userOpenSuccessfuly": "המשתמש נפתח בהצלחה",
+    "notUpdated": "לא עודכן"
+  },
+  "clientInfo": {
+    "clientTitle": "לקוח",
+    "agentTitle": "סוכן",
+    "agentName": "שם סוכן",
+    "agentNumber": "מספר סוכן",
+    "title": "מידע לקוח",
+    "clientName": "שם הלקוח",
+    "phone": "טלפון",
+    "clientNumber": "מס' לקוח",
+    "username": "שם משתמש",
+    "password": "סיסמא",
+    "lastUpdated": "עודכן לאחרונה"
+  },
+
+  "settingsModal": {
+    "title": "פרטי כניסה",
+    "clientNumber": "מספר לקוח: ",
+    "agentNumber": "מספר סוכן: ",
+    "client": "לקוח: ",
+    "agent": "סוכן: "
+  },
+  "forms": {
+    "email": "מייל",
+    "password": "סיסמא",
+    "confirmPassword": "אימות סיסמא",
+    "requiredEmail": "מייל שדה חובה",
+    "invalidEmail": "מייל אינו תקין",
+    "requiredPassword": "סיסמא שדה חובה"
+  },
+  "auth": {
+    "loginTitle": "כניסה",
+    "login": "כניסה",
+    "emailPlaceholder": "האימייל שלך",
+    "passwordPlaceholder": "הסיסמה שלך",
+    "notRegistered": "טרם נרשמת?",
+    "registerNow": "לחץ כאן להרשמה",
+    "forgotPassword": "שכחת סיסמא?"
+  },
+  "actions": {
+    "createCustomer": "הקמת לקוח",
+    "createAgent": "הקמת סוכן",
+    "activateCustomer": "הפעלת לקוח",
+    "activateAgent": "הפעלת סוכן",
+    "blockCustomer": "חסימת לקוח",
+    "blockAgent": "חסימת סוכן",
+    "resetCustomer": "איפוס לקוח",
+    "resetAgent": "איפוס סוכן"
+  },
+  "confirmations": {
+    "confirmBlock": "בטוח תרצה לחסום",
+    "confirmReset": "בטוח תרצה לאפס את המשתמש?",
+    "registrationReset": "המשתמש \"{{name}}\" ייאלץ לבצע הרשמה מחדש"
+  },
+  "catalog": {
+    "filter": {
+      "clearAttributes": "נקה בחירה",
+      "show": "הצג",
+      "sort": "מיון",
+      "totalProducts": "סהכ מוצרים",
+      "sorts": {
+        "name": "שם",
+        "special": "מומלץ",
+        "new": "חדש"
+      }
+    },
+    "productCard": {
+      "sku": "מק״ט",
+      "barcode": "ברקוד",
+      "packageName": "מחיר לקרטון",
+      "outOfStock": "אזל המלאי",
+      "promotion": "מבצע",
+      "bonus": "בונוס",
+      "totalPricePackageName": "סה״כ להזמנה ל- קרטון",
+      "addToCartOrder": "הוספה לסל",
+      "addToCartPriceOffer": "הוספה להצעת מחיר",
+      "addToCartReturn": "הוספה להחזרה"
+    },
+    "notification": {
+      "addToCart": "מוצר התווסף לסל",
+      "nonOfStock": "כמות מלאי אינה מספקת"
+    }
+  },
+  "categories": "קטגוריות",
+  "hello_name": "שלום, {{name}}!",
+  "agentStatistics": {
+    "daily": "יומי",
+    "monthly": "חודשי",
+    "yearly": "שנתי"
+  },
+  "catalogView": {
+    "categories": "קטגוריות"
+  },
+  "homeEditPage": {
+    "title": "ניהול עמוד בית"
+  },
+  "profilePage": {
+    "title": "פרופיל"
+  },
+  "homePage": {
+    "specialProducts": "מוצרים מיוחדים",
+    "newProducts": "מוצרים חדשים",
+    "allProducts": "כל המוצרים"
+  },
+  "footer": {
+    "title": "יש לכם שאלות? תצרו איתנו קשר",
+    "description1": "תיאור ראשון",
+    "description2": "תיאור שני",
+    "description3": "תיאור שלישי",
+    "form": {
+      "name": "שם מלא",
+      "namePlaceholder": "שם מלא",
+      "phone": "טלפון *",
+      "phonePlaceholder": "טלפון *",
+      "phoneRequired": "מספר טלפון לקוח שדה חובה",
+      "phoneInvalid": "מספר טלפון לא תקין",
+      "email": "מייל",
+      "emailPlaceholder": "מייל",
+      "emailInvalid": "מייל לא תקין",
+      "userExtId": "מספר לקוח פנימי",
+      "userExtIdPlaceholder": "הכנס את המספר שלך",
+      "business": "שם העסק",
+      "businessPlaceholder": "שם העסק",
+      "message": "הודעה",
+      "messagePlaceholder": "הודעה",
+      "send": "שלח"
+    },
+    "accessibility": "הצהרת נגישות",
+    "terms": "תקנון",
+    "addressLabel": "כתובת",
+    "address": "הכתובת שלך",
+    "phoneLabel": "טלפון",
+    "phone": "הטלפון שלך",
+    "emailLabel": "מייל",
+    "email": "המייל שלך",
+    "successTitle": "ההודעה נשלחה בהצלחה",
+    "errorTitle": "שגיאה בשליחת ההודעה"
+  },
+  "product": {
+    "soldOut": "אזל המלאי",
+    "skuLabel": "מספר קטלוגי",
+    "linkLabel": "למידע נוסף",
+    "packQuantityLabel": "יחידות במארז",
+    "bonusesLabel": "בונוסים",
+    "bonus": "קנה {{min}} קבל {{bonus}}",
+    "cartPriceLabel": "מחיר לקרטון",
+    "discountLabel": "הנחה",
+    "totalPriceLabel": "סה\"כ לקרטון",
+    "orderCartLabel": "קרטון להזמנה",
+    "totalOrderLabel": "סה\"כ להזמנה",
+    "shareMessage": "שיתוף לינק לתמונה:\nמק״ט: {{sku}}\nמוצר: {{title}}\nלינק: {{link}}",
+    "purchaseHistory": "היסטוריית רכישה",
+    "purchaseOrStock": "הזמנות רכש / מלאי זמין"
+  },
+  "agentClients": {
+    "cartWarningTitle": "קיימים פריטים בסל",
+    "cartWarningText": "כל הפריטים ימחקו",
+    "clientName": "שם לקוח",
+    "clientNumber": "מס לקוח",
+    "phone": "טלפון",
+    "taxNumber": "ח.פ/ע.מ",
+    "obligo": "אובליגו",
+    "debtBalance": "יתרת חוב",
+    "address": "כתובת",
+    "city": "עיר",
+    "status": "סטאטוס",
+    "turnover": "מחזור",
+    "searchPlaceholder": "חיפוש לפי שם לקוח או מספר לקוח",
+    "activeInactiveOption": "פעילים / לא פעילים",
+    "activeOption": "פעילים",
+    "inactiveOption": "לא פעילים",
+    "totalClients": "סה״כ לקוחות: {{count}}",
+    "emptyClient": "לא נמצאו לקוחות"
+  },
+  "breadcrumbs": {
+    "home": "בית",
+    "goBack": "חזור"
+  },
+  "pagination": {
+    "currentPage": "עמוד {{page}}",
+    "totalPages": "מתוך {{total}}"
+  },
+  "cart": {
+    "documentDetails": "פרטי מסמך",
+    "rowCount": "כמות שורות",
+    "totalBeforeTax": "סהכ לפני מע\"מ",
+    "deliveryCost": "דמי משלוח",
+    "taxDue": "חייב במע\"מ",
+    "priceAfterTax": "מחיר אחרי מע\"מ",
+    "amountToPay": "מחיר לתשלום",
+    "noManagerApproval": "ללא אישור מנהל",
+    "minimumOrderReminder": "עליך לצבור עוד {{amount}} ש\"ח עד למינימום הזמנה",
+    "generalDiscount": "אחוז הנחה כללי",
+    "selectDeliveryDate": "בחר תאריך אספקה",
+    "datePickerLabel": "בחירת תאריך",
+    "deliveryNote": "הערה למשלוח",
+    "submitOrder": "שדר הזמנה",
+    "payNow": "לתשלום",
+    "submitOfflineDocument": "שדר מסמך אופליין",
+    "orderSuccessTitle": "הזמנה בוצעה בהצלחה!",
+    "orderSuccessMessage": "מספר הזמנה: {{orderNumber}}",
+    "orderFailureTitle": "הזמנה לא בוצעה",
+    "orderFailureMessage": "שגיאה: {{message}}",
+    "offlineOrderSuccessTitle": "נשמר בהצלחה!",
+    "offlineOrderSuccessMessage": "{{message}}",
+    "item": "פריט",
+    "quantity": "כמות",
+    "price": "מחיר",
+    "discount": "הנחה",
+    "unitTotal": "סה״כ יחידה",
+    "orderTotal": "סה״כ להזמנה",
+    "confirmDeleteTitle": "האם אתה בטוח?",
+    "confirmDeleteMessage": "כל המוצרים בעגלה יימחקו",
+    "saveDraftTitle": "שמור הזמנה כטיוטה?",
+    "saveDraftMessage": "טיוטה תשמר וסל הקניות הנוכחי יתרוקן",
+    "summary": "סיכום",
+    "saveDraftBtn": "שמור טיוטה",
+    "loadDraftBtn": "טען טיוטה",
+    "deleteCartBtn": "מחק סל"
+  },
+  "profile": {
+    "actions": "פעולות",
+    "visitAdded": "ביקור התווסף",
+    "personalArea": "אזור אישי",
+    "logout": "התנתק",
+    "name": "שם",
+    "email": "מייל",
+    "phone": "טלפון",
+    "taxNumber": "ח.פ/ע.מ",
+    "city": "עיר",
+    "address": "כתובת",
+    "money": "כספים",
+    "productsImBuy": "מוצרים שאני קונה",
+    "productsImNotBuy": "מוצרים שאני לא קונה",
+    "client": "לקוח",
+    "agent": "סוכן",
+    "logoutFromClient": "התנתק מהלקוח",
+    "logoutConfirmTitle": "בטוח תרצה לצאת?",
+    "logoutConfirmMessage": "",
+    "changeModeTitle": "שאלה",
+    "changeModeMessage": "בטוח תרצה לעבור למוד {{mode}}? כל המוצרים מהסל ימחקו",
+    "salesIncrease": "עלייה במחזור מחירות",
+    "salesInactive": "לקוח לא פעיל / מחזור 0 מחירות",
+    "salesDecrease": "ירידה במחזור מחירות",
+    "viewSales": "צפייה במחזור"
+  },
+  "urls": {
+    "adminEditCatalog": { "label": "ניהול קטלוג" },
+    "adminEditHome": { "label": "ניהול עמוד בית" },
+    "adminEditAttributes": { "label": "ניהול אטריבוטים" },
+    "adminEditAttributeDetailed": { "label": "ניהול אטריבוטים" },
+    "adminEditProduct": { "label": "ניהול מוצרים" },
+    "adminClients": { "label": "לקוחות" },
+    "adminAgents": { "label": "סוכנים" },
+    "bonuses": { "label": "ניהול בונוסים" },
+    "bonusesItemPage": { "label": "ניהול בונוסים" },
+    "adminNotifications": { "label": "הודעות" },
+
+    "history": { "label": "הסטוריית רכישה" },
+    "profile": { "label": "פרופיל אישי" },
+    "documents": { "label": "מסמכים" },
+    "cartesset": { "label": "כרטסת" },
+    "giulHovot": { "label": "גיול חובות" },
+    "home": { "label": "עמוד בית" },
+    "catalog": { "label": "קטלוג" },
+    "catalogView": { "label": "קטגוריות" },
+    "cart": { "label": "עגלה" },
+
+    "agentDashboard": { "label": "דאשבורד" },
+    "approve": { "label": "הזמנות לאישור" },
+    "agentStatistics": { "label": "ביצועי סוכנים" },
+    "agentDocumentOffline": { "label": "מסמכי אופליין" }
+  },
+
+  "agentDashBoard": {
+    "mainInfo": {
+      "totalPriceMonth": "סה״כ חודשי",
+      "total": "סה״כ שנתי",
+      "averageBasket": "סל ממוצע",
+      "totalPriceDay": "סה״כ יומי",
+      "totalDayCount": "כמות עסקאות יומי",
+      "totalMonthCount": "כמות עסקאות חודשי",
+      "targetPrecent": "עמידה ביעד"
+    },
+    "tabs": {
+      "dashboard": "דאשבורד",
+      "missions": "משימות",
+      "visitTemplates": "תבניות ביקורים",
+      "targets": "יעדים"
+    },
+    "daily": {
+      "visits": {
+        "title": "ביקורים",
+        "chartLabel": "ביקורים"
+      },
+      "tasks": {
+        "title": "משימות",
+        "chartLabel": "משימות"
+      },
+      "completed": "בוצע",
+      "pending": "לביצוע"
+    },
+    "tasks": {
+      "openToday": "המשימות הפתוחות שלך להיום",
+      "task": "משימה",
+      "visit": "ביקור",
+      "noOpenTasks": "אין משימות פתוחות להיום",
+      "updatedSuccessfully": "עודכן בהצלחה"
+    },
+    "targets": {
+      "title": "עמידה ביעדים",
+      "sales": "מכירות",
+      "target": "יעד",
+      "salesTarget": "יעד מכירות"
+    },
+    "list": {
+      "date": "תאריך",
+      "turnover": "מחזור",
+      "target": "יעד",
+      "status": "סטאטוס",
+      "actions": "פעולות"
+    },
+    "cardTarget": {
+      "updateTarget": "עדכון יעד",
+      "targetUpdatedSuccess": "יעד עודכן בהצלחה",
+      "targetPlaceholder": "יעד",
+      "monthLabel": "חודשי",
+      "targetStatus": {
+        "waiting": "ממתין",
+        "achieved": "הגיע ליעד",
+        "notAchieved": "לא הגיע"
+      }
+    }
+  },
+  "agentMissions": {
+    "create": {
+      "title": "יצירת משימה",
+      "datePickerLabel": "בחירת תאריך",
+      "fromTime": "משעה",
+      "toTime": "עד שעה",
+      "taskDetails": "פרטי משימה",
+      "saveButton": "שמירה",
+      "successMessage": "משימה נורה בהצלחה"
+    }
+  },
+  "visits": {
+    "client": "לקוח",
+    "address": "כתובת",
+    "phone": "טלפון",
+    "hours": "שעות",
+    "day": "יום",
+    "actions": "פעולות",
+    "noResults": "לא נמצאו תוצאות"
+  },
+  "visitCreate": {
+    "createTitle": "יצירת ביקור",
+    "updateTitle": "עדכון ביקור",
+    "selectDay": "בחר יום בשבוע",
+    "selectHourFrom": "בחר משעה",
+    "selectHourTo": "בחר עד שעה",
+    "createButton": "צור ביקור",
+    "deleteButton": "מחק ביקור"
+  },
+  "documents": {
+    "notFoundDocument": "לא נמצא סוג מסמך כזה",
+    "search": "חיפוש",
+    "document": "מסמך",
+    "fromDate": "מתאריך",
+    "toDate": "לתאריך",
+    "documentNumber": "מספר מסמך",
+    "purchaseNumber": "מספר רכש לקוח",
+    "agent": "סוכן",
+    "type": "סוג",
+    "documentDate": "תאריך מסמך",
+    "deliveryDate": "תאריך משלוח",
+    "paymentDate": "תאריך תשלום",
+    "total": "סה״כ",
+    "status": "סטאטוס",
+    "error": "שגיאה",
+    "userMenu": {
+      "clientExtId": "מספר לקוח",
+      "name": "שם",
+      "phone": "טלפון",
+      "bussniesId": "ח.פ",
+      "city": "עיר",
+      "address": "כתובת",
+      "contact": "יצירת קשר",
+      "enterClient": "כניסה ללקוח"
+    }
+  },
+  "DocumentItem": {
+    "summaryTitle": "סיכום",
+    "lineCount": "כמות שורות",
+    "total": "סה״כ",
+    "generalDiscount": "הנחה כללית",
+    "afterDiscount": "אחרי הנחה",
+    "tax": "מע״מ",
+    "amountToPay": "לתשלום",
+    "deliveryDate": "תאריך",
+    "commentTitle": "הערה:",
+    "product": "מוצר",
+    "quantity": "כמות",
+    "unitPrice": "מחיר יח'",
+    "discount": "הנחה",
+    "noItemsFound": "לא נמצאו פריטים למסמך זה",
+    "documentsProducts": "מוצרי מסמכים",
+    "generateExcel": "XL",
+    "generatePdf": "PDF",
+    "restoreOrder": "שחזר הזמנה",
+    "approveOrder": "אשר הזמנה",
+    "searchPlaceholder": "חיפוש...",
+    "restoreSuccessTitle": "שחזור בוצע בהצלחה",
+    "restoreSuccessDesc": "עודכן מחיר עדכני",
+    "restoreErrorTitle": "תקלה בשחזור נתונים",
+    "restoreErrorDesc": "נסה שנית מאוחר יותר",
+    "approveOrderSuccess": "הזמנה אושרה בהצלחה",
+    "approveOrderError": "שגיאה בשידור"
+  },
+  "agentClines": {
+    "salesIncrease": "עלייה במחזור מחירות",
+    "inactiveCustomer": "לקוח לא פעיל / מחזור 0 מחירות",
+    "salesDecrease": "ירידה במחזור מחירות"
+  },
+  "offline": {
+    "canotAcces": "אופליין מוד לא ניתן לגשת"
+  },
+  "productCardTabs": {
+    "warehouse": "מלאי מחסנים",
+    "purchaseHistory": "הזמנות רכש"
+  },
+  "purchaseHistory": {
+    "description": "פירוט היסטוריית רכישה",
+    "document": "מסמך",
+    "date": "תאריך",
+    "quatity": "כמות",
+    "price": "מחיר",
+    "priceAfterTax": "מחיר אחרי מעמ",
+    "discount": "הנחה",
+    "totalInCount": "סהכ בתנועה",
+    "totalInCountAfterTax": "סהכ בתנועה אחרי מעמ"
+  },
+  "purchaseOrders": {
+    "description": "פירוט היסטוריית רכישה",
+    "document": "מסמך",
+    "quantity": "כמות",
+    "date": "תאריך משלוח",
+    "warehouse": "מחסן",
+    "status": "סטטוס",
+    "address": "כתובת"
+  },
+  "warehouse": {
+    "warehouseCode": "מספר מחסן",
+    "warehouseName": "שם מחסן",
+    "city": "עיר",
+    "address": "רחוב",
+    "stock": "מלאי",
+    "commited": "בהתחייבות",
+    "ordered": "הוזמן"
+  },
+  "breadCrumbs": {
+    "myClient": "לקוחות שלי",
+    "cartesset": "כרטסת",
+    "cart": "עגלה",
+    "documents": "מסמכים",
+    "debit": "גיול חובות",
+    "notifications": "הודעות",
+    "profile": "פרופיל",
+    "agents": "סוכנים",
+    "clients": "לקוחות"
+  },
+  "notification": {
+    "notification": "הודעות",
+    "noNotification": "אין הודעות"
+  },
+  "salesKeper": {
+    "month": "חודש",
+    "average3Month": "ממוצע 3 חודשים",
+    "cycle": "מחזור",
+    "quantities": "כמויות"
+  },
+  "quantityKeeper": {
+    "sku": "מקט",
+    "name": "פריט",
+    "month": "חודש",
+    "average3Month": "ממוצע 3 חודשים",
+    "searchBySkuOrName": "חיפוש לפי מקט או שם פריט"
+  }
+}
