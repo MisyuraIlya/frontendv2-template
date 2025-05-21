@@ -80,7 +80,11 @@ const Actions = () => {
                   cursor: 'pointer',
                   margin: '20px 10px',
                 }}
-                className="centered"
+                style={{
+                  display: 'flex',
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                }}
               >
                 <Typography variant="h6">{item.title}</Typography>
                 {item.img}

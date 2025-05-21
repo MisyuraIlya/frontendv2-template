@@ -59,8 +59,10 @@ const Update = ({
                   onClick={() => handleChoose(obj)}
                   key={obj.id!}
                   elevation={2}
-                  className="centered"
                   sx={{
+                    display:'flex', 
+                    justifyContent:'center', 
+                    alignItems:'center',
                     margin: '20px 10px',
                     cursor: 'pointer',
                     borderRadius: '5px',
@@ -71,16 +73,14 @@ const Update = ({
                     <Typography
                       variant="h6"
                       color={themeColors.primary}
-                      className="centered"
-                      sx={{ padding: '10px 0' }}
+                      sx={{ padding: '10px 0', display:'flex', justifyContent:'center', alignItems:'center' }}
                     >
                       {item?.objectiveType == 'task' ? 'משימה' : 'ביקור'}
                     </Typography>
                     <Typography
                       variant="body1"
                       color={themeColors.primary}
-                      className="centered"
-                      sx={{ padding: '10px 0' }}
+                      sx={{ padding: '10px 0', display:'flex', justifyContent:'center', alignItems:'center' }}
                     >
                       {`${obj.hourFrom} - ${obj.hourTo}`}
                     </Typography>
@@ -88,8 +88,7 @@ const Update = ({
                       <Typography
                         variant="body1"
                         color={themeColors.primary}
-                        className="centered"
-                        sx={{ padding: '10px 0' }}
+                        sx={{ padding: '10px 0', display:'flex', justifyContent:'center', alignItems:'center' }}
                       >
                         {`${(item.client as IUser)?.name}`}
                       </Typography>
@@ -97,8 +96,7 @@ const Update = ({
                       <Typography
                         variant="body1"
                         color={themeColors.primary}
-                        className="centered"
-                        sx={{ padding: '10px 0' }}
+                        sx={{ padding: '10px 0', display:'flex', justifyContent:'center', alignItems:'center' }}
                       >
                         {`${obj?.isCompleted ? 'הושלמה' : 'לא הושלמה'} `}
                       </Typography>
@@ -178,7 +176,7 @@ const Update = ({
                 >
                   {'המשימה הושלמה?'}
                 </Typography>
-                <Box className="centered">
+                <Box sx={{ display:'flex', justifyContent:'center', alignItems:'center' }}>
                   <Box sx={{ display: 'flex', gap: '30px', marginTop: '30px' }}>
                     <IconButton
                       sx={{

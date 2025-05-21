@@ -18,11 +18,15 @@ const MyCheapButton: FC<MyCheapButtonProps> = ({ children, sx }) => {
         padding: '5px 15px',
         '&:hover': { backgroundColor: '#ecf1f8' },
       }}
-      className="centered"
+      style={{
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+      }}
     >
       <Typography
         variant="body1"
-        sx={{ color: themeColors.primary }}
+        style={{ color: themeColors.primary }}
         fontWeight={800}
       >
         {children}

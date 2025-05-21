@@ -28,7 +28,7 @@ const BreadCrumbsUtil: FC<BreadCrumbsProps> = ({ array }) => {
         marginBottom: '30px',
       }}
     >
-      <Breadcrumbs className="centered">
+      <Breadcrumbs sx={{ display:'flex', justifyContent:'center', alignItems:'center' }}>
         <Typography
           onClick={() => navigate('/')}
           sx={{ cursor: 'pointer' }}

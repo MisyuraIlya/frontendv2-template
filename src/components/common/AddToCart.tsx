@@ -90,7 +90,7 @@ const AddToCart: FC<AddToCartProps> = ({ item }) => {
   }
 
   return (
-    <Grid className="centered" style={{ padding: '0px', margin: '0px' }}>
+    <Grid style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', padding: '0px', margin: '0px' }}>
       {isInCart ? (
         <>
           <Grid
@@ -100,8 +100,12 @@ const AddToCart: FC<AddToCartProps> = ({ item }) => {
           >
             <Grid
               size={{ xs: 4, sm: 4, md: 4 }}
-              className="centered"
-              sx={{ borderRight: '1px solid white' }}
+              style={{
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+                borderRight: '1px solid white',
+              }}
             >
               <IconButton
                 onClick={() => increaseCartFunc()}
@@ -110,7 +114,11 @@ const AddToCart: FC<AddToCartProps> = ({ item }) => {
                 <AddIcon sx={{ color: 'white' }} />
               </IconButton>
             </Grid>
-            <Grid size={{ xs: 4, sm: 4, md: 4 }} className="centered">
+            <Grid size={{ xs: 4, sm: 4, md: 4 }} style={{
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+              }}>
               <Input
                 type="text"
                 value={Quantity}
@@ -136,8 +144,12 @@ const AddToCart: FC<AddToCartProps> = ({ item }) => {
             </Grid>
             <Grid
               size={{ xs: 4, sm: 4, md: 4 }}
-              className="centered"
-              sx={{ borderLeft: '1px solid white' }}
+              style={{
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+                borderLeft: '1px solid white',
+              }}
             >
               <IconButton
                 onClick={
@@ -160,8 +172,10 @@ const AddToCart: FC<AddToCartProps> = ({ item }) => {
         >
           <Grid
             size={{ xs: 12, sm: 12, md: 12 }}
-            className="centered"
             sx={{
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
               bgcolor: '#F6F6F6',
               cursor: 'pointer',
               height: '40px',
@@ -174,9 +188,9 @@ const AddToCart: FC<AddToCartProps> = ({ item }) => {
           >
             <Typography
               variant="button"
-              sx={{ minWidth: '140px', textAlign: 'center'}}
+              sx={{ textAlign: 'center'}}
             >
-              {/* {handleTitleButton()} */}
+              {handleTitleButton()}
             </Typography>
           </Grid>
         </Grid>

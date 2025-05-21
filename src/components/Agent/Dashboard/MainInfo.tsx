@@ -34,10 +34,10 @@ const MainInfo = () => {
         </Box>
       )}
       <Grid container spacing={10}>
-        <Grid size={{ md: 7, sm: 12, xs: 12 }} className="centered">
-          <Grid container spacing={2} className="centered">
+        <Grid size={{ md: 7, sm: 12, xs: 12 }}>
+          <Grid container spacing={2} sx={{display:'flex', justifyContent:'center', alignItems:'center'}}>
             <Grid size={{ md: 4, sm: 6, xs: 6 }} sx={{ gap: '5px' }}>
-              <Box className="centered" sx={{ gap: '10px' }}>
+              <Box sx={{display:'flex', justifyContent:'center', alignItems:'center', gap: '10px'}}>
                 <SupportAgentIcon />
                 <Box sx={{ marginTop: '5px' }}>
                   <Typography>{data?.agentName}</Typography>
@@ -46,7 +46,7 @@ const MainInfo = () => {
               </Box>
             </Grid>
             <Grid size={{ md: 4, sm: 6, xs: 6 }} sx={{ gap: '5px' }}>
-              <Grid container spacing={0} className="centered">
+              <Grid container spacing={0} sx={{display:'flex', justifyContent:'center', alignItems:'center'}}>
                 <Grid size={{ xs: 2 }}>
                   <LegendToggleIcon />
                 </Grid>
@@ -63,7 +63,7 @@ const MainInfo = () => {
               </Grid>
             </Grid>
             <Grid size={{ md: 4, sm: 6, xs: 6 }} sx={{ gap: '5px' }}>
-              <Grid container spacing={0} className="centered">
+              <Grid container spacing={0} sx={{display:'flex', justifyContent:'center', alignItems:'center'}}>
                 <Grid size={{ xs: 2 }}>
                   <LegendToggleIcon />
                 </Grid>
@@ -80,7 +80,7 @@ const MainInfo = () => {
               </Grid>
             </Grid>
             <Grid size={{ md: 4, sm: 6, xs: 6 }} sx={{ gap: '5px' }}>
-              <Grid container spacing={0} className="centered">
+              <Grid container spacing={0} sx={{display:'flex', justifyContent:'center', alignItems:'center'}}>
                 <Grid size={{ xs: 2 }}>
                   <AnalyticsIcon />
                 </Grid>
@@ -104,7 +104,7 @@ const MainInfo = () => {
               <Typography variant="body2" textAlign="center">
                 {t('agentDashBoard.mainInfo.totalPriceDay')}
               </Typography>
-              <Box className="centered" sx={{ marginTop: '5px' }}>
+              <Box sx={{display:'flex', justifyContent:'center', alignItems:'center', marginTop: '5px'}}>
                 <Utils.MyCheapButton>
                   {numberWithCommas(data?.totalPriceDay)}
                 </Utils.MyCheapButton>
@@ -114,7 +114,7 @@ const MainInfo = () => {
               <Typography variant="body2" textAlign="center">
                 {t('agentDashBoard.mainInfo.totalDayCount')}
               </Typography>
-              <Box className="centered" sx={{ marginTop: '5px' }}>
+              <Box sx={{display:'flex', justifyContent:'center', alignItems:'center',  marginTop: '5px'}} >
                 <Utils.MyCheapButton>
                   {numberWithCommas(data?.totalDayCount)}
                 </Utils.MyCheapButton>
@@ -124,7 +124,7 @@ const MainInfo = () => {
               <Typography variant="body2" textAlign="center">
                 {t('agentDashBoard.mainInfo.totalMonthCount')}
               </Typography>
-              <Box className="centered" sx={{ marginTop: '5px' }}>
+              <Box sx={{display:'flex', justifyContent:'center', alignItems:'center', marginTop: '5px'}}>
                 <Utils.MyCheapButton>
                   {numberWithCommas(data?.totalMonthCount)}
                 </Utils.MyCheapButton>
@@ -134,7 +134,7 @@ const MainInfo = () => {
               <Typography variant="body2" textAlign="center">
                 {t('agentDashBoard.mainInfo.targetPrecent')}
               </Typography>
-              <Box className="centered" sx={{ marginTop: '5px' }}>
+              <Box sx={{display:'flex', justifyContent:'center', alignItems:'center', marginTop: '5px'}}>
                 <Utils.MyCheapButton>
                   {numberWithCommas(data?.targetPrecent)}
                 </Utils.MyCheapButton>

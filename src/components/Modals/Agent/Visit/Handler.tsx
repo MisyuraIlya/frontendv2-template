@@ -125,7 +125,11 @@ const Handler = ({
       width={isMobile ? 80 : 20}
       height={isMobile ? '70%' : '65%'}
     >
-      <form className="centered" onSubmit={handleSubmit(handleClick)}>
+      <form style={{
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+      }} onSubmit={handleSubmit(handleClick)}>
         <Box>
           <Typography variant="h5" sx={{ padding: '20px 0' }}>
             {item?.id
@@ -156,7 +160,12 @@ const Handler = ({
           <Typography variant="h5" textAlign="center">
             {t('visitCreate.selectDay')}
           </Typography>
-          <Box className="centered" sx={{ gap: '20px' }}>
+          <Box style={{
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            gap: '20px'
+          }} sx={{ gap: '20px' }}>
             {weekFields.map((field, idx) => (
               <Box key={field}>
                 <Typography textAlign="center">{idx + 1}</Typography>
@@ -188,7 +197,11 @@ const Handler = ({
             />
           </FormControl>
 
-          <Box sx={{ gap: '20px', marginTop: '20px' }} className="centered">
+          <Box sx={{ gap: '20px', marginTop: '20px' }} style={{
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}>
             {['hourFrom', 'hourTo'].map((name) => (
               <FormControl fullWidth key={name}>
                 <InputLabel id={`${name}-select-label`}>

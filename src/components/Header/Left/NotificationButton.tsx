@@ -46,7 +46,7 @@ const NotificationButton = () => {
         open={openDrawver}
         onClose={() => setOpenDrawver(false)}
       >
-        <Box sx={{ width: '300px' }} className="centered">
+        <Box sx={{display:'flex', justifyContent:'center', alignItems:'center', width: '300px'}}>
           <Box sx={{ width: '90%' }}>
             <Typography
               variant="h6"
@@ -67,8 +67,7 @@ const NotificationButton = () => {
               <Box>
                 {data?.length === 0 && (
                   <Box
-                    className="centered"
-                    sx={{ marginTop: '100px', gap: '10px' }}
+                    sx={{display:'flex', justifyContent:'center', alignItems:'center', marginTop: '100px', gap: '10px'}}
                   >
                     <NotificationsOffIcon />
                     <Typography

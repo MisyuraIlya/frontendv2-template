@@ -17,7 +17,14 @@ const NotificationContainer = () => {
       ))}
       <Box>
         {data?.length === 0 && (
-          <Box className="centered" sx={{ marginTop: '100px', gap: '10px' }}>
+          <Box  
+            sx={{ 
+              marginTop: '100px',
+              gap: '10px',
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+            }}>
             <NotificationsOffIcon />
             <Typography
               variant="body1"

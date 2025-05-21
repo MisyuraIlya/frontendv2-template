@@ -62,7 +62,7 @@ const Tasks = () => {
             <Grid container spacing={2}>
               <Grid
                 size={{ xs: 1 }}
-                className="centered"
+                sx={{display:'flex', justifyContent:'center', alignItems:'center'}}
                 onClick={() => handleClick(item)}
               >
                 {item?.objectiveType === 'task' ? (
@@ -73,7 +73,7 @@ const Tasks = () => {
               </Grid>
               <Grid
                 size={{ xs: 1 }}
-                className="centered"
+                sx={{display:'flex', justifyContent:'center', alignItems:'center'}}
                 onClick={() => handleClick(item)}
               >
                 {item?.objectiveType === 'task'
@@ -95,20 +95,20 @@ const Tasks = () => {
               </Grid>
               <Grid
                 size={{ xs: 1 }}
-                className="centered"
+                sx={{display:'flex', justifyContent:'center', alignItems:'center'}}
                 onClick={() => handleClick(item)}
               >
                 <Typography variant="body1">{item.hourFrom}</Typography>
               </Grid>
               <Grid
                 size={{ xs: 1 }}
-                className="centered"
+                sx={{display:'flex', justifyContent:'center', alignItems:'center'}}
                 onClick={() => handleClick(item)}
               >
                 <Typography variant="body1">{item.hourTo}</Typography>
               </Grid>
-              <Grid size={{ xs: 2 }} className="centered">
-                <Box sx={{ gap: '30px' }} className="centered">
+              <Grid size={{ xs: 2 }} sx={{display:'flex', justifyContent:'center', alignItems:'center'}}>
+                <Box sx={{display:'flex', justifyContent:'center', alignItems:'center',gap: '30px'}}>
                   <IconButton
                     sx={{
                       borderRadius: '5px',
@@ -141,7 +141,11 @@ const Tasks = () => {
         {notCompleted?.length === 0 && (
           <Box
             sx={{ minHeight: '100px', display: 'flex', gap: '5px' }}
-            className="centered"
+            style={{
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+            }}
           >
             <Typography variant="h6">
               {t('agentDashBoard.tasks.noOpenTasks')}

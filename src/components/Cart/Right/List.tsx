@@ -219,7 +219,11 @@ const List = () => {
                   </Typography>
                 </TableCell>
                 <TableCell>
-                  <Box className="centered">
+                  <Box style={{
+                    display: 'flex',
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                  }}>
                     <IconButton onClick={() => handleDelete(element)}>
                       <DeleteIcon color="error" />
                     </IconButton>
@@ -231,7 +235,11 @@ const List = () => {
         </Table>
       </TableContainer>
       {cart?.length === 0 && (
-        <Box className="centered">
+        <Box style={{
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+        }}>
           <Box sx={{ padding: '40px 0' }}>
             <img
               src={`${emptyCart}`}

@@ -133,8 +133,7 @@ const MyCropper: FC<MyCropperProps> = ({
               />
             </Box>
             <Box
-              sx={{ display: 'flex', gap: 1, height: '20%' }}
-              className="centered"
+              sx={{ gap: 1, height: '20%', display:'flex', justifyContent:'center', alignItems:'center' }}
             >
               <Button
                 variant="outlined"

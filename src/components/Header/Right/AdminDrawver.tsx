@@ -89,7 +89,7 @@ const AdminDrawver = () => {
         open={openAdminSideBar}
         onClose={() => setOpenAdminSideBar(false)}
       >
-        <Box className="centered" sx={{ marginTop: '50px' }}>
+        <Box sx={{display:'flex', justifyContent:'center', alignItems:'center', marginTop: '50px'}}>
           <img
             src={`${import.meta.env.VITE_MEDIA}/logo.png`}
             alt=""

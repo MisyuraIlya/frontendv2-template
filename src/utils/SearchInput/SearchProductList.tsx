@@ -57,7 +57,11 @@ const SearchProductList: FC<SearchUserListProps> = ({ onClick }) => {
                 {isValidating ? (
                   <Box
                     sx={{ display: 'flex', height: '300px' }}
-                    className="centered"
+                    style={{
+                      display: 'flex',
+                      justifyContent: 'center',
+                      alignItems: 'center',
+                    }}
                   >
                     <CircularProgress />
                   </Box>

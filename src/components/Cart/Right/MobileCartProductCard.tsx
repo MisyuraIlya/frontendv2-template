@@ -115,7 +115,7 @@ const MobileCartProductCard: FC<MobileCartProductCardProps> = ({ cart }) => {
               gap: '10px',
             }}
           >
-            <Box className="centered">
+            <Box sx={{display:'flex', justifyContent:'center', alignItems:'center'}}>
               <IconButton onClick={() => handeDelete(cart)}>
                 <DeleteIcon color="error" />
               </IconButton>

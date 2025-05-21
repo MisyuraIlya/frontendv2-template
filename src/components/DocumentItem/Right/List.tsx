@@ -102,7 +102,7 @@ const List = () => {
           </TableBody>
         </Table>
       </TableContainer>
-      <Box className="centered">
+      <Box sx={{display:'flex', justifyContent:'center', alignItems:'center'}}>
         {filteredProducts?.length === 0 && !isLoading && (
           <Typography variant="h6">{t('DocumentItem.noItemsFound')}</Typography>
         )}

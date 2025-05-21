@@ -48,7 +48,7 @@ const PaginationUtil: FC<PaginationUtilProps> = ({ pagination }) => {
           },
         }}
       />
-      <Box sx={{ gap: '10px' }} className="centered">
+      <Box sx={{ gap: '10px', display:'flex', justifyContent:'center', alignItems:'center' }} >
         <Typography>
           {t('pagination.currentPage', { page: pagination.page })}
         </Typography>

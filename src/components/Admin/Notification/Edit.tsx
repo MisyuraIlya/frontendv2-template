@@ -98,7 +98,7 @@ const Edit: React.FC = () => {
                 placeholder="קישור"
                 {...register('link')}
               />
-              <Box className="centered" sx={{ marginTop: '50px' }}>
+              <Box sx={{ marginTop: '50px' }}>
                 <Utils.MyCropper
                   aspectRatio={1}
                   uploadImg={uploadImg}
@@ -141,8 +141,13 @@ const Edit: React.FC = () => {
       ) : (
         <Paper
           elevation={4}
-          className="centered"
-          sx={{ minHeight: '500px', borderRadius: '10px' }}
+          style={{
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            minHeight: '500px',
+            borderRadius: '10px'
+          }}
         >
           <Button
             type="button"

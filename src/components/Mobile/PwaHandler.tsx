@@ -15,7 +15,11 @@ const PwaHandler: FC<IssueHandlerProps> = ({ title, link, needPlatform }) => {
 
   return (
     <div className="IssueHandler">
-      <div className="centered">
+      <div style={{
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+      }}>
         {needPlatform === 'Safari' && (
           <img src={iconSafari} alt="Safari icon" />
         )}

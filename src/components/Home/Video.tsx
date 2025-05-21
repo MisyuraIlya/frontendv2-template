@@ -108,7 +108,7 @@ const Video: FC<VideoProps> = ({ isVideo, src, settings }) => {
         )}
       </Paper>
       <Box style={styles.showcase}>
-        <Box className="centered" sx={{ mb: '120px' }}>
+        <Box sx={{display:'flex', justifyContent:'center', alignItems:'center', mb: '120px' }}>
           <Box>
             <Typography
               variant="h3"

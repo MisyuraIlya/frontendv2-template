@@ -58,7 +58,12 @@ const List = () => {
       )}
 
       {data?.total === 0 && (
-        <Box className="centered" sx={{ minHeight: '100px' }}>
+        <Box style={{
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+          minHeight: '100px'
+        }}>
           <Typography variant="body1" fontWeight={700}>
             {t('visits.noResults')}
           </Typography>

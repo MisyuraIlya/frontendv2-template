@@ -50,7 +50,12 @@ const ProductList: FC<ProductListProps> = ({
     >
       <Box sx={{ height: '80%', overflow: 'auto' }}>
         {!loading && array.length === 0 && (
-          <Box className="centered" sx={{ height: '80%' }}>
+          <Box style={{
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            height: '80%'
+          }} sx={{ height: '80%' }}>
             <img
               src={`${emptySearch}`}
               alt="Empty search"
@@ -127,7 +132,7 @@ const ProductList: FC<ProductListProps> = ({
         )}
       </Box>
 
-      <Box sx={{ height: '10%', marginTop: '15px' }} className="centered">
+      <Box sx={{ height: '10%', marginTop: '15px', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
         <Button
           variant="outlined"
           onClick={() => {

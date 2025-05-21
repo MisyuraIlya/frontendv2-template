@@ -69,7 +69,11 @@ const Daily = () => {
           size={{ md: 6, sm: 12, xs: 12 }}
           sx={{ display: { sm: 'flex', xs: 'block' }, gap: '20px' }}
         >
-          <Box className="centered">
+          <Box sx={{
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}>
             <Box>
               <Typography
                 variant="h6"
@@ -125,7 +129,11 @@ const Daily = () => {
           size={{ md: 6, sm: 12, xs: 12 }}
           sx={{ display: { sm: 'flex', xs: 'block' }, gap: '20px' }}
         >
-          <Box className="centered">
+          <Box sx={{
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}>
             <Box>
               <Typography
                 variant="h6"

@@ -66,7 +66,11 @@ const List = () => {
         )}
       </Grid>
       {isLoading ? (
-        <Box className="centered">
+        <Box style={{
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+        }}>
           <Loader />
         </Box>
       ) : (
