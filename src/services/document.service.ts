@@ -15,9 +15,7 @@ export const DocumentsService = {
     let url = `${import.meta.env.VITE_API}/document/documentList/${documentType}/${fromConverted}/${toDateConverted}?page=${page}`
 
     if (
-      user.role === 'ROLE_USER' ||
-      user.role === 'ROLE_AGENT' ||
-      user.role === null
+      user
     ) {
       url += `&userId=${user.id}`
     }

@@ -146,6 +146,7 @@ const List = () => {
                       type="number"
                       inputProps={{ step: '0.1' }}
                       value={element?.product.finalPrice}
+                      onFocus={(e) => (e.target as HTMLInputElement).select()}
                       onChange={(e) => changePrice(element, +e.target.value)}
                       sx={{
                         width: '50%',
@@ -169,6 +170,7 @@ const List = () => {
                       type="number"
                       inputProps={{ step: '0.1' }}
                       value={element?.discount}
+                      onFocus={(e) => (e.target as HTMLInputElement).select()}
                       onChange={(e) => changeDiscount(element, +e.target.value)}
                       sx={{
                         width: '50%',
@@ -192,6 +194,7 @@ const List = () => {
                       type="number"
                       inputProps={{ step: '0.1' }}
                       value={element?.price}
+                      onFocus={(e) => (e.target as HTMLInputElement).select()}
                       onChange={(e) => changeSum(element, +e.target.value)}
                       sx={{
                         width: '50%',

@@ -1,4 +1,3 @@
-/* eslint-disable import/no-unresolved, react/no-unknown-property */
 import React, { FC } from 'react'
 import { Link } from 'react-router-dom'
 import { Typography, Button, Paper, Box } from '@mui/material'

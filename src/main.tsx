@@ -4,11 +4,13 @@ import { createRoot } from 'react-dom/client'
 import './index.css'
 import App from './App.tsx'
 
-if (import.meta.hot) {
-  import.meta.hot.accept(() => {
-    window.location.reload()
-  })
-}
+import { registerSW } from 'virtual:pwa-register'
+
+const updateSW = registerSW({
+  onNeedRefresh() { /* prompt user to reload */ },
+  onOfflineReady() { /* show offline-ready UI */ },
+})
+
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>

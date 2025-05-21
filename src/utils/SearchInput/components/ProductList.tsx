@@ -15,6 +15,8 @@ import { useAuth } from '../../../store/auth.store'
 import AddToCart from '../../../components/common/AddToCart'
 import { useTranslation } from 'react-i18next'
 import emptySearch from '../../../assets/images/emptySearch.svg'
+import logo from '../../../assets/images/logo.png'
+import { useCart } from '../../../store/cart.store'
 
 interface ProductListProps {
   array: Array<IProduct>
@@ -36,6 +38,7 @@ const ProductList: FC<ProductListProps> = ({
   const navigate = useNavigate()
   const { user } = useAuth()
   const { t } = useTranslation()
+  const { selectedMode } = useCart()
 
   return (
     <Paper
@@ -86,7 +89,7 @@ const ProductList: FC<ProductListProps> = ({
                     >
                       {!element?.defaultImagePath ? (
                         <img
-                          src={import.meta.env.VITE_MEDIA + '/placeholder.jpg'}
+                          src={logo}
                           alt={`placeholder`}
                           style={{ maxWidth: '50px', maxHeight: '50px' }}
                         />
@@ -136,7 +139,7 @@ const ProductList: FC<ProductListProps> = ({
         <Button
           variant="outlined"
           onClick={() => {
-            navigate(`/client/catalog/0/0/0?page=1&search=${searchValue}`)
+            navigate(`/client/catalog/${selectedMode?.value}/0/0/0?page=1&search=${searchValue}`)
             setSearchValue('')
           }}
         >

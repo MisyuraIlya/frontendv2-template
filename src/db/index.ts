@@ -15,25 +15,35 @@ class MyDatabase extends Dexie {
   historyDetailed
 
   constructor() {
-    super('MyDatabase')
+    super('db')
 
-    this.version(2).stores({
-      users:
-        '++id, extId, email, isRegistered, isBlocked, name, phone, city, address, createdAt, updatedAt, discount, role',
-      products:
-        '++id, sku, title, categoryLvl1Id, categoryLvl2Id, categoryLvl3Id, barcode, defaultImagePath, isPublished, createdAt, updatedAt, basePrice, finalPrice, discount, stock, ordern, isNew, isSpecial, orden, packQuantity',
+    this.version(1).stores({
+      users: 
+        '++id, username, password, extId, email, isRegistered, isBlocked, name, phone, recovery, refreshToken, role, isAllowOrder, isAllowAllClients, payCode, PayDes, maxCredit, maxObligo, hp, taxCode, parent, agent, city, address, isVatEnabled, salesCurrency, oneSignalAppId, createdAt, updatedAt',
+
+      products: 
+        '++id, sku, group, title, titleEnglish, defaultImagePath, remoteDefaultImagePath, description, barcode, isPublished, categoryLvl1Id, categoryLvl2Id, categoryLvl3Id, basePrice, finalPrice, stock, packQuantity, discount, orden, isNew, isSpecial, multiCategory, createdAt, updatedAt',
+
       categories:
-        '++id,lvlNumber, parentId, extId, title, description, isPublished, orden',
+        '++id, extId, title, description, isPublished, orden, lvlNumber, parentId, englishTitle, integrationGroups',
+
       attributeMain:
-        '++id,extId,title,isPublished,orden,isInProductCard,isInFilter',
-      attributeSub: '++id,attributeId,title',
-      productAttribute: '++id,productId,attributeSubId',
+        '++id, extId, title, isPublished, orden, isInProductCard, isInFilter',
+
+      attributeSub:
+        '++id, attributeId, title, productCount, isPublished, orden',
+
+      productAttribute:
+        '++id, productId, attributeSubId',
+
       history:
-        '++id, documentNumber, documentType, userName, userExId, agentExId, agentName, status, createdAt, updatedAt, total, error, user, orderComment, tax',
+        '++id, documentNumber, documentType, userName, userExId, agentExId, agentName, status, createdAt, updatedAt, total, error, user, agent, agentApproved, orderComment, tax',
+
       historyDetailed:
         '++id, historyId, sku, title, quantity, priceByOne, total, discount, product, tax',
     })
 
+    // Bind tables
     this.users = this.table('users')
     this.products = this.table('products')
     this.categories = this.table('categories')

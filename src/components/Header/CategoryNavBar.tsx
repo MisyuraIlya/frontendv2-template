@@ -81,7 +81,7 @@ const CategoryNavBar = () => {
                         fontWeight: 700,
                       }}
                       onClick={() =>
-                        navigate(`/client/catalog/${element.id}/0/0?page=1`)
+                        navigate(`/client/catalog/${selectedMode?.value}/${element.id}/0/0?page=1`)
                       }
                     >
                       {element?.title}

@@ -1,7 +1,10 @@
-/* eslint-disable import/no-unresolved, react/no-unknown-property */
 import { FC, useRef } from 'react'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import type { Swiper as SwiperClass } from 'swiper'
+import 'swiper/css'
+import 'swiper/css/navigation'
+import 'swiper/css/pagination'
+import 'swiper/css/scrollbar'
 import { Box, Grid, IconButton, Typography } from '@mui/material'
 import { themeColors, themeSettings } from '../../styles/mui'
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew'

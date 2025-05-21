@@ -29,38 +29,7 @@ import OfflineBlur from '../../common/OfflineBlur'
 import { useTranslation } from 'react-i18next'
 import useDirection from '../../../hooks/useDirection'
 
-const clientURL = {
-  PROFILE: {
-    LINK: URLS.PROFILE.LINK,
-    LABEL: 'urls.profile.label',
-    ICON: <PersonIcon sx={{ width: '22px' }} />,
-  },
-  DOCUMENTS: {
-    LINK: URLS.DOCUMENTS.LINK,
-    LABEL: 'urls.documents.label',
-    ICON: <AssignmentIcon sx={{ width: '22px' }} />,
-  },
-  CARTESSET: {
-    LINK: URLS.DYNAMIC_TABLE_CARTESSET.LINK,
-    LABEL: 'urls.cartesset.label',
-    ICON: <PriceChangeIcon sx={{ width: '20px' }} />,
-  },
-  DEBIT: {
-    LINK: URLS.DYNAMIC_TABLE_DEBIT.LINK,
-    LABEL: 'urls.giulHovot.label',
-    ICON: <CurrencyExchangeIcon sx={{ width: '20px' }} />,
-  },
-  PRODUCTS_IM_BUY: {
-    LINK: '/client/imBuy/0/0/0?page=1',
-    LABEL: 'profile.productsImBuy',
-    ICON: <ShoppingBasketIcon sx={{ width: '20px' }} />,
-  },
-  PRODUCTS_IM_NOT_BUY: {
-    LINK: '/client/notBuy/0/0/0?page=1',
-    LABEL: 'profile.productsImNotBuy',
-    ICON: <RemoveShoppingCartIcon sx={{ width: '20px' }} />,
-  },
-}
+
 
 interface MenuProfileProps {
   handleClose?: () => void
@@ -74,6 +43,39 @@ const MenuProfile: FC<MenuProfileProps> = ({ handleClose }) => {
   const { isOnline } = useOffline()
   const dir = useDirection()
   const navigate = useNavigate()
+
+  const clientURL = {
+    PROFILE: {
+      LINK: URLS.PROFILE.LINK,
+      LABEL: 'urls.profile.label',
+      ICON: <PersonIcon sx={{ width: '22px' }} />,
+    },
+    DOCUMENTS: {
+      LINK: URLS.DOCUMENTS.LINK,
+      LABEL: 'urls.documents.label',
+      ICON: <AssignmentIcon sx={{ width: '22px' }} />,
+    },
+    CARTESSET: {
+      LINK: URLS.DYNAMIC_TABLE_CARTESSET.LINK,
+      LABEL: 'urls.cartesset.label',
+      ICON: <PriceChangeIcon sx={{ width: '20px' }} />,
+    },
+    DEBIT: {
+      LINK: URLS.DYNAMIC_TABLE_DEBIT.LINK,
+      LABEL: 'urls.giulHovot.label',
+      ICON: <CurrencyExchangeIcon sx={{ width: '20px' }} />,
+    },
+    PRODUCTS_IM_BUY: {
+      LINK: `/client/imBuy/${selectedMode?.value}/0/0/0?page=1`,
+      LABEL: 'profile.productsImBuy',
+      ICON: <ShoppingBasketIcon sx={{ width: '20px' }} />,
+    },
+    PRODUCTS_IM_NOT_BUY: {
+      LINK: `/client/notBuy/${selectedMode?.value}/0/0/0?page=1`,
+      LABEL: 'profile.productsImNotBuy',
+      ICON: <RemoveShoppingCartIcon sx={{ width: '20px' }} />,
+    },
+  }
 
   const handleNaviagte = (link: string) => {
     if (link) {

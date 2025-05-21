@@ -34,7 +34,7 @@ export const AdminNotificationsServices = {
 
   async sendNotification(data: ISendNotification) {
     const response = await apiInterceptor.post(
-      `${import.meta.env.VITE_API}/apiv2/sendNotification`,
+      `${import.meta.env.VITE_API}/notification/send-notification`,
       data
     )
     return response.data

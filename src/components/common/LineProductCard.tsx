@@ -19,7 +19,7 @@ import { useAuth } from '../../store/auth.store'
 import useDirection from '../../hooks/useDirection'
 import { useTranslation } from 'react-i18next'
 import { settings } from '../../settings'
-
+import logo from '../../assets/images/logo.png'
 interface LineProductCardProps {
   product: IProduct
 }
@@ -56,7 +56,6 @@ const LineProductCard: FC<LineProductCardProps> = ({ product }) => {
   const { user } = useAuth()
   const dir = useDirection()
   const { t } = useTranslation()
-
   const handleClick = () => {
     selectProduct(product)
   }
@@ -142,8 +141,8 @@ const LineProductCard: FC<LineProductCardProps> = ({ product }) => {
           component="img"
           image={
             product.defaultImagePath
-              ? `${import.meta.env.VITE_MEDIA}/product/${product.defaultImagePath}`
-              : `${import.meta.env.VITE_MEDIA}/logo.png`
+              ? `${import.meta.env.VITE_MEDIA}${product.defaultImagePath}`
+              : `${logo}`
           }
           alt="Product image"
           sx={{

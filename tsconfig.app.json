@@ -17,7 +17,7 @@
     "noUnusedParameters": true,
     "erasableSyntaxOnly": true,
     "noFallthroughCasesInSwitch": true,
-    "noUncheckedSideEffectImports": true,
+    "noUncheckedSideEffectImports": false,
 
     "typeRoots": [
       "node_modules/@types",

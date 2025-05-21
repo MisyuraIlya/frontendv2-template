@@ -180,6 +180,7 @@ const AddToCart: FC<AddToCartProps> = ({ item }) => {
               bgcolor: '#F6F6F6',
               cursor: 'pointer',
               height: '40px',
+              minWidth:'100px',
               color: themeColors.primary,
               '&:hover': {
                 background: themeColors.primary,

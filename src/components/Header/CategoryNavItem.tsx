@@ -6,6 +6,7 @@ import InboxIcon from '@mui/icons-material/MoveToInbox'
 import RemoveIcon from '@mui/icons-material/Remove'
 import { useNavigate } from 'react-router-dom'
 import React from 'react'
+import { useCart } from '../../store/cart.store'
 
 const CategoryNavItem = ({
   item,
@@ -18,7 +19,7 @@ const CategoryNavItem = ({
 }) => {
   const [open, setOpen] = React.useState(false)
   const navigate = useNavigate()
-
+  const {selectedMode} = useCart()
   const handleClick = () => {
     setOpen(!open)
   }
@@ -40,7 +41,7 @@ const CategoryNavItem = ({
               key={lvl3.id}
               onClick={() => {
                 navigate(
-                  `/client/catalog/${lvl1.id}/${item.id}/${lvl3.id}?page=1`
+                  `/client/catalog/${lvl1.id}/${selectedMode?.value}/${item.id}/${lvl3.id}?page=1`
                 )
                 handleClose()
               }}

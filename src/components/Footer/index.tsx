@@ -12,7 +12,6 @@ import {
 import { themeColors, colors } from '../../styles/mui'
 import { useForm, Controller } from 'react-hook-form'
 import { useMobile } from '../../provider/MobileProvider'
-import { useAuthProvider } from '../../provider/AuthProvider'
 import { SupportService } from '../../services/support.service'
 import { onErrorAlert, onSuccessAlert } from '../../utils/MySweetAlert'
 import { useTranslation } from 'react-i18next'
@@ -25,7 +24,6 @@ const Footer = () => {
     reset,
   } = useForm<ISupportDto>()
   const { t } = useTranslation()
-  const { isAuthrized } = useAuthProvider()
   const { isMobile } = useMobile()
   const [loading, setLoading] = useState(false)
 
@@ -33,7 +31,7 @@ const Footer = () => {
     setLoading(true)
     SupportService.sendSupport(data).then((res) => {
       setLoading(false)
-      if (res.status === 'success') {
+      if (res.status) {
         reset()
         onSuccessAlert(t('footer.successTitle'), '')
       } else {

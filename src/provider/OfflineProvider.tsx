@@ -23,13 +23,12 @@ type dbTypes =
   | 'user'
   | 'category'
   | 'product'
-  | 'attribute_main'
-  | 'attribute_sub'
-  | 'product_attribute'
+  | 'attribute-main'
+  | 'attribute-sub'
+  | 'product-attribute'
 
 const ModalContext = createContext<ModalContextType | null>(null)
-
-const useOffline = () => {
+export const useOffline = () => {
   const context = useContext(ModalContext)
   if (!context) {
     throw new Error('Can not run without "OfflineContext Provider"')
@@ -39,6 +38,14 @@ const useOffline = () => {
 
 interface OfflineProviderProps {
   children: ReactNode
+}
+
+async function clearAllTables() {
+  await db.transaction('rw', db.tables, async () => {
+    for (const table of db.tables) {
+      await table.clear()
+    }
+  })
 }
 
 const OfflineProvider: FC<OfflineProviderProps> = ({ children }) => {
@@ -56,24 +63,30 @@ const OfflineProvider: FC<OfflineProviderProps> = ({ children }) => {
   async function fetchDatabaseFile(url: string, type: dbTypes) {
     try {
       const response = await apiInterceptor.get(url)
-
-      const { data } = await response.data
+      const { data } = await response
 
       if (Array.isArray(data)) {
-        if (type === 'user') {
-          await db.users.bulkPut(data)
-        } else if (type === 'product') {
-          await db.products.bulkPut(data)
-        } else if (type === 'category') {
-          await db.categories.bulkPut(data)
-        } else if (type === 'attribute_main') {
-          await db.attributeMain.bulkPut(data)
-        } else if (type === 'attribute_sub') {
-          await db.attributeSub.bulkPut(data)
-        } else if (type === 'product_attribute') {
-          await db.productAttribute.bulkPut(data)
-        } else {
-          console.error('UNCORRECT DATA TYPE')
+        switch (type) {
+          case 'user':
+            await db.users.bulkPut(data)
+            break
+          case 'product':
+            await db.products.bulkPut(data)
+            break
+          case 'category':
+            await db.categories.bulkPut(data)
+            break
+          case 'attribute-main':
+            await db.attributeMain.bulkPut(data)
+            break
+          case 'attribute-sub':
+            await db.attributeSub.bulkPut(data)
+            break
+          case 'product-attribute':
+            await db.productAttribute.bulkPut(data)
+            break
+          default:
+            console.error('UNCORRECT DATA TYPE')
         }
         console.log(
           'Data has been successfully updated in Dexie using bulkPut.'
@@ -87,53 +100,55 @@ const OfflineProvider: FC<OfflineProviderProps> = ({ children }) => {
   }
 
   useEffect(() => {
-    if (isAgent) {
-      const today = new Date().toISOString().split('T')[0]
-      const lastUpdated = localStorage.getItem('updatedAt')
+    if (!isAgent) return
+    const today = new Date().toISOString().split('T')[0]
 
-      const updateData = async () => {
-        setLoading(true)
-        try {
-          if (lastUpdated !== today) {
-            console.log('Updating data since it has not been updated today.')
-            await db.delete()
-            await fetchDatabaseFile(
-              `${import.meta.env.VITE_API}/apiv2/export/user`,
-              'user'
-            )
-            await fetchDatabaseFile(
-              `${import.meta.env.VITE_API}/apiv2/export/category`,
-              'category'
-            )
-            await fetchDatabaseFile(
-              `${import.meta.env.VITE_API}/apiv2/export/product`,
-              'product'
-            )
-            await fetchDatabaseFile(
-              `${import.meta.env.VITE_API}/apiv2/export/attribute_main`,
-              'attribute_main'
-            )
-            await fetchDatabaseFile(
-              `${import.meta.env.VITE_API}/apiv2/export/attribute_sub`,
-              'attribute_sub'
-            )
-            await fetchDatabaseFile(
-              `${import.meta.env.VITE_API}/apiv2/export/product_attribute`,
-              'product_attribute'
-            )
+    const lastUpdated = localStorage.getItem('updatedAt')
+    console.log('lastUpdated',lastUpdated)
+    const updateData = async () => {
+      setLoading(true)
+      try {
+        if (lastUpdated !== today) {
+          console.log('Clearing out old data…')
+          await clearAllTables()
 
-            localStorage.setItem('updatedAt', today)
-          } else {
-            console.log('Data is already updated today. Skipping update.')
-          }
-        } catch (error) {
-          console.error('Error updating data:', error)
-        } finally {
-          setLoading(false)
+          await fetchDatabaseFile(
+            `${import.meta.env.VITE_API}/offline/export/user`,
+            'user'
+          )
+          await fetchDatabaseFile(
+            `${import.meta.env.VITE_API}/offline/export/category`,
+            'category'
+          )
+          await fetchDatabaseFile(
+            `${import.meta.env.VITE_API}/offline/export/product`,
+            'product'
+          )
+          await fetchDatabaseFile(
+            `${import.meta.env.VITE_API}/offline/export/attribute-main`,
+            'attribute-main'
+          )
+          await fetchDatabaseFile(
+            `${import.meta.env.VITE_API}/offline/export/attribute-sub`,
+            'attribute-sub'
+          )
+          await fetchDatabaseFile(
+            `${import.meta.env.VITE_API}/offline/export/product-attribute`,
+            'product-attribute'
+          )
+
+          localStorage.setItem('updatedAt', today)
+        } else {
+          console.log('Data is already updated today. Skipping update.')
         }
+      } catch (error) {
+        console.error('Error updating data:', error)
+      } finally {
+        setLoading(false)
       }
-      updateData()
     }
+
+    updateData()
   }, [])
 
   useEffect(() => {
@@ -152,39 +167,27 @@ const OfflineProvider: FC<OfflineProviderProps> = ({ children }) => {
 
     window.addEventListener('online', handleOnline)
     window.addEventListener('offline', handleOffline)
-
     return () => {
       window.removeEventListener('online', handleOnline)
       window.removeEventListener('offline', handleOffline)
     }
   }, [])
 
-  const value = {
-    isOnline,
-  }
-
   return (
-    <ModalContext.Provider value={value}>
+    <ModalContext.Provider value={{ isOnline }}>
       <Backdrop
         sx={(theme) => ({ color: '#fff', zIndex: theme.zIndex.drawer + 1 })}
         open={loading}
         onClick={() => setLoading(false)}
       >
-        <Box>
-          <Box
-            sx={{
-              display: 'flex',
-              justifyContent: 'center',
-              alignItems: 'center',
-            }}
-          >
-            <CircularProgress color="inherit" />
-          </Box>
-          <Typography sx={{ fontWeight: 600, fontSize: '20px', mt: '20px' }}>
+        <Box textAlign="center">
+          <CircularProgress color="inherit" />
+          <Typography sx={{ fontWeight: 600, fontSize: '20px', mt: 2 }}>
             טעינת נתונים
           </Typography>
         </Box>
       </Backdrop>
+
       <Snackbar
         open={alertOpen}
         autoHideDuration={3000}
@@ -198,23 +201,26 @@ const OfflineProvider: FC<OfflineProviderProps> = ({ children }) => {
           {alertMessage}
         </Alert>
       </Snackbar>
+
       {!isOnline && (
         <Box
           sx={{
             position: 'fixed',
             bottom: isMobile ? 70 : 70,
             right: isMobile ? 20 : 70,
-            width: isMobile ? '30px' : '60px',
-            height: isMobile ? '30px' : '60px',
+            width: isMobile ? 30 : 60,
+            height: isMobile ? 30 : 60,
             bgcolor: loading ? 'grey' : themeColors.primary,
-            borderRadius: '10px',
+            borderRadius: 1,
             display: 'flex',
             justifyContent: 'center',
             alignItems: 'center',
             zIndex: 1000,
           }}
         >
-          <SignalWifiBadIcon sx={{ fontSize: isMobile ? '20px' : '40px' }} />
+          <SignalWifiBadIcon
+            sx={{ fontSize: isMobile ? 20 : 40 }}
+          />
         </Box>
       )}
 
@@ -223,4 +229,4 @@ const OfflineProvider: FC<OfflineProviderProps> = ({ children }) => {
   )
 }
 
-export { useOffline, OfflineProvider }
+export { OfflineProvider }

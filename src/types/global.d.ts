@@ -32,11 +32,6 @@ interface IDynamicTables {
   lines: any[]
 }
 
-interface ApiResponse {
-  message: string
-  status: 'success' | 'error'
-}
-
 interface IMediaObject {
   id: number
   contentUrl: string
@@ -83,3 +78,10 @@ interface GlobalSettings {
   allowRegistration: boolean
 }
 
+
+declare module 'virtual:pwa-register' {
+  export function registerSW(options?: {
+    onNeedRefresh?: () => void;
+    onOfflineReady?: () => void;
+  }): () => void;
+}
