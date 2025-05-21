@@ -1,4 +1,3 @@
-import React from 'react'
 import { Container } from '@mui/material'
 import Profile from '../components/Profile'
 import Utils from '../utils'

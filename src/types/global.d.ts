@@ -32,28 +32,6 @@ interface IDynamicTables {
   lines: any[]
 }
 
-
-
-interface hydraPagination {
-  totalPages: number | string
-  page: number | string
-  lastPage: number | string
-  nextPage: number | string
-  previous: number | string
-}
-
-interface HydraView {
-  'hydra:first': string
-  'hydra:last': string
-  'hydra:next': string | null
-  'hydra:previous': string | null
-}
-
-interface Hydra {
-  'hydra:totalItems': number
-  'hydra:view'?: HydraView | null
-}
-
 interface ApiResponse {
   message: string
   status: 'success' | 'error'
@@ -105,9 +83,3 @@ interface GlobalSettings {
   allowRegistration: boolean
 }
 
-declare global {
-  interface Window {
-    settings: GlobalSettings
-  }
-}
-const settings: GlobalSettings = window.settings

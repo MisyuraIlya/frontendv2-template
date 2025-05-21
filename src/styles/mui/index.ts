@@ -2,8 +2,8 @@ import { alpha, createTheme, lighten, darken } from '@mui/material'
 import { red } from '@mui/material/colors'
 
 export const themeColors = {
-  primary: window.settings.primaryColor,
-  secondary: window.settings.secondaryColor,
+  primary: '#30AC5A',
+  secondary: '#30AC5A',
   success: '#30AC5A',
   warning: '#F3C521',
   error: '#C52A43',

@@ -1,6 +1,6 @@
 // eslint-disable-next-line import/no-unresolved
 import { Swiper, SwiperSlide } from 'swiper/react'
-import React, { useRef } from 'react'
+import { useRef } from 'react'
 import { useSelectedProduct } from '../../../store/selecterdProduct.store'
 import { Box, ImageListItem } from '@mui/material'
 

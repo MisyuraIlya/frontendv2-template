@@ -1,5 +1,5 @@
 // LoginForm.tsx
-import React, { useState } from 'react'
+import { useState } from 'react'
 import { useForm, Controller } from 'react-hook-form'
 import {
   Box,
@@ -16,6 +16,7 @@ import VisibilityOffOutlinedIcon from '@mui/icons-material/VisibilityOffOutlined
 import { themeColors } from '../../../styles/mui'
 import { useAuth } from '../../../store/auth.store'
 import { useTranslation } from 'react-i18next'
+import { settings } from '../../../settings'
 
 type LoginFormData = {
   email: string

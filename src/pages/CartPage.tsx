@@ -1,4 +1,3 @@
-import React from 'react'
 import { Box, Divider, Grid } from '@mui/material'
 import Cart from '../components/Cart'
 import Utils from '../utils'

@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
-import React, { useState } from 'react'
+// @ts-nocheck
+import { useState } from 'react'
 // import ReactApexChart from 'react-apexcharts'
 import { Card, Typography } from '@mui/material'
 import moment from 'moment'

@@ -1,5 +1,5 @@
 import { Box, TableCell, TableRow } from '@mui/material'
-import React, { FC } from 'react'
+import { FC } from 'react'
 import { numberWithCommas } from '../../../helpers/numberWithCommas'
 import { themeColors } from '../../../styles/mui'
 import TrendingUpIcon from '@mui/icons-material/TrendingUp'

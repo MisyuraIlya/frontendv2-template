@@ -1,5 +1,5 @@
 /* eslint-disable import/no-unresolved, react/no-unknown-property */
-import React, { FC, useRef } from 'react'
+import { FC, useRef } from 'react'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import type { Swiper as SwiperClass } from 'swiper'
 // import 'swiper/css'

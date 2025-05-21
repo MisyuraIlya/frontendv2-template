@@ -88,6 +88,7 @@ const Filter = () => {
     event: React.MouseEvent<HTMLElement>,
     newAlignment: string | null
   ) => {
+    console.log('event',event)
     setListView(newAlignment as typeMode)
   }
 

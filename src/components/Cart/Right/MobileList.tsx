@@ -1,4 +1,3 @@
-import React from 'react'
 import { useCart } from '../../../store/cart.store'
 import { Box } from '@mui/material'
 import MobileCartProductCard from './MobileCartProductCard'

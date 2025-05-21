@@ -1,5 +1,6 @@
+/* eslint-disable */
 import { Box, Card, CircularProgress, Typography } from '@mui/material'
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 // import ReactApexChart from 'react-apexcharts'
 // import chroma from 'chroma-js'
 import { useParams } from 'react-router-dom'
@@ -13,6 +14,7 @@ const PieAgents = () => {
   const { data, isLoading } = useDataAgentsStatistics(dateFrom!, dateTo!)
 
   const numDataPoints = titles.length
+  console.log('numDataPoints', numDataPoints)
   // eslint-disable-next-line import/no-named-as-default-member
   // const colorScale = chroma.scale('Set1').colors(numDataPoints)
 
@@ -54,7 +56,7 @@ const PieAgents = () => {
   // }
 
   const series = prices
-
+  console.log('series',series)
   useEffect(() => {
     if (data) {
       setTitles(data.lines.map((item) => item.agentName))

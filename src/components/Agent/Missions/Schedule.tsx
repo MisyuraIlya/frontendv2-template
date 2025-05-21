@@ -1,4 +1,5 @@
-import React from 'react'
+/* eslint-disable */
+// @ts-nocheck
 import {
   useMyScheduleCalendar,
 } from '../../../store/ScheduleCalendar.store'

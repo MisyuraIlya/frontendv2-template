@@ -1,4 +1,3 @@
-import React from 'react'
 import { Box, List } from '@mui/material'
 import hooks from '../../../hooks'
 import Card from './Card'

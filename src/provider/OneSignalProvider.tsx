@@ -1,4 +1,4 @@
-import React, {
+import {
   FC,
   createContext,
   useContext,
@@ -8,6 +8,7 @@ import React, {
 } from 'react'
 import { OneSignalService } from '../services/oneSignal.service'
 import { useAuth } from '../store/auth.store'
+import { settings } from '../settings'
 
 const OneSignalContext = createContext<object | null>(null)
 

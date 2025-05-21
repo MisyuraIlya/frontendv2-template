@@ -1,4 +1,4 @@
-import React, { FC, createContext, useContext, ReactNode } from 'react'
+import { FC, createContext, useContext, ReactNode } from 'react'
 
 import Mobile from '../components/Mobile'
 import { useMediaQuery } from '@mui/material'

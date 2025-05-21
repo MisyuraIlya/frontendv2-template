@@ -1,5 +1,5 @@
 import { CardMedia, Typography, Card } from '@mui/material'
-import React from 'react'
+import { settings } from '../../../settings'
 
 const Intro = () => {
   return (

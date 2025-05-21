@@ -1,4 +1,3 @@
-import React from 'react'
 import Loader from '../utils/Loader'
 import { useParams } from 'react-router-dom'
 import BreadCrumbsUtil from '../utils/BreadCrumbsUtil'

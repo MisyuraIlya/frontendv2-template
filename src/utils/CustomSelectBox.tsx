@@ -1,6 +1,6 @@
 import { Box, MenuItem, Select, Typography } from '@mui/material'
-import React, { FC } from 'react'
 import useDirection from '../hooks/useDirection'
+import { FC } from 'react'
 
 interface CustomSelectBox {
   label: string

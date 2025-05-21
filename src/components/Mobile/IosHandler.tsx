@@ -1,4 +1,3 @@
-import React from 'react'
 import { useMobile } from '../../provider/MobileProvider'
 import PwaHandler from './PwaHandler'
 

@@ -1,4 +1,3 @@
-import React from 'react'
 import { List, ListItemButton, ListItemIcon, ListItemText } from '@mui/material'
 import ExpandLess from '@mui/icons-material/ExpandLess'
 import ExpandMore from '@mui/icons-material/ExpandMore'
@@ -6,6 +5,7 @@ import Collapse from '@mui/material/Collapse'
 import InboxIcon from '@mui/icons-material/MoveToInbox'
 import RemoveIcon from '@mui/icons-material/Remove'
 import { useNavigate } from 'react-router-dom'
+import React from 'react'
 
 const CategoryNavItem = ({
   item,

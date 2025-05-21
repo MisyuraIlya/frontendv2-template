@@ -8,7 +8,7 @@ import {
   TextField,
   Typography,
 } from '@mui/material'
-import React, { FC, useState } from 'react'
+import { FC, useState } from 'react'
 import DragIndicatorIcon from '@mui/icons-material/DragIndicator'
 import { themeColors } from '../../../styles/mui'
 import AddPhotoAlternateIcon from '@mui/icons-material/AddPhotoAlternate'

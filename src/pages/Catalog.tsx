@@ -1,4 +1,3 @@
-import React from 'react'
 import { Grid, Container, Box, Typography } from '@mui/material'
 import { useParams } from 'react-router-dom'
 import { findCategoryTitleById } from '../helpers/handleBreadCrumbs'

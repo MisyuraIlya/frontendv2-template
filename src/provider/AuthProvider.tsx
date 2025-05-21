@@ -1,4 +1,4 @@
-import React, {
+import {
   FC,
   createContext,
   useContext,
@@ -7,6 +7,7 @@ import React, {
 } from 'react'
 import { useAuth } from '../store/auth.store'
 import { useNavigate } from 'react-router-dom'
+import { settings } from '../settings'
 
 interface ModalContextType {
   isAuthrized: number | boolean

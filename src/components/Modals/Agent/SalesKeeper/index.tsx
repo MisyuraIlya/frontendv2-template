@@ -16,6 +16,7 @@ const SalesKeeper: FC<SalesKeeperProps> = ({ active, setActive, user }) => {
   const [value, setValue] = React.useState(0)
   const { t } = useTranslation()
   const handleTabChange = (event: React.SyntheticEvent, newValue: number) => {
+    console.log('event',event)
     setValue(newValue)
   }
 

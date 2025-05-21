@@ -1,4 +1,4 @@
-import React, { FC, useState, KeyboardEvent } from 'react'
+import { FC, useState, KeyboardEvent } from 'react'
 import { HourOfDay } from '../../../store/ScheduleCalendar.store'
 import Modals from '../../Modals'
 

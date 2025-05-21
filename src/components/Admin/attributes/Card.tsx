@@ -5,7 +5,7 @@ import {
   TableCell,
   Typography,
 } from '@mui/material'
-import React, { FC, useState } from 'react'
+import { FC, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { themeColors } from '../../../styles/mui'
 import DragIndicatorIcon from '@mui/icons-material/DragIndicator'

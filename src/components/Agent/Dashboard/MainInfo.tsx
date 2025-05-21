@@ -1,4 +1,3 @@
-import React from 'react'
 import { numberWithCommas } from '../../../helpers/numberWithCommas'
 import { Box, Card, CircularProgress, Grid, Typography } from '@mui/material'
 import SupportAgentIcon from '@mui/icons-material/SupportAgent'

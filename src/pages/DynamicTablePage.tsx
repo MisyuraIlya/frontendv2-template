@@ -1,5 +1,4 @@
 import { Box, Container } from '@mui/material'
-import React from 'react'
 import Loader from '../utils/Loader'
 import Documents from '../components/Documents'
 import Utils from '../utils'

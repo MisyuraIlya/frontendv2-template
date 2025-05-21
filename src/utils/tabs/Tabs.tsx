@@ -1,5 +1,5 @@
-import React from 'react'
 import { Box, Tab as MuiTab, Tabs as MuiTabs } from '@mui/material'
+import React from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 
 type Props = {

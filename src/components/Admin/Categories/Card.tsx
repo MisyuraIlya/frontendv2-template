@@ -18,6 +18,7 @@ import DragIndicatorIcon from '@mui/icons-material/DragIndicator'
 import { themeColors } from '../../../styles/mui'
 import useDataCategoryEdit from '../../../hooks/admin/useAdminDataCategoryEdit'
 import logo from '../../../assets/images/logo.png'
+import { settings } from '../../../settings'
 
 interface CategoryEditItemProps {
   element: ICategory

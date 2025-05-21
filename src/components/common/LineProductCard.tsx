@@ -18,6 +18,7 @@ import { onInfoAlert } from '../../utils/MySweetAlert'
 import { useAuth } from '../../store/auth.store'
 import useDirection from '../../hooks/useDirection'
 import { useTranslation } from 'react-i18next'
+import { settings } from '../../settings'
 
 interface LineProductCardProps {
   product: IProduct

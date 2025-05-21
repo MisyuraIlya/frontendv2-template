@@ -1,4 +1,5 @@
 import { create } from 'zustand'
+import { settings } from '../settings'
 
 interface OneSignalStoreState {
   loading: boolean

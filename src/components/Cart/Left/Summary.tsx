@@ -24,6 +24,8 @@ import { DatePicker } from '@mui/x-date-pickers/DatePicker'
 import { DemoContainer } from '@mui/x-date-pickers/internals/demo'
 import { useTranslation } from 'react-i18next'
 import { isAxiosError } from 'axios'
+import { settings } from '../../../settings'
+
 
 moment.locale('he')
 

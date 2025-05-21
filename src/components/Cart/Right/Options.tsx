@@ -1,4 +1,3 @@
-import React from 'react'
 import { useCart } from '../../../store/cart.store'
 import { onAsk } from '../../../utils/MySweetAlert'
 import { useNavigate } from 'react-router-dom'

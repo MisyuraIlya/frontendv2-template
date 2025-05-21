@@ -1,6 +1,7 @@
 import useSWR from 'swr'
 import services from '../services'
 import { useAuth } from '../store/auth.store'
+import { settings } from '../settings'
 
 const fetchData = async (): Promise<ICategory[]> => {
   try {

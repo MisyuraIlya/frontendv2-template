@@ -6,6 +6,7 @@ import services from '../services'
 import { useAuthProvider } from '../provider/AuthProvider'
 import { useMobile } from '../provider/MobileProvider'
 import { useTranslation } from 'react-i18next'
+import { settings } from '../settings'
 
 const fetchData = async () => {
   return await services.Admin.AdminHomeEditService.getHomeEdits()

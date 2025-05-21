@@ -1,5 +1,5 @@
 import { Checkbox, IconButton, TableCell, Typography } from '@mui/material'
-import React, { FC, useState } from 'react'
+import { FC, useState } from 'react'
 import { themeColors } from '../../../styles/mui'
 import DragIndicatorIcon from '@mui/icons-material/DragIndicator'
 import useAdminAttributeDetailed from '../../../hooks/admin/useAdminAttributeDetailed'

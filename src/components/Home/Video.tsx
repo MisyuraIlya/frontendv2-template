@@ -86,7 +86,7 @@ const Video: FC<VideoProps> = ({ isVideo, src, settings }) => {
               loop={true}
               autoplay={{ delay: 4000 }}
             >
-              {src.map((s, index) => (
+              {src.map((_, index) => (
                 <SwiperSlide key={index}>
                   <Box sx={{ width: '100%', height: '100%' }}>
                     <img

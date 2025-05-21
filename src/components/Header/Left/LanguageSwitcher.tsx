@@ -1,4 +1,3 @@
-import React from 'react'
 import { useTranslation } from 'react-i18next'
 import {
   IconButton,
@@ -8,10 +7,11 @@ import {
   ListItemText,
 } from '@mui/material'
 import CountryFlag from 'react-country-flag'
+import { useState } from 'react'
 
 const LanguageSwitcher: React.FC = () => {
   const { i18n } = useTranslation()
-  const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null)
+  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null)
   const open = Boolean(anchorEl)
 
   const currentLang = i18n.language || 'en'

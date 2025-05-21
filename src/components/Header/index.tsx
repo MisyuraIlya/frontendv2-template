@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import {
   AppBar,
   Grid,
@@ -15,6 +15,7 @@ import { useAuth } from '../../store/auth.store'
 import SearchIcon from '@mui/icons-material/Search'
 import CategoryNavBarMobile from './CategoryNavBarMobile'
 import { useAuthProvider } from '../../provider/AuthProvider'
+import { settings } from '../../settings'
 
 const AppBarComponent = () => {
   const { isAdmin, isAgent, user } = useAuth()

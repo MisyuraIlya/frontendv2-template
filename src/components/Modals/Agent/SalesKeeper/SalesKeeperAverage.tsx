@@ -1,4 +1,3 @@
-import React from 'react'
 import useDataSalesKeeper from '../../../../hooks/agent/useDataSalesKeeper'
 import {
   Table,

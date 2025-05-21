@@ -1,4 +1,3 @@
-import React from 'react'
 import moment from 'moment'
 import { useMyScheduleCalendar } from '../../../store/ScheduleCalendar.store'
 import { Box, IconButton, Typography } from '@mui/material'

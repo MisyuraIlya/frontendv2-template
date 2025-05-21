@@ -134,9 +134,6 @@ export const ProductRepository = {
     lvl2: string | number,
     lvl3: string | number,
     searchParams: string,
-    documentType: CatalogDocumentType,
-    user: IUser,
-    mode: IDocumentType
   ) {
     try {
       const urlParams = new URLSearchParams(searchParams)
@@ -218,9 +215,6 @@ export const ProductRepository = {
         lvl2,
         lvl3,
         searchParams,
-        documentType,
-        user,
-        mode
       )
       return {
         items: itemsWithAttributes,
@@ -240,9 +234,6 @@ export const ProductRepository = {
     lvl2: string | number,
     lvl3: string | number,
     searchParams: string,
-    documentType: CatalogDocumentType,
-    user: IUser,
-    mode: IDocumentType
   ) {
     try {
       const urlParams = new URLSearchParams(searchParams)

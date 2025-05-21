@@ -1,5 +1,4 @@
 import { Container } from '@mui/material'
-import React from 'react'
 import attributeDetailed from '../components/Admin/attributeDetailed'
 
 const AttributeDetailedEditPage = () => {

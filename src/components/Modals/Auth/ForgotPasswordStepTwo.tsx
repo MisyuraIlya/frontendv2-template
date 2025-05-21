@@ -1,5 +1,5 @@
 // ForgotPasswordStepTwo.tsx
-import React, { useState } from 'react'
+import { useState } from 'react'
 import { useForm, Controller } from 'react-hook-form'
 import {
   Box,

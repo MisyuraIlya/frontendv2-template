@@ -1,5 +1,5 @@
 import { Box, Snackbar, Typography } from '@mui/material'
-import React, { FC } from 'react'
+import { FC } from 'react'
 import { themeColors } from '../../../styles/mui'
 import RemoveShoppingCartIcon from '@mui/icons-material/RemoveShoppingCart'
 import { useTranslation } from 'react-i18next'

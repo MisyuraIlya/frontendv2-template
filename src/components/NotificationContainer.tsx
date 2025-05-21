@@ -1,4 +1,3 @@
-import React from 'react'
 import NotificationCard from './Header/Left/NotificationCard'
 import { Box, Typography } from '@mui/material'
 import { themeColors } from '../styles/mui'

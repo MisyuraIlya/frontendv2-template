@@ -1,4 +1,3 @@
-import React from 'react'
 import useBonuses from '../../../hooks/admin/useBonuses'
 import {
   Paper,

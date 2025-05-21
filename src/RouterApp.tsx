@@ -1,5 +1,4 @@
-import React, { useEffect } from 'react'
-import { Routes, Route, useLocation } from 'react-router-dom'
+import { Routes, Route } from 'react-router-dom'
 import CategoryEdit from './pages/CategoryEdit'
 import ProductsEdit from './pages/ProductsEdit'
 import Home from './pages/Home'
@@ -28,7 +27,7 @@ import DynamicTablePage from './pages/DynamicTablePage'
 const RouterApp = () => {
   const { isAuthrized } = useAuthProvider()
 
-  const location = useLocation()
+  // const location = useLocation()
 
   // useEffect(() => {
   //   window.scrollTo(0, 0)

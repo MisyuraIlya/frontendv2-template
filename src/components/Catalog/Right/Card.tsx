@@ -5,7 +5,7 @@ import {
   ListItemButton,
   ListItemText,
 } from '@mui/material'
-import React, { useState } from 'react'
+import { useState } from 'react'
 import ExpandLess from '@mui/icons-material/ExpandLess'
 import ExpandMore from '@mui/icons-material/ExpandMore'
 import { themeColors } from '../../../styles/mui'

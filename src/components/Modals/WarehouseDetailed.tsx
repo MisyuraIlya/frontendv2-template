@@ -41,6 +41,7 @@ const WarehouseDetailed: FC<TablePopUpProps> = ({ active, setActive }) => {
 
   const [currentTab, setCurrentTab] = useState(0)
   const handleTabChange = (event: React.SyntheticEvent, newValue: number) => {
+    console.log('event',event)
     setCurrentTab(newValue)
   }
 

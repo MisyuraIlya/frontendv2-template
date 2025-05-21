@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useCallback } from 'react'
+import { FC, useEffect, useCallback } from 'react'
 import ModalWrapper from './ModalWrapper'
 import { useAuth } from '../../store/auth.store'
 import { useCart } from '../../store/cart.store'

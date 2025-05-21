@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import { Box, Button, Modal, TextField } from '@mui/material'
 import { useForm, Controller } from 'react-hook-form'
 import SearchProductList from '../../../utils/SearchInput/SearchProductList'

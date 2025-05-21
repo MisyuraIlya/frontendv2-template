@@ -3,6 +3,7 @@ import { useLocation, useParams } from 'react-router-dom'
 import { useAuth } from '../store/auth.store'
 import services from '../services'
 import { useCart } from '../store/cart.store'
+import { settings } from '../settings'
 
 const fetchData = async (
   lvl1: string | number,

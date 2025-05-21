@@ -1,5 +1,4 @@
 import { Box, Typography } from '@mui/material'
-import React from 'react'
 import SignalWifiBadIcon from '@mui/icons-material/SignalWifiBad'
 const OfflineBlur = () => {
   return (

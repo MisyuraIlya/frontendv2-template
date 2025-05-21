@@ -1,4 +1,3 @@
-import React from 'react'
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart'
 import { Badge, IconButton, Tooltip } from '@mui/material'
 import { useNavigate } from 'react-router-dom'

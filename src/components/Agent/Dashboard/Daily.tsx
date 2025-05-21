@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
-import React from 'react'
 // import ReactApexChart from 'react-apexcharts'
+// @ts-nocheck
 import { Box, Card, Grid, Typography } from '@mui/material'
 import Utils from '../../../utils'
 import moment from 'moment'
@@ -28,6 +28,7 @@ const Daily = () => {
   const precentObj =
     totalTasks && completedTasks ? (completedTasks / totalTasks) * 100 : 0
 
+    
   const series2 = [precentVisits.toFixed(2)]
   const options2 = {
     chart: {

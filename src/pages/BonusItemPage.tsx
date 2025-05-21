@@ -1,5 +1,4 @@
 import { Container } from '@mui/material'
-import React from 'react'
 import BonusItem from '../components/Admin/bonusItem'
 
 const BonusItemPage = () => {

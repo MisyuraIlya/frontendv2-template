@@ -22,6 +22,7 @@ const BottomNavigationMobile = () => {
   const navigate = useNavigate()
 
   const handleChange = (event: React.SyntheticEvent, newValue: string) => {
+    console.log('event',event)
     if (newValue === '2') {
       if (!user) {
         setOpenAuthModal(true)

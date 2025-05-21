@@ -5,6 +5,7 @@ import moment from 'moment'
 import { AdminOrderService } from '../services/admin/AdminOrders.service'
 import { persist, createJSONStorage, PersistOptions } from 'zustand/middleware'
 import { HistoryDetailedRepository, HistoryRepository } from '../db'
+import { settings } from '../settings'
 
 interface useCartState {
   loading: boolean

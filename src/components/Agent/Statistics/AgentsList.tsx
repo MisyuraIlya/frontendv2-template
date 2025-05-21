@@ -10,7 +10,6 @@ import {
   TableRow,
   Typography,
 } from '@mui/material'
-import React from 'react'
 import AgentCard from './AgentCard'
 import { useParams } from 'react-router-dom'
 import useDataAgentsStatistics from '../../../hooks/agent/useDataAgentsStatistics'

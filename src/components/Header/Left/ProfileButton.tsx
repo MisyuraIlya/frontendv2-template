@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import { Box, IconButton, Menu, Typography } from '@mui/material'
 import PersonIcon from '@mui/icons-material/Person'
 import { useAuth } from '../../../store/auth.store'

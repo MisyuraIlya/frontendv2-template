@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import useDataQuantityKeeper from '../../../../hooks/agent/useDataQuantityKeeper'
 import {
   Table,

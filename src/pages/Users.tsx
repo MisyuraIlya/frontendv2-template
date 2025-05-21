@@ -1,4 +1,3 @@
-import React from 'react'
 import { Box, Container } from '@mui/material'
 import Loader from '../utils/Loader'
 import { useParams } from 'react-router-dom'

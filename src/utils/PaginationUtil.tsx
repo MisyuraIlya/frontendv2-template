@@ -18,6 +18,7 @@ const PaginationUtil: FC<PaginationUtilProps> = ({ pagination }) => {
     event: React.ChangeEvent<unknown>,
     page: number
   ) => {
+    console.log(event)
     const urlSearchParams = new URLSearchParams(location.search)
     urlSearchParams.set('page', page.toString())
     const updatedUrl = '?' + urlSearchParams.toString()

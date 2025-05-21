@@ -1,9 +1,9 @@
 /* eslint-disable import/no-named-as-default */
 /* eslint-disable import/no-named-as-default-member */
-import React, { useState, useRef, FC, ChangeEvent, ReactNode } from 'react'
+import { useState, useRef, FC, ChangeEvent, ReactNode } from 'react'
 import Cropper, { ReactCropperElement } from 'react-cropper'
 import 'cropperjs/dist/cropper.css'
-import { Box, Button, Grid, IconButton } from '@mui/material'
+import { Box, Button, Grid } from '@mui/material'
 import ControlPointIcon from '@mui/icons-material/ControlPoint'
 import { themeColors } from '../styles/mui'
 import styled from 'styled-components'
@@ -36,7 +36,6 @@ const VisuallyHiddenInput = styled('input')({
 const MyCropper: FC<MyCropperProps> = ({
   aspectRatio,
   uploadImg,
-  itemImage,
   customClick,
 }) => {
   const [openModal, setOpenModal] = useState(false)

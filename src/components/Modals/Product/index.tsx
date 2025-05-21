@@ -1,4 +1,4 @@
-import React, { FC } from 'react'
+import { FC } from 'react'
 import ProductLeftSide from './ProductLeftSide'
 import ProductRightSide from './ProductRightSide'
 import { Box, Button, Grid } from '@mui/material'

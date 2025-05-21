@@ -6,7 +6,7 @@ import {
   MenuItem,
   Typography,
 } from '@mui/material'
-import React, { FC } from 'react'
+import { FC } from 'react'
 import { URLS } from '../../../enums/urls'
 import ChecklistRtlIcon from '@mui/icons-material/ChecklistRtl'
 import StickyNote2OutlinedIcon from '@mui/icons-material/StickyNote2Outlined'

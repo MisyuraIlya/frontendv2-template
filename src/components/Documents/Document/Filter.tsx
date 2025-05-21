@@ -1,4 +1,3 @@
-import React from 'react'
 import moment from 'moment'
 import { useNavigate, useParams } from 'react-router-dom'
 

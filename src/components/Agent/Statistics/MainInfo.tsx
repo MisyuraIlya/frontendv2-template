@@ -1,5 +1,4 @@
 import { Box, Card, CircularProgress, Typography } from '@mui/material'
-import React from 'react'
 import { useParams } from 'react-router-dom'
 import { numberWithCommas } from '../../../helpers/numberWithCommas'
 import StackedLineChartIcon from '@mui/icons-material/StackedLineChart'

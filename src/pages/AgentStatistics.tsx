@@ -1,6 +1,5 @@
 // src/pages/AgentStatistics.tsx
 import { Container, Grid, Box } from '@mui/material'
-import React from 'react'
 import { useTranslation } from 'react-i18next'
 import { Tabs, Tab } from '../utils/tabs'
 import Agent from '../components/Agent'

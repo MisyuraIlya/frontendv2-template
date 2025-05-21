@@ -1,5 +1,5 @@
 import { Box } from '@mui/material'
-import React, { useState } from 'react'
+import { useState } from 'react'
 import ProductList from '../../utils/SearchInput/components/ProductList'
 import { useDebounce } from 'use-debounce'
 import { useModals } from '../../provider/ModalProvider'

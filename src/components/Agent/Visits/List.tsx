@@ -1,4 +1,3 @@
-import React from 'react'
 import { Box, Card as MuiCard, Grid, Typography } from '@mui/material'
 import Loader from '../../../utils/Loader'
 import Card from './Card'

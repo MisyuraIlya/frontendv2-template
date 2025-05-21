@@ -1,4 +1,4 @@
-import React, { FC } from 'react'
+import { FC } from 'react'
 import { useMobile } from '../../provider/MobileProvider'
 
 interface IssueHandlerProps {

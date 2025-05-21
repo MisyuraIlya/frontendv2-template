@@ -8,6 +8,7 @@ import { useModals } from '../../provider/ModalProvider'
 import { useAuth } from '../../store/auth.store'
 import { onInfoAlert } from '../../utils/MySweetAlert'
 import { useTranslation } from 'react-i18next'
+import { settings } from '../../settings'
 
 interface AddToCartProps {
   item: IProduct

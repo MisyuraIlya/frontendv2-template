@@ -1,3 +1,5 @@
+import { settings } from "../settings"
+
 class PriceCalculator {
   private taxRate: number = 0
   private user: IUser | null = null
@@ -18,6 +20,7 @@ class PriceCalculator {
     this.deliveryPrice = settings.deliveryPrice
     this.minimumPrice = settings.minimumPrice
     this.discountPercent = discountPercent
+    console.log(this.user)
   }
 
   // חייב במע״מ

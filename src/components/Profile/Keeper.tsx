@@ -1,5 +1,5 @@
 import { Box, Button, CircularProgress, Tooltip } from '@mui/material'
-import React, { useState } from 'react'
+import { useState } from 'react'
 import useDataSalesKeeper from '../../hooks/agent/useDataSalesKeeper'
 import { useAuth } from '../../store/auth.store'
 import ErrorIcon from '@mui/icons-material/Error'

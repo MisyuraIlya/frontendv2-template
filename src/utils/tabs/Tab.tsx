@@ -1,5 +1,4 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import React from 'react'
 import { Tab as MuiTab, TabProps } from '@mui/material'
 
 type SingleTabProps = {

@@ -1,4 +1,3 @@
-import React from 'react'
 import { Typography, List, ListItem, Box } from '@mui/material'
 import { themeColors } from '../../../styles/mui'
 import hooks from '../../../hooks'

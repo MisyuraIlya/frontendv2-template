@@ -1,4 +1,3 @@
-import React from 'react'
 import { useAuth } from '../../store/auth.store'
 import { useCart } from '../../store/cart.store'
 import { useNavigate } from 'react-router-dom'

@@ -1,4 +1,3 @@
-import React from 'react'
 import { Paper, Typography, Grid, Box, CircularProgress } from '@mui/material'
 import { useTranslation } from 'react-i18next'
 import useUserProfileData from '../../hooks/useUserProfileData'

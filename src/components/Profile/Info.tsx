@@ -1,4 +1,3 @@
-import React from 'react'
 import { useAuth } from '../../store/auth.store'
 import { Paper, Typography, Grid, Button, Box, IconButton } from '@mui/material'
 import LogoutIcon from '@mui/icons-material/Logout'

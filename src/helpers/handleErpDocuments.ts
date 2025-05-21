@@ -3,8 +3,10 @@ import {
   documentTypesPiority,
   documentTypesSap,
 } from '../enums/documentsTypes'
+import { settings } from '../settings'
 
 export const handleErp = () => {
+  console.log('settings',settings)
   if (settings.erp === 'SAP') {
     return documentTypesSap
   } else if (settings.erp === 'PRIORITY') {
