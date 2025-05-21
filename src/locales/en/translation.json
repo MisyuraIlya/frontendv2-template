@@ -231,6 +231,9 @@
     "deleteCartBtn": "Delete Cart"
   },
   "profile": {
+    "orderLabel":"order",
+    "priceOfferLabel":"price offer",
+    "returnLabel":"return",
     "actions": "Actions",
     "visitAdded": "Visit added",
     "personalArea": "Personal Area",

@@ -1,15 +1,17 @@
+// utils/CustomSelectBox.tsx
+
 import { Box, MenuItem, Select, Typography } from '@mui/material'
 import useDirection from '../hooks/useDirection'
 import { FC } from 'react'
 
-interface CustomSelectBox {
+interface CustomSelectBoxProps {
   label: string
   value: string
   onChange: (value: string) => void
   options: selectObject[]
 }
 
-const CustomSelectBox: FC<CustomSelectBox> = ({
+const CustomSelectBox: FC<CustomSelectBoxProps> = ({
   label,
   value,
   onChange,
@@ -25,16 +27,15 @@ const CustomSelectBox: FC<CustomSelectBox> = ({
         },
       }}
       value={value}
-      onChange={(e) => onChange(e.target.value)}
+      onChange={(e) => onChange(e.target.value as string)}
       renderValue={(selected) => {
-        const find = options?.find((x) => x.value === selected)
+        const find = options.find((x) => x.value === selected)
         return (
           <Box sx={{ display: 'flex', gap: '5px', alignItems: 'center' }}>
             <Typography fontWeight={600} lineHeight={'12px'}>
               {label}:
             </Typography>
             <Typography>
-              {' '}
               {dir === 'rtl' ? find?.label : find?.englishLabel}
             </Typography>
           </Box>
@@ -42,8 +43,8 @@ const CustomSelectBox: FC<CustomSelectBox> = ({
       }}
     >
       {options.map((option) => (
-        <MenuItem key={option.value} value={option.label}>
-          {dir === 'rtl' ? option.label : option?.englishLabel}
+        <MenuItem key={option.value} value={option.value}>
+          {dir === 'rtl' ? option.label : option.englishLabel}
         </MenuItem>
       ))}
     </Select>

@@ -97,7 +97,7 @@ const AddToCart: FC<AddToCartProps> = ({ item }) => {
           <Grid
             size={{ xs: 12, sm: 12, md: 12 }}
             container
-            sx={{ backgroundColor: themeColors.primary, borderRadius: '4px' }}
+            sx={{ backgroundColor: themeColors.primary, borderBottomLeftRadius: '4px', borderBottomRightRadius: '4px', padding: '0px', margin: '0px' }}
           >
             <Grid
               size={{ xs: 4, sm: 4, md: 4 }}
@@ -105,7 +105,6 @@ const AddToCart: FC<AddToCartProps> = ({ item }) => {
                 display: 'flex',
                 justifyContent: 'center',
                 alignItems: 'center',
-                borderRight: '1px solid white',
               }}
             >
               <IconButton
@@ -150,7 +149,6 @@ const AddToCart: FC<AddToCartProps> = ({ item }) => {
                 display: 'flex',
                 justifyContent: 'center',
                 alignItems: 'center',
-                borderLeft: '1px solid white',
               }}
             >
               <IconButton

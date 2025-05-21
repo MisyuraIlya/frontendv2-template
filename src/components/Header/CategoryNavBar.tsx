@@ -14,23 +14,24 @@ import {
 import { themeColors } from '../../styles/mui'
 import hooks from '../../hooks'
 import { useAuthProvider } from '../../provider/AuthProvider'
+import { useCart } from '../../store/cart.store'
 
 const CategoryNavBar = () => {
   const { data } = hooks.useDataCategories()
   const [active, setActive] = useState<number>(0)
   const navigate = useNavigate()
   const { isAuthrized } = useAuthProvider()
-
+  const { selectedMode } = useCart()
   const handlePush = (
     lvl1: ICategory,
     lvl2: ICategory,
     currentItem: ICategory
   ) => {
     if (currentItem.lvlNumber === 2) {
-      navigate(`/client/catalog/${lvl1.id}/${lvl2.id}/0?page=1`)
+      navigate(`/client/catalog/${selectedMode?.value}/${lvl1.id}/${lvl2.id}/0?page=1`)
     }
     if (currentItem.lvlNumber === 3) {
-      navigate(`/client/catalog/${lvl1.id}/${lvl2.id}/${currentItem.id}?page=1`)
+      navigate(`/client/catalog/${selectedMode?.value}/${lvl1.id}/${lvl2.id}/${currentItem.id}?page=1`)
     }
     setActive(0)
   }

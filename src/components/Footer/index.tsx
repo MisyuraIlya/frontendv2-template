@@ -16,7 +16,7 @@ import { useAuthProvider } from '../../provider/AuthProvider'
 import { SupportService } from '../../services/support.service'
 import { onErrorAlert, onSuccessAlert } from '../../utils/MySweetAlert'
 import { useTranslation } from 'react-i18next'
-
+import CompanyLogo from '../../assets/images/company.png'
 const Footer = () => {
   const {
     handleSubmit,
@@ -46,8 +46,8 @@ const Footer = () => {
     <Box
       sx={{
         backgroundColor: themeColors.primary,
-        paddingBottom: isAuthrized ? '20px' : '0px',
-        marginTop: isAuthrized ? '50px' : '0px',
+        paddingTop:'40px',
+        paddingBottom:'40px',
         position: 'relative',
         zIndex: 10,
       }}
@@ -56,7 +56,7 @@ const Footer = () => {
       <Container maxWidth="xl" component="footer">
         <Box sx={{ minHeight: '400px' }}>
           <Grid container spacing={5}>
-            <Grid size={{ xs: 12, md: 5 }}>
+            <Grid size={{ xs: 12, md: 4 }}>
               <Box
                 sx={{
                   color: 'white',
@@ -422,7 +422,7 @@ const Footer = () => {
             rel="noopener noreferrer"
           >
             <img
-              src={`${import.meta.env.VITE_MEDIA}/company.png`}
+              src={`${CompanyLogo}`}
               alt="Company Logo"
             />
           </a>

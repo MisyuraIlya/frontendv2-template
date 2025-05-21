@@ -1,5 +1,5 @@
 export const settings: GlobalSettings = {
-  title: '',
+  title: 'ארגנטולס בע"מ',
   description: '',
   minimumPrice: 0,
   deliveryPrice: 0,
@@ -18,7 +18,7 @@ export const settings: GlobalSettings = {
   paymentSystem: 'none',       // 'none' | 'tranzilla' | 'yadsarig'
   erp: 'PRIORITY',             // 'SAP' | 'PRIORITY' | 'HASAVSHEVET'
   categoryLvlsNumber: 3,       // 1 | 2 | 3
-  showCategoryNavBar: false,
+  showCategoryNavBar: true,
   homePageAllCategoriesComponent: true,
   allowRegistration: true,
 }

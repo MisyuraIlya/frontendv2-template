@@ -1,9 +1,10 @@
 import { alpha, createTheme, lighten, darken } from '@mui/material'
 import { red } from '@mui/material/colors'
+import { settings } from '../../settings'
 
 export const themeColors = {
-  primary: '#30AC5A',
-  secondary: '#30AC5A',
+  primary: settings.primaryColor,
+  secondary: settings.secondaryColor,
   success: '#30AC5A',
   warning: '#F3C521',
   error: '#C52A43',

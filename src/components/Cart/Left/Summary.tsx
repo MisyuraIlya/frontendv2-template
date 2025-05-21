@@ -148,7 +148,7 @@ const Summary: React.FC = () => {
       }
     }
     fetchTax()
-  }, [user, cart])
+  }, [user])
 
   return (
     <Container sx={{ position: 'relative', height: '100%' }}>

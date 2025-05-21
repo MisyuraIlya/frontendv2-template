@@ -1,158 +1,60 @@
-/* eslint-disable @typescript-eslint/ban-ts-comment */
-// @ts-nocheck
-import { useState } from 'react'
-// import ReactApexChart from 'react-apexcharts'
-import { Card, Typography } from '@mui/material'
-import moment from 'moment'
-import { MONTH_HEBREW_1 } from '../../../helpers/arrayOfMonths'
-import { themeColors } from '../../../styles/mui'
-import useDataAgentTargets from '../../../hooks/agent/useAgentDataTargets'
-import useDataAgentProfile from '../../../hooks/agent/useAgentDataProfile'
-import { useTranslation } from 'react-i18next'
+import React, { useState } from 'react';
+import moment from 'moment';
+import { BarChart } from '@mui/x-charts/BarChart';
+import { Card, Typography } from '@mui/material';
+import { useTranslation } from 'react-i18next';
 
-const Targets = () => {
-  const [year] = useState(moment().year().toString())
-  const { t } = useTranslation()
+import { MONTH_HEBREW_1 } from '../../../helpers/arrayOfMonths';
+import useDataAgentTargets from '../../../hooks/agent/useAgentDataTargets';
+import useDataAgentProfile from '../../../hooks/agent/useAgentDataProfile';
 
-  const { data } = useDataAgentTargets(year)
-  const { findTarget } = useDataAgentProfile()
-  const salesLabel = t('agentDashBoard.targets.sales') // "מכירות"
-  const targetLabel = t('agentDashBoard.targets.target') // "יעד"
-  const titleText = t('agentDashBoard.targets.title') // "עמידה ביעדים"
-  const salesTargetLabel = t('agentDashBoard.targets.salesTarget') // "יעד מכירות"
+export interface IDataPoint {
+  id: number;
+  month: string;
+  year: string;
+  currentValue: number;
+  targetValue: number;
+  isCompleted: boolean;
+}
 
-  const sales: IMonthAgenthSale[] = MONTH_HEBREW_1.map((item, key) => {
-    const matchingData = data?.find((res) => item.name === res.month)
-    return {
-      y: findTarget(key + 1),
-      x: matchingData ? matchingData.month : '',
-      goals: [
-        {
-          name: salesTargetLabel,
-          value: matchingData ? (matchingData.targetValue ?? 0) : 0,
-          strokeColor: themeColors.primary,
-        },
-      ],
-    }
-  })
+const Targets: React.FC = () => {
+  const [year] = useState(moment().year().toString());
+  const { t } = useTranslation();
+  const salesLabel = t('agentDashBoard.targets.sales');       
+  const salesTargetLabel = t('agentDashBoard.targets.salesTarget'); 
+  const titleText = t('agentDashBoard.targets.title');        
 
-  const seriesDesktop = [
-    {
-      name: salesLabel,
-      data: sales,
-    },
-  ]
+  const { data } = useDataAgentTargets(year);
 
-  const optionsMob = {
-    chart: {
-      height: 350,
-      type: 'bar',
-    },
-    plotOptions: {
-      bar: {
-        horizontal: true,
-      },
-    },
-    colors: ['#FFAD0D'],
-    dataLabels: {
-      formatter: function (val: any, opt: any) {
-        const goals =
-          opt.w.config.series[opt.seriesIndex].data[opt.dataPointIndex].goals
-        if (goals && goals.length) {
-          return `${val} / ${goals[0].value}`
-        }
-        return val
-      },
-      enabled: false,
-    },
-    legend: {
-      show: true,
-      showForSingleSeries: true,
-      customLegendItems: [salesLabel, targetLabel],
-      markers: {
-        fillColors: ['#FFAD0D', themeColors.primary],
-      },
-      fill: {
-        colors: ['#FFAD0D', themeColors.primary],
-      },
-    },
+  const { findTarget } = useDataAgentProfile();
+
+  if (!data) {
+    return <Typography>Loading...</Typography>;
   }
 
-  const optionsDesktop = {
-    chart: {
-      height: 350,
-      width: 600,
-      type: 'bar',
-    },
-    plotOptions: {
-      bar: {
-        columnWidth: '60%',
-      },
-    },
-    colors: ['#FFAD0D'],
-    dataLabels: {
-      enabled: false,
-    },
-    legend: {
-      show: true,
-      showForSingleSeries: true,
-      customLegendItems: [salesLabel, targetLabel],
-      markers: {
-        fillColors: ['#FFAD0D', themeColors.primary],
-      },
-    },
-    fill: {
-      colors: ['#FFAD0D', themeColors.primary],
-    },
-    yaxis: {
-      labels: {
-        offsetX: -40,
-        style: {
-          fontSize: '12px',
-        },
-      },
-    },
-  }
+  const xLabels = MONTH_HEBREW_1.map((m) => m.name);
+  const actualValues = MONTH_HEBREW_1.map((_, idx) =>
+    findTarget(idx + 1) ?? 0
+  );
+  const targetValues = MONTH_HEBREW_1.map((m) =>
+    data.find((d) => d.month === m.name)?.targetValue ?? 0
+  );
 
   return (
     <Card sx={{ margin: '50px 0', padding: '0 50px' }}>
       <Typography variant="h6">{titleText}</Typography>
 
-      {/* <Select
-        value={year}
-        sx={{ height: '40px', minWidth: '150px' }}
-        onChange={(e) => setYear(e.target.value)}
-      >
-        {dates.map((item, index) => (
-          <MenuItem value={item.value} key={index}>
-            {item.value}
-          </MenuItem>
-        ))}
-      </Select> */}
-
-      {window.innerWidth > 1050 ? (
-        <>
-          {/* <ReactApexChart
-            // @ts-expect-error
-            options={optionsDesktop}
-            series={seriesDesktop}
-            type="bar"
-            height={350}
-          /> */}
-        </>
-      ) : (
-        <>
-          {/* <ReactApexChart
-            // @ts-expect-error
-            options={optionsMob}
-            series={seriesDesktop}
-            type="bar"
-            height={550}
-          /> */}
-        </>
-      )}
+      <BarChart
+        height={350}
+        series={[
+          { data: actualValues, label: salesLabel, stack: 'salesStack' },
+          { data: targetValues, label: salesTargetLabel },
+        ]}
+        xAxis={[{ data: xLabels }]}
+        yAxis={[{ width: 50 }]}
+      />
     </Card>
-  )
-}
+  );
+};
 
-export default Targets
+export default Targets;

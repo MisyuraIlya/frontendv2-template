@@ -1,75 +1,37 @@
-/* eslint-disable */
-import { Box, Card, CircularProgress, Typography } from '@mui/material'
-import { useEffect, useState } from 'react'
-// import ReactApexChart from 'react-apexcharts'
-// import chroma from 'chroma-js'
-import { useParams } from 'react-router-dom'
-// import { ApexOptions } from 'apexcharts'
-import useDataAgentsStatistics from '../../../hooks/agent/useDataAgentsStatistics'
+import * as React from 'react';
+import { Box, Card, CircularProgress, Typography } from '@mui/material';
+import { PieChart } from '@mui/x-charts/PieChart';
+import { useParams } from 'react-router-dom';
+import useDataAgentsStatistics from '../../../hooks/agent/useDataAgentsStatistics';
 
-const PieAgents = () => {
-  const [titles, setTitles] = useState<string[]>([])
-  const [prices, setPrices] = useState<number[]>([])
-  const { dateFrom, dateTo } = useParams<{ dateFrom: string; dateTo: string }>()
-  const { data, isLoading } = useDataAgentsStatistics(dateFrom!, dateTo!)
+const COLORS = ['#4dc9f6', '#f67019', '#f53794', '#537bc4', '#acc236', '#166a8f', '#00a950', '#58595b', '#8549ba'];
 
-  const numDataPoints = titles.length
-  console.log('numDataPoints', numDataPoints)
-  // eslint-disable-next-line import/no-named-as-default-member
-  // const colorScale = chroma.scale('Set1').colors(numDataPoints)
+const PieAgentsMui: React.FC = () => {
+  const { dateFrom, dateTo } = useParams<{ dateFrom: string; dateTo: string }>();
+  const { data, isLoading } = useDataAgentsStatistics(dateFrom!, dateTo!);
 
-  // const options: ApexOptions = {
-  //   chart: {
-  //     width: 380,
-  //     type: 'donut',
-  //   },
-  //   colors: colorScale,
-  //   labels: titles,
-  //   dataLabels: {
-  //     enabled: true,
-  //   },
-  //   responsive: [
-  //     {
-  //       breakpoint: 680,
-  //       options: {
-  //         chart: {
-  //           height: 950,
-  //         },
-  //         legend: {
-  //           show: true,
-  //           position: 'bottom',
-  //         },
-  //       },
-  //     },
-  //   ],
-  //   legend: {
-  //     show: true,
-  //     position: 'right',
-  //     offsetY: 0,
-  //   },
-  //   yaxis: {
-  //     labels: {
-  //       formatter: (value: number) =>
-  //         value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ','),
-  //     },
-  //   },
-  // }
+  const chartData = React.useMemo(
+    () =>
+      data?.lines.map((item, index) => ({
+        id: index,
+        value: item.total,
+        label: item.agentName || 'לא ידוע',
+      })) || [],
+    [data]
+  );
 
-  const series = prices
-  console.log('series',series)
-  useEffect(() => {
-    if (data) {
-      setTitles(data.lines.map((item) => item.agentName))
-      setPrices(data.lines.map((item) => item.total))
-    }
-  }, [data])
+
+  const colors = React.useMemo(
+    () => chartData.map((_, index) => COLORS[index % COLORS.length]),
+    [chartData]
+  );
 
   return (
     <Card
       sx={{
-        padding: '20px',
+        padding: 2,
         position: 'relative',
-        minHeight: '300px',
+        minHeight: 300,
         width: '100%',
         height: '100%',
       }}
@@ -87,21 +49,29 @@ const PieAgents = () => {
             display: 'flex',
             justifyContent: 'center',
             alignItems: 'center',
-            zIndex: 9999,
+            zIndex: 1,
           }}
         >
           <CircularProgress color="inherit" />
         </Box>
       )}
-      <Typography variant="h5">מכירות לפי סוכן</Typography>
-      {/* <ReactApexChart
-        options={options}
-        series={series}
-        type="pie"
-        height={950}
-      /> */}
+      <Typography variant="h5" gutterBottom>
+        מכירות לפי סוכן
+      </Typography>
+      <PieChart
+        series={[
+          {
+            data: chartData,
+          },
+        ]}
+        colors={colors}
+        width={400}
+        height={400}
+        // Hide legend
+        hideLegend
+      />
     </Card>
-  )
-}
+  );
+};
 
-export default PieAgents
+export default PieAgentsMui;

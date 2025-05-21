@@ -232,6 +232,9 @@
     "deleteCartBtn": "מחק סל"
   },
   "profile": {
+    "orderLabel":"הזמנה",
+    "priceOfferLabel":"ה.מחיר",
+    "returnLabel":"החזרה",
     "actions": "פעולות",
     "visitAdded": "ביקור התווסף",
     "personalArea": "אזור אישי",
