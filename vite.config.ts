@@ -29,5 +29,5 @@ export default defineConfig({
       homePageAllCategoriesComponent: true,
       allowRegistration: true,
     })
-  }
+  },
 })

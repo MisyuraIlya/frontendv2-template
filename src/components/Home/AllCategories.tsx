@@ -38,15 +38,13 @@ const AllCategories = () => {
   return (
     <Grid container spacing={2}>
       {categories.map((category) => {
-        console.log(category)
-        console.log(`${baseURL}${encodeURIComponent(category.mediaObject.contentUrl)}`)
         return (
           <Grid size={{ xs: 12, sm: 6, md: 3 }} key={category.id}>
             <Card sx={{ overflow: 'hidden' }}>
               <CardMedia
                 component="img"
                 height="140"
-                image={category?.mediaObject?.contentUrl ? `${baseURL}${category.mediaObject.contentUrl}` : logo}
+                image={category?.mediaObject?.contentUrl ? `${baseURL}${category?.mediaObject?.contentUrl}` : logo}
                 alt={dir === 'rtl' ? category.title : category.englishTitle}
                 onClick={() =>
                   navigate(

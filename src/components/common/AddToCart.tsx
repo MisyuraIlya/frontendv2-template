@@ -1,4 +1,4 @@
-import React, { FC } from 'react'
+import { FC } from 'react'
 import { Input, Grid, IconButton, Typography } from '@mui/material'
 import { useCart } from '../../store/cart.store'
 import AddIcon from '@mui/icons-material/Add'
@@ -174,9 +174,9 @@ const AddToCart: FC<AddToCartProps> = ({ item }) => {
           >
             <Typography
               variant="button"
-              sx={{ minWidth: '140px', textAlign: 'center' }}
+              sx={{ minWidth: '140px', textAlign: 'center'}}
             >
-              {handleTitleButton()}
+              {/* {handleTitleButton()} */}
             </Typography>
           </Grid>
         </Grid>

@@ -10,7 +10,7 @@ export const AdminHomeEditService = {
 
   async dragAndDropEdit(arr: IHomeEdit[]) {
     const response = await apiInterceptor.post(
-      `${import.meta.env.VITE_API}/dragAndDrop/homeEdit`,
+      `${import.meta.env.VITE_API}/home-edit/drag-and-drop`,
       arr
     )
     return response.data

@@ -16,7 +16,7 @@ export const AdminAttributesService = {
     attribute: IAttributeMain[]
   ): Promise<IAttributeMain[]> {
     const response = await apiInterceptor.post(
-      `${import.meta.env.VITE_API}/dragAndDrop/attributesMain`,
+      `${import.meta.env.VITE_API}/attribute-main/drag-and-drop`,
       attribute
     )
 
@@ -52,7 +52,7 @@ export const AdminAttributesService = {
     attribute: ISubAttributes[]
   ): Promise<ISubAttributes[]> {
     const response = await apiInterceptor.post(
-      `${import.meta.env.VITE_API}/dragAndDrop/subAttributes`,
+      `${import.meta.env.VITE_API}/attribute-sub/drag-and-drop`,
       attribute
     )
 

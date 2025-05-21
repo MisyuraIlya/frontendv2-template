@@ -5,11 +5,6 @@ import { Typography, Button, Paper, Box } from '@mui/material'
 import { useAuthProvider } from '../../provider/AuthProvider'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { Autoplay } from 'swiper/modules'
-import 'swiper/css'
-import 'swiper/css/navigation'
-import 'swiper/css/pagination'
-import 'swiper/css/scrollbar'
-import 'swiper/css/autoplay'
 import useDirection from '../../hooks/useDirection'
 import { useCart } from '../../store/cart.store'
 
@@ -25,7 +20,6 @@ interface VideoProps {
 
 const Video: FC<VideoProps> = ({ isVideo, src, settings }) => {
   const currentDir = useDirection()
-
   const styles = {
     videoContainer: {
       position: 'relative',
@@ -62,7 +56,6 @@ const Video: FC<VideoProps> = ({ isVideo, src, settings }) => {
   const { isAuthrized } = useAuthProvider()
   const { selectedMode } = useCart()
   return (
-    // Set the outer container's native "dir" attribute so it applies correctly.
     <Box style={styles.videoContainer} dir={currentDir}>
       <Paper elevation={0} dir={currentDir}>
         {isVideo ? (
@@ -77,13 +70,11 @@ const Video: FC<VideoProps> = ({ isVideo, src, settings }) => {
             x-webkit-airplay="allow"
           >
             <source
-              src={`${import.meta.env.VITE_MEDIA}/homemedia/${src}`}
+              src={`${import.meta.env.VITE_MEDIA}${src}`}
               type="video/mp4"
             />
           </video>
         ) : Array.isArray(src) ? (
-          // Use a wrapping Box with the proper dir attribute.
-          // Key the Swiper with the current direction so that it reinitializes when the direction changes.
           <Box dir={currentDir}>
             <Swiper
               key={currentDir}
@@ -99,7 +90,7 @@ const Video: FC<VideoProps> = ({ isVideo, src, settings }) => {
                 <SwiperSlide key={index}>
                   <Box sx={{ width: '100%', height: '100%' }}>
                     <img
-                      src={`${import.meta.env.VITE_MEDIA}/homemedia/${s}`}
+                      src={`${import.meta.env.VITE_MEDIA}${src}`}
                       style={styles.media}
                       alt={`slide-${index}`}
                     />
@@ -110,7 +101,7 @@ const Video: FC<VideoProps> = ({ isVideo, src, settings }) => {
           </Box>
         ) : (
           <img
-            src={`${import.meta.env.VITE_MEDIA}/homemedia/${src}`}
+            src={`${import.meta.env.VITE_MEDIA}${src}`}
             style={styles.video}
             alt="media"
           />

@@ -19,7 +19,7 @@ export const AdminCatalogService = {
 
   async dragAndDropCategories(category: ICategory[]): Promise<ICategory> {
     const response = await apiInterceptor.post(
-      `${import.meta.env.VITE_API}/apiv2/dragAndDrop/categories`,
+      `${import.meta.env.VITE_API}/category/drag-and-drop`,
       category
     )
 

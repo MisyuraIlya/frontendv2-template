@@ -21,7 +21,7 @@ export const AdminProductService = {
 
   async updateProductOrder(products: IProduct[]): Promise<IProduct[]> {
     const response = await apiInterceptor.post(
-      `${import.meta.env.VITE_API}/apiv2/dragAndDrop/products`,
+      `${import.meta.env.VITE_API}/product/drag-and-drop`,
       products
     )
 

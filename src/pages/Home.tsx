@@ -1,4 +1,3 @@
-import React from 'react'
 import { Box, Container } from '@mui/material'
 import Home from '../components/Home'
 import hooks from '../hooks'
@@ -53,10 +52,10 @@ const HomePage = () => {
                   element?.homeMedia
                     ?.filter(
                       (item) =>
-                        item?.mediaObject?.filePath &&
+                        item?.mediaObject?.contentUrl &&
                         item.device === (isMobile ? 'mobile' : 'desktop')
                     )
-                    .map((item) => item.mediaObject.filePath) || []
+                    .map((item) => item.mediaObject.contentUrl) || []
                 }
               />
             )
@@ -71,10 +70,10 @@ const HomePage = () => {
                   element?.homeMedia
                     ?.filter(
                       (item) =>
-                        item?.mediaObject?.filePath &&
+                        item?.mediaObject?.contentUrl &&
                         item.device === (isMobile ? 'mobile' : 'desktop')
                     )
-                    .map((item) => item.mediaObject.filePath) || []
+                    .map((item) => item.mediaObject.contentUrl) || []
                 }
               />
             )
