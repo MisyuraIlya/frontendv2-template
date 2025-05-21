@@ -122,6 +122,7 @@ const AddToCart: FC<AddToCartProps> = ({ item }) => {
               <Input
                 type="text"
                 value={Quantity}
+                onFocus={(e) => (e.target as HTMLInputElement).select()}
                 sx={{
                   color: 'white',
                   fontWeight: 600,
@@ -167,12 +168,13 @@ const AddToCart: FC<AddToCartProps> = ({ item }) => {
       ) : (
         <Grid
           container
-          style={{ padding: '0px' }}
+          style={{ padding: '0px', width:'100%' }}
           onClick={isInCart ? undefined : () => addToCartFunc()}
         >
           <Grid
             size={{ xs: 12, sm: 12, md: 12 }}
             sx={{
+              width: '100%',
               display: 'flex',
               justifyContent: 'center',
               alignItems: 'center',
