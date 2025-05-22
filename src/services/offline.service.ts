@@ -3,10 +3,11 @@ import apiInterceptor from '../api/api.interceptor'
 export const OfflineService = {
   async handleOfflinePrices(
     history: IDocument,
-    historyDetailed: IDocumentItem[]
+    historyDetailed: IDocumentItem[],
+    user: IUser
   ): Promise<ICart[]> {
     const response = await apiInterceptor.post(
-      `${import.meta.env.VITE_API}/offline/handlePrice`,
+      `${import.meta.env.VITE_API}/offline/handlePrice?userId=${user?.id}`,
       {
         history,
         historyDetailed,
