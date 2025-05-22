@@ -323,7 +323,7 @@ const Summary: React.FC = () => {
             sx={{ mb: 3 }}
           />
 
-          {isOnline ? (
+          {!isOnline ? (
             <Box sx={{ display: 'flex', gap: 2 }}>
               <Button
                 onClick={handleSendOrder}

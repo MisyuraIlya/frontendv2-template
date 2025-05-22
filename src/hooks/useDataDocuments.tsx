@@ -3,6 +3,7 @@ import { useLocation, useParams } from 'react-router-dom'
 import moment from 'moment'
 import { useAuth } from '../store/auth.store'
 import services from '../services'
+import { HistoryRepository } from '../db'
 
 type RouteParams = {
   documentType: IDocumentTypes
@@ -17,6 +18,13 @@ const fetchData = async (
   toDate: Date,
   page: string | number
 ): Promise<DocumentsResponse> => {
+  if(documentType === 'offline'){
+    return await HistoryRepository.findHistoryByDateRange(
+      moment(fromDate).format('YYYY.MM.DD'),
+      moment(toDate).format('YYYY.MM.DD')
+    )
+ 
+  }
   const data = services.DocumentsService.GetDocuments(
     user,
     documentType,

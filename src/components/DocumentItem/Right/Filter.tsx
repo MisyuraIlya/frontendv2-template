@@ -135,7 +135,7 @@ const Filter = () => {
                 {t('DocumentItem.generatePdf')}
               </Button>
             )}
-            {user?.role === 'ROLE_USER' && (
+            {(user?.role === 'ROLE_USER' && documentItemType !== 'offline' ) && (
               <Button
                 sx={{ height: '40px', whiteSpace: 'nowrap' }}
                 variant="contained"

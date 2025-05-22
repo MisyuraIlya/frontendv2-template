@@ -30,6 +30,11 @@ interface IUser {
   address: string
 }
 
+interface IAgentServiceResponse extends IPagination {
+  data: IUser[]
+}
+
+
 type LoginResponse = IResponse<IUser>
 
 type ValidationResponse = IResponse<{ exId: string; name: string }>

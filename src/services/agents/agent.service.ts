@@ -1,8 +1,5 @@
 import apiInterceptor from '../../api/api.interceptor'
 
-interface agentServiceResponse extends IPagination {
-  data: IUser[]
-}
 
 export const agentService = {
   async getClients(
@@ -10,7 +7,7 @@ export const agentService = {
     page: string | number = '1',
     search?: string,
     status?: string
-  ): Promise<agentServiceResponse> {
+  ): Promise<IAgentServiceResponse> {
     let apiUrl = `${import.meta.env.VITE_API}/user/agentClients/${agentId}?page=${page}`
 
     if (search) {

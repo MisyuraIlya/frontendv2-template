@@ -3,7 +3,7 @@
     @typescript-eslint/no-unused-vars 
 */
 import Dexie from 'dexie'
-
+import { settings } from '../settings'
 class MyDatabase extends Dexie {
   users
   products
@@ -22,25 +22,25 @@ class MyDatabase extends Dexie {
         '++id, username, password, extId, email, isRegistered, isBlocked, name, phone, recovery, refreshToken, role, isAllowOrder, isAllowAllClients, payCode, PayDes, maxCredit, maxObligo, hp, taxCode, parent, agent, city, address, isVatEnabled, salesCurrency, oneSignalAppId, createdAt, updatedAt',
 
       products: 
-        '++id, sku, group, title, titleEnglish, defaultImagePath, remoteDefaultImagePath, description, barcode, isPublished, categoryLvl1Id, categoryLvl2Id, categoryLvl3Id, basePrice, finalPrice, stock, packQuantity, discount, orden, isNew, isSpecial, multiCategory, createdAt, updatedAt',
+        '++id, sku, group, title, titleEnglish, defaultImagePath, remoteDefaultImagePath, description, barcode, isPublished, categoryLvl1, categoryLvl2, categoryLvl3, productAttributes, basePrice, finalPrice, stock, packQuantity, discount, orden, isNew, isSpecial, multiCategory, createdAt, updatedAt',
 
       categories:
         '++id, extId, title, description, isPublished, orden, lvlNumber, parentId, englishTitle, integrationGroups',
 
       attributeMain:
-        '++id, extId, title, isPublished, orden, isInProductCard, isInFilter',
+        '++id, extId, title, isPublished, orden, isInProductCard, isInFilter, SubAttributes',
 
       attributeSub:
         '++id, attributeId, title, productCount, isPublished, orden',
 
       productAttribute:
-        '++id, productId, attributeSubId',
+        '++id, product, attributeSub',
 
       history:
-        '++id, documentNumber, documentType, userName, userExId, agentExId, agentName, status, createdAt, updatedAt, total, error, user, agent, agentApproved, orderComment, tax',
+        '++id, documentNumber, documentType, userName, userExId, agentExId, agentName, status, createdAt, updatedAt, total, error, user, agent, agentApproved, orderComment, tax, comment',
 
       historyDetailed:
-        '++id, historyId, sku, title, quantity, priceByOne, total, discount, product, tax',
+        '++id, historyId, sku, title, quantity, priceByOne, total, discount, product, tax, comment',
     })
 
     // Bind tables
@@ -57,8 +57,6 @@ class MyDatabase extends Dexie {
 
 const db = new MyDatabase()
 export default db
-
-// Repositories
 
 export const UserRepository = {
   /**
@@ -143,419 +141,120 @@ export const ProductRepository = {
     lvl1: string | number,
     lvl2: string | number,
     lvl3: string | number,
-    searchParams: string,
-  ) {
-    try {
-      const urlParams = new URLSearchParams(searchParams)
-      const page = parseInt(urlParams.get('page') || '1', 10)
-      const itemsPerPage = parseInt(urlParams.get('itemsPerPage') || '24', 10)
-      const filters: Record<string, string[]> = {}
-      Array.from(urlParams.entries()).forEach(([key, value]) => {
-        const match = key.match(/^filter\[(\d+)\]$/)
-        if (match) {
-          const attributeSubId = match[1]
-          if (!filters[attributeSubId]) {
-            filters[attributeSubId] = []
-          }
-          filters[attributeSubId].push(value)
-        }
-      })
+    searchParams: string
+  ): Promise<GetCatalogResponse> {
+    const n1 = Number(lvl1) || 0
+    const n2 = Number(lvl2) || 0
+    const n3 = Number(lvl3) || 0
 
-      const offset = (page - 1) * itemsPerPage
-      let query = db.products.toCollection()
+    const params = new URLSearchParams(
+      searchParams.startsWith('?') ? searchParams.slice(1) : searchParams
+    )
+    const page = parseInt(params.get('page') || '1', 10)
+    const limit = 20
+    const offset = (page - 1) * limit
 
-      if (lvl1 && lvl1 !== '0') {
-        query = query.filter((product) => product.categoryLvl1Id == lvl1)
+    const subFilterIds: number[] = []
+    for (const [key, val] of params.entries()) {
+      const m = key.match(/^filter\[(\d+)\]$/)
+      if (m && val) {
+        const subId = parseInt(val, 10)
+        if (!isNaN(subId)) subFilterIds.push(subId)
       }
+    }
 
-      if (lvl2 && lvl2 !== '0') {
-        query = query.filter((product) => product.categoryLvl2Id == lvl2)
-      }
+    const rawSearch = params.get('search') || ''
+    const searchTerm = decodeURIComponent(rawSearch).trim().toLowerCase()
 
-      if (lvl3 && lvl3 !== '0') {
-        query = query.filter((product) => product.categoryLvl3Id == lvl3)
-      }
-      if (filters) {
-        for (const [attributeMainId, attributeSubIds] of Object.entries(
-          filters
-        )) {
-          const subAttributes = await db.attributeSub
-            .filter((sub) => sub.attributeId === parseInt(attributeMainId, 10))
-            .toArray()
-          const validSubIds = subAttributes.map((sub) => sub.id)
-          const matchingProductAttributes = await db.productAttribute
-            .filter(
-              (attr) =>
-                validSubIds.includes(attr.attributeSubId) &&
-                attributeSubIds.includes(String(attr.attributeSubId))
-            )
-            .toArray()
+    let coll = db.products.toCollection().filter((p: IProduct) =>
+      p.isPublished &&
+      (n1 === 0 || p.categoryLvl1.id === n1) &&
+      (n2 === 0 || p.categoryLvl2.id === n2) &&
+      (n3 === 0 || p.categoryLvl3.id === n3)
+    )
 
-          const matchingProductIds = matchingProductAttributes.map(
-            (attr) => attr.productId
-          )
-          query = query.filter((product) =>
-            matchingProductIds.includes(product.id)
-          )
-        }
-      }
-
-      const orderBy = urlParams.get('orderBy')
-      if (orderBy) {
-        //@ts-ignore
-        query = query.sortBy(orderBy)
-      }
-
-      const searchValue = urlParams.get('search')
-      if (searchValue) {
-        query = query.filter((product) => {
-          const lowerSearchValue = searchValue.toLowerCase()
-          return (
-            product.title.toLowerCase().includes(lowerSearchValue) ||
-            product.sku.toLowerCase().includes(lowerSearchValue)
-          )
-        })
-      }
-
-      const totalItems = await query.count()
-      const items = await query.offset(offset).limit(itemsPerPage).toArray()
-      const itemsWithAttributes = await this.getProductAttributes(items)
-      const allItemsForFiter = await this.getCatalogForFilter(
-        lvl1,
-        lvl2,
-        lvl3,
-        searchParams,
+    if (searchTerm) {
+      coll = coll.filter(p =>
+        p.sku.toLowerCase().includes(searchTerm) ||
+        p.title.toLowerCase().includes(searchTerm) ||
+        (p.titleEnglish || '').toLowerCase().includes(searchTerm)
       )
-      return {
-        items: itemsWithAttributes,
-        totalItems,
-        currentPage: page,
-        lastPage: Math.ceil(totalItems / itemsPerPage),
-        filters: await this.getFilters(allItemsForFiter),
-      }
-    } catch (error) {
-      console.error('Error in getCatalog:', error)
-      return { items: [], totalItems: 0, currentPage: 1, lastPage: 1 }
     }
-  },
 
-  async getCatalogForFilter(
-    lvl1: string | number,
-    lvl2: string | number,
-    lvl3: string | number,
-    searchParams: string,
-  ) {
-    try {
-      const urlParams = new URLSearchParams(searchParams)
-      const filters: Record<string, string[]> = {}
-      Array.from(urlParams.entries()).forEach(([key, value]) => {
-        const match = key.match(/^filter\[(\d+)\]$/)
-        if (match) {
-          const attributeSubId = match[1]
-          if (!filters[attributeSubId]) {
-            filters[attributeSubId] = []
-          }
-          filters[attributeSubId].push(value)
+    if (subFilterIds.length > 0) {
+      const allPAs = await db.productAttribute.toArray()
+      const matchingProductIds = new Set<number>()
+      for (const pa of allPAs) {
+        if (subFilterIds.includes(pa.attributeSub.id)) {
+          matchingProductIds.add(pa.product.id)
         }
+      }
+      coll = coll.filter(p => matchingProductIds.has(p.id))
+    }
+
+    const allFiltered = await coll.toArray()
+    const total = allFiltered.length
+    const pageItems = allFiltered.slice(offset, offset + limit)
+    const pageCount = Math.ceil(total / limit)
+
+    const presentSubIds = new Set<number>()
+    const presentMainIds = new Set<number>()
+    allFiltered.forEach(p => {
+      p.productAttributes.forEach((pa: any) => {
+        const sub = pa.attributeSub
+        presentSubIds.add(sub.id)
+        presentMainIds.add(sub.attribute.id)
       })
-
-      let query = db.products.toCollection()
-      if (lvl1 && lvl1 !== '0') {
-        query = query.filter((product) => product.categoryLvl1Id == lvl1)
-      }
-
-      if (lvl2 && lvl2 !== '0') {
-        query = query.filter((product) => product.categoryLvl2Id == lvl2)
-      }
-
-      if (lvl3 && lvl3 !== '0') {
-        query = query.filter((product) => product.categoryLvl3Id == lvl3)
-      }
-
-      if (filters) {
-        for (const [attributeMainId, attributeSubIds] of Object.entries(
-          filters
-        )) {
-          const subAttributes = await db.attributeSub
-            .filter((sub) => sub.attributeId === parseInt(attributeMainId, 10))
-            .toArray()
-          const validSubIds = subAttributes.map((sub) => sub.id)
-          const matchingProductAttributes = await db.productAttribute
-            .filter(
-              (attr) =>
-                validSubIds.includes(attr.attributeSubId) &&
-                attributeSubIds.includes(String(attr.attributeSubId))
-            )
-            .toArray()
-
-          const matchingProductIds = matchingProductAttributes.map(
-            (attr) => attr.productId
-          )
-          query = query.filter((product) =>
-            matchingProductIds.includes(product.id)
-          )
-        }
-      }
-
-      const orderBy = urlParams.get('orderBy')
-      if (orderBy) {
-        //@ts-ignore
-        query = query.sortBy(orderBy)
-      }
-
-      const searchValue = urlParams.get('search')
-      if (searchValue) {
-        query = query.filter((product) => {
-          const lowerSearchValue = searchValue.toLowerCase()
-          return (
-            product.title.toLowerCase().includes(lowerSearchValue) ||
-            product.sku.toLowerCase().includes(lowerSearchValue)
-          )
-        })
-      }
-
-      const items = await query.toArray()
-      return items
-    } catch (error) {
-      console.error('Error in getCatalog:', error)
-      return []
-    }
-  },
-
-  async getFilters(items: IProduct[]): Promise<IAttributeMain[]> {
-    const productIds = items.map((item) => item.id)
-    const productAttributes = await db.productAttribute
-      .filter((attr) => productIds.includes(attr.productId))
-      .toArray()
-
-    //@ts-ignore
-    const attributeSubIds = [
-      //@ts-ignore
-      ...new Set(productAttributes.map((attr) => attr.attributeSubId)),
-    ]
-    const attributeSubs = await db.attributeSub
-      .filter((sub) => attributeSubIds.includes(sub.id))
-      .toArray()
-
-    //@ts-ignore
-    const attributeMainIds = [
-      //@ts-ignore
-      ...new Set(attributeSubs.map((sub) => sub.attributeId)),
-    ]
-    const attributeMains = await db.attributeMain
-      .filter((main) => attributeMainIds.includes(main.id))
-      .toArray()
-
-    const filters: IAttributeMain[] = attributeMains.map((main) => {
-      const subAttributes: ISubAttributes[] = attributeSubs
-        .filter((sub) => sub.attributeId === main.id)
-        .map((sub) => ({
-          id: sub.id,
-          title: sub.title,
-          orden: sub.orden,
-          isPublished: sub.isPublished,
-          productCount: productAttributes.filter(
-            (attr) => attr.attributeSubId === sub.id
-          ).length,
-          attribute: {
-            id: main.id,
-            extId: main.extId,
-            orden: main.orden,
-            title: main.title,
-            isPublished: main.isPublished,
-            ordern: main.orden,
-            isInProductCard: main.isInProductCard,
-            isInFilter: main.isInFilter,
-            SubAttributes: [],
-          },
-        }))
-
-      return {
-        id: main.id,
-        extId: main.extId,
-        title: main.title,
-        isPublished: main.isPublished,
-        ordern: main.orden,
-        isInProductCard: main.isInProductCard,
-        isInFilter: main.isInFilter,
-        SubAttributes: subAttributes,
-      }
     })
 
-    return filters
-  },
+    const mains: IAttributeMain[] = await db.attributeMain.toArray()
 
-  async getAllCatalog({
-    lvl1 = null,
-    lvl2 = null,
-    lvl3 = null,
-    showAll = false,
-    orderBy = null,
-    filters = null,
-    searchValue = null,
-    skusForSearch = null,
-  }) {
-    try {
-      let query = db.products.toCollection()
-
-      if (!showAll) {
-        query = query.filter((product) => product.isPublished)
-      }
-
-      //@ts-ignore
-      if (skusForSearch && skusForSearch.length > 0) {
-        //@ts-ignore
-        query = query.filter((product) => skusForSearch.includes(product.sku))
-      }
-
-      if (lvl1) {
-        query = query.filter((product) => product.categoryLvl1 === lvl1)
-      }
-
-      if (lvl2) {
-        query = query.filter((product) => product.categoryLvl2 === lvl2)
-      }
-
-      if (lvl3) {
-        query = query.filter((product) => product.categoryLvl3 === lvl3)
-      }
-
-      if (filters) {
-        for (const [attributeSubId, values] of Object.entries(filters)) {
-          query = query.filter((product) => {
-            return (
-              db.productAttribute
-                .where({
-                  productId: product.id,
-                  attributeSubId: parseInt(attributeSubId, 10),
-                })
-                //@ts-ignore
-                .anyOf(values)
-                .count() > 0
-            )
+    const filters = mains
+      .filter(main => main.isInFilter && presentMainIds.has(main.id))
+      .map(main => {
+        const subAttrs = main.SubAttributes
+          .filter(sub => {
+            const appears = presentSubIds.has(sub.id)
+            const allowed = subFilterIds.length === 0 || subFilterIds.includes(sub.id)
+            return appears && allowed
           })
+          .map(sub => {
+            const count = allFiltered.filter(p =>
+              p.productAttributes.some((pa: any) => pa.attributeSub.id === sub.id)
+            ).length
+
+            return {
+              id: sub.id,
+              title: sub.title,
+              productCount: count,
+              attribute: main,            
+              isPublished: !!sub.isPublished,
+              orden: sub.orden,
+            }
+          })
+
+        return {
+          id: main.id,
+          extId: main.extId,
+          title: main.title,
+          isPublished: !!main.isPublished,
+          ordern: main.ordern,           
+          isInProductCard: !!main.isInProductCard,
+          isInFilter: !!main.isInFilter,
+          SubAttributes: subAttrs,
         }
-      }
+      })
+      .filter(f => f.SubAttributes.length > 0)
 
-      if (searchValue) {
-        query = query.filter((product) => {
-          //@ts-ignore
-          const lowerSearchValue = searchValue.toLowerCase()
-          return (
-            product.title.toLowerCase().includes(lowerSearchValue) ||
-            product.sku.toLowerCase().includes(lowerSearchValue)
-          )
-        })
-      }
-
-      if (orderBy) {
-        //@ts-ignore
-        query = query.sortBy(orderBy)
-      }
-
-      return query.toArray()
-    } catch (error) {
-      console.error('Error in getAllCatalog:', error)
-      return []
+    return {
+      data: pageItems,
+      filters,
+      total,
+      size: pageItems.length,
+      page,
+      pageCount,
     }
-  },
-
-  async getProductAttributes(items: IProduct[]): Promise<IProduct[]> {
-    try {
-      const enrichedProducts = await Promise.all(
-        items.map(async (product) => {
-          const productAttributes = await db.productAttribute
-            .filter((attr) => attr.productId === product.id)
-            .toArray()
-
-          const attributeSubs = await db.attributeSub
-            .filter((sub) =>
-              productAttributes
-                .map((attr) => attr.attributeSubId)
-                .includes(sub.id)
-            )
-            .toArray()
-
-          //@ts-ignore
-          const attributeMainIds = [
-            //@ts-ignore
-            ...new Set(attributeSubs.map((sub) => sub.attributeId)),
-          ]
-          const attributeMains = await db.attributeMain
-            .filter((main) => attributeMainIds.includes(main.id))
-            .toArray()
-
-          //@ts-ignore
-          const mappedProductAttributes: IProductAttributes[] =
-            attributeSubs.map((sub) => {
-              const mainAttribute = attributeMains.find(
-                (main) => main.id === sub.attributeId
-              )
-              return {
-                attributeSub: {
-                  id: sub.id,
-                  title: sub.title,
-                  productCount: productAttributes.filter(
-                    (attr) => attr.attributeSubId === sub.id
-                  ).length,
-                  attribute: {
-                    id: mainAttribute?.id || 0,
-                    extId: mainAttribute?.extId || '',
-                    title: mainAttribute?.title || '',
-                    orden: mainAttribute?.orden || 0,
-                    isInProductCard: mainAttribute?.isInProductCard || false,
-                    isInFilter: mainAttribute?.isInFilter || false,
-                  },
-                },
-              }
-            })
-
-          const imagePath = [
-            {
-              id: product.id,
-              mediaObject: {
-                filePath: product.defaultImagePath,
-              },
-            },
-          ]
-
-          return {
-            ...product,
-            isPublished: !!product.isPublished,
-            imagePath,
-            productAttributes: mappedProductAttributes,
-            isNew: !!product.isNew,
-            isSpecial: !!product.isSpecial,
-          }
-        })
-      )
-      //@ts-ignore
-      return enrichedProducts
-    } catch (error) {
-      console.error('Error in getProductAttributes:', error)
-      return []
-    }
-  },
-
-  findOrCreateProductBySku: async (product: IProduct) => {
-    try {
-      const { sku, ...newData } = product
-      const existingProduct = await db.products.where({ sku }).first()
-
-      if (existingProduct) {
-        await db.products.update(existingProduct.id, newData)
-        return existingProduct.id
-      } else {
-        return db.products.add(product)
-      }
-    } catch (error) {
-      console.error('Error in findOrCreateProductBySku:', error)
-    }
-  },
-
-  getProducts: async () => {
-    return db.products.toArray()
-  },
+  }
 }
 
 export const CategoryRepository = {
@@ -675,27 +374,40 @@ export const HistoryRepository = {
   },
 
   /**
-   * Find history entries by a date range.
-   * @param {string} dateFrom - The starting date (ISO format).
-   * @param {string} dateTo - The ending date (ISO format).
-   * @returns {Promise<IDocument[]>} - A list of history entries within the date range.
+   * Find history entries by a date range, paginated.
+   * @param dateFrom ISO date string
+   * @param dateTo   ISO date string
+   * @param page     1-based page index
+   * @param size     number of items per page
+   * @returns Promise<DocumentsResponse>
    */
   async findHistoryByDateRange(
     dateFrom: string,
-    dateTo: string
-  ): Promise<IDocument[]> {
+    dateTo: string,
+    page = 1,
+    size = 10
+  ): Promise<DocumentsResponse> {
     try {
-      return await db.history
-        .filter((history) => {
-          const createdAt = new Date(history.createdAt)
-          return (
-            createdAt >= new Date(dateFrom) && createdAt <= new Date(dateTo)
-          )
+      // fetch all matching records
+      const all = await db.history
+        .filter((h) => {
+          const created = new Date(h.createdAt);
+          return created >= new Date(dateFrom) && created <= new Date(dateTo);
         })
-        .toArray()
+        .toArray();
+
+      const total = all.length;
+      const pageCount = Math.ceil(total / size);
+      const currentPage = Math.min(Math.max(1, page), pageCount);
+
+      // slice out this page
+      const start = (currentPage - 1) * size;
+      const documents = all.slice(start, start + size);
+
+      return { documents, total, pageCount, page: currentPage, size };
     } catch (error) {
-      console.error('Error in findHistoryByDateRange:', error)
-      return []
+      console.error('Error in findHistoryByDateRange:', error);
+      return { documents: [], total: 0, pageCount: 0, page: 1, size };
     }
   },
 

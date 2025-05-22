@@ -7,6 +7,9 @@ interface IProduct {
   description: string
   barcode: string
   isPublished: boolean
+  categoryLvl1: ICategory
+  categoryLvl2: ICategory
+  categoryLvl3: ICategory
   productImages: IImagePath[]
   createdAt: string
   updatedAt: string

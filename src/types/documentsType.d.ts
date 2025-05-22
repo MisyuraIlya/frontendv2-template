@@ -27,6 +27,7 @@ interface IDocument {
   userExId: string
   agentExId: string
   agentName: string
+  comment: string
   status: string
   createdAt: string
   updatedAt: string

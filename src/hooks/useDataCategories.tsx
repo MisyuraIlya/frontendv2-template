@@ -9,7 +9,7 @@ const useDataCategories = () => {
   const { user } = useAuth()
   const { isOnline } = useOffline()
   const shouldFetch = Boolean(user || settings?.isOpenWorld)
-  console.log('isOnline',isOnline)
+
   const { data, error, isValidating, mutate } = useSWR(
     shouldFetch ? ['categoriesApp', isOnline] : null,
     async ([, online]) => {
@@ -28,7 +28,6 @@ const useDataCategories = () => {
       revalidateOnReconnect: true,
     }
   )
-  console.log('data',data)
   return {
     data,
     isLoading: !data && !error,

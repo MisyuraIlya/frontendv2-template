@@ -4,14 +4,9 @@ export const OfflineService = {
   async handleOfflinePrices(
     history: IDocument,
     historyDetailed: IDocumentItem[]
-  ): Promise<{
-    history: IDocument
-    historyDetailed: IDocumentItem[]
-    tax: number
-    total: number
-  }> {
+  ): Promise<ICart[]> {
     const response = await apiInterceptor.post(
-      `${import.meta.env.VITE_API}/apiv2/offline/handlePrice`,
+      `${import.meta.env.VITE_API}/offline/handlePrice`,
       {
         history,
         historyDetailed,

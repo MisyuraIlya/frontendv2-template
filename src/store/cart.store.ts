@@ -346,6 +346,7 @@ export const useCart = create(
           documentType: 'offline',
           userName: user.name,
           userExId: user.extId,
+          comment: get().comment,
           agentExId: agent?.extId ?? '',
           agentName: agent?.name ?? '',
           status: '',
@@ -371,7 +372,7 @@ export const useCart = create(
                 total: element.total,
                 discount: element.discount,
                 product: element.product,
-                comment: '',
+                comment: element.comment,
                 historyId: createHistory.toString(),
               }
               await HistoryDetailedRepository.createHistoryDetailed(objDetailed)

@@ -4,6 +4,8 @@ import { useAuth } from '../store/auth.store'
 import services from '../services'
 import { useCart } from '../store/cart.store'
 import { settings } from '../settings'
+import { useOffline } from '../provider/OfflineProvider'
+import { ProductRepository } from '../db'
 
 const fetchData = async (
   lvl1: string | number,
@@ -14,51 +16,119 @@ const fetchData = async (
   user: IUser,
   mode: IDocumentType
 ): Promise<GetCatalogResponse> => {
-  const data = await services.CatalogService.GetCatalog(
+  return services.CatalogService.GetCatalog(
     lvl1,
     lvl2,
     lvl3,
     searchParams,
     documentType,
     mode,
-    user
+    user,
   )
-  return data
 }
 
 const useDataCatalog = (
   search: string = '',
-  document: null | CatalogDocumentType = 'catalog'
+  document: CatalogDocumentType | null = 'catalog'
 ) => {
   const { selectedMode } = useCart()
-  const { lvl1, lvl2, lvl3, documentType, mode } = useParams()
+  const {
+    lvl1 = '0',
+    lvl2 = '0',
+    lvl3 = '0',
+    documentType: urlDocType,
+  } = useParams<{
+    lvl1?: string
+    lvl2?: string
+    lvl3?: string
+    documentType?: CatalogDocumentType
+    mode?: string
+  }>()
   const location = useLocation()
   const { user } = useAuth()
+  const { isOnline } = useOffline()
 
+  const docType = document ?? urlDocType!
   const shouldFetch =
-    user &&
-    (document ?? documentType) &&
-    selectedMode?.value &&
+    !!user &&
+    !!docType &&
+    !!selectedMode?.value &&
     (user || settings?.isOpenWorld)
 
-  const { data, error, isLoading, isValidating, mutate } =
-    useSWR<GetCatalogResponse>(
-      shouldFetch
-        ? `/api/catalog/${document ?? documentType}/${lvl1}/${lvl2}/${lvl3}${
-            search ? search : location.search
-          }&userId=${user!.id}&mode=${mode}`
-        : null,
-      () =>
-        fetchData(
-          lvl1 ?? '0',
-          lvl2 ?? '0',
-          lvl3 ?? '0',
-          search ? `?search=${search}` : location.search,
-          document ?? (documentType as CatalogDocumentType),
-          user!,
-          selectedMode.value
-        )
-    )
+  const params = shouldFetch
+    ? {
+        lvl1,
+        lvl2,
+        lvl3,
+        search: search || location.search,
+        documentType: docType,
+        mode: selectedMode.value,
+        userId: Number(user!.id),
+      }
+    : null
+
+  const key = params
+    ? (['catalogApp', params, isOnline] as const)
+    : null
+
+  const fetcher = async (
+    keyTuple: readonly [
+      'catalogApp',
+      {
+        lvl1: string
+        lvl2: string
+        lvl3: string
+        search: string
+        documentType: CatalogDocumentType
+        mode: IDocumentType
+        userId: number
+      },
+      boolean
+    ]
+  ): Promise<GetCatalogResponse> => {
+    const [, p, online] = keyTuple
+    const searchParamString = p.search.startsWith('?')
+      ? p.search
+      : `?search=${p.search}`
+
+    if (online) {
+      return fetchData(
+        p.lvl1,
+        p.lvl2,
+        p.lvl3,
+        searchParamString,
+        p.documentType,
+        { ...user!, id: p.userId },
+        p.mode
+      )
+    } else {
+      const offlineResult = await ProductRepository.getCatalog(
+        p.lvl1,
+        p.lvl2,
+        p.lvl3,
+        searchParamString
+      )
+
+      return {
+        data: offlineResult.data,
+        filters: offlineResult.filters,
+        total: offlineResult.total,
+        pageCount: offlineResult.pageCount,
+        page: offlineResult.page,
+        size: offlineResult.size,
+      }
+    }
+  }
+
+  const { data, error, isLoading, isValidating, mutate } = useSWR<
+    GetCatalogResponse,
+    any,
+    typeof key
+  >(
+    key,
+    fetcher,
+    { revalidateOnReconnect: true }
+  )
 
   return {
     data,
