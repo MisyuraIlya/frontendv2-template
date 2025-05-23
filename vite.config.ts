@@ -79,7 +79,12 @@ export default defineConfig(({ mode }) => {
       allowedHosts: true,
     },
     server: {
-      allowedHosts: true
-    },
+      cors: {
+        origin: ['https://digi-dev.work', 'http://localhost:5173'],
+        methods: ['GET', 'POST'],
+        allowedHeaders: ['Content-Type']
+      },
+      allowedHosts: ['https://digi-dev.work'] 
+    }
   }
 })
