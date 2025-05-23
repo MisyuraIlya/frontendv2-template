@@ -1,13 +1,11 @@
-// vite.config.ts
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import { VitePWA } from 'vite-plugin-pwa'
 import type { ConfigEnv, Plugin } from 'vite'
-import { settings } from './src/settings' 
 
 const fullReloadAlways: Plugin = {
   name: 'full-reload-always',
-  apply: 'serve',              
+  apply: 'serve',
   handleHotUpdate({ server }) {
     server.ws.send({ type: 'full-reload' })
     return []
@@ -15,7 +13,7 @@ const fullReloadAlways: Plugin = {
 }
 
 export default defineConfig(({ mode }: ConfigEnv) => {
-  const isProd = mode === 'production'   
+  const isProd = mode === 'production'
 
   return {
     plugins: [
@@ -47,6 +45,7 @@ export default defineConfig(({ mode }: ConfigEnv) => {
                 ],
               },
               workbox: {
+                maximumFileSizeToCacheInBytes: 5 * 1024 * 1024,
                 runtimeCaching: [
                   {
                     urlPattern: ({ request }) => request.destination === 'document',
@@ -71,11 +70,11 @@ export default defineConfig(({ mode }: ConfigEnv) => {
     ],
     server: {
       host: true,
-      allowedHosts: [settings.domain],
+      allowedHosts: ['digi-dev.work'],
     },
     preview: {
       host: true,
-      allowedHosts: [settings.domain],
+      allowedHosts: ['digi-dev.work'],
     },
   }
 })

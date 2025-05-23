@@ -52,7 +52,6 @@ interface IURL {
 }
 
 interface GlobalSettings {
-  domain: string
   title: string
   description: string
   minimumPrice: number

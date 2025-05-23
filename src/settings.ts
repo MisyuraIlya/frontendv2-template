@@ -1,5 +1,4 @@
 export const settings: GlobalSettings = {
-  domain: 'digi-dev.work',
   title: 'ארגנטולס בע"מ',
   description: '',
   minimumPrice: 0,
