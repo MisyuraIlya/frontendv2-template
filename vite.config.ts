@@ -1,7 +1,7 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import { VitePWA } from 'vite-plugin-pwa'
-import type { ConfigEnv, Plugin } from 'vite'
+import type { Plugin } from 'vite'
 
 const fullReloadAlways: Plugin = {
   name: 'full-reload-always',
@@ -12,7 +12,7 @@ const fullReloadAlways: Plugin = {
   },
 }
 
-export default defineConfig(({ mode }: ConfigEnv) => {
+export default defineConfig(({ mode }) => {
   const isProd = mode === 'production'
 
   return {
@@ -68,13 +68,18 @@ export default defineConfig(({ mode }: ConfigEnv) => {
           ]
         : []),
     ],
-    server: {
-      host: true,
-      allowedHosts: ['digi-dev.work'],
+    build: {
+      outDir: 'dist',
+      target: 'esnext',
     },
     preview: {
-      host: true,
-      allowedHosts: ['digi-dev.work'],
+      port: 4173,
+      strictPort: true,
+      host: '0.0.0.0', 
+      allowedHosts: true,
+    },
+    server: {
+      allowedHosts: true
     },
   }
 })
