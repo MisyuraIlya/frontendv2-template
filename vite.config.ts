@@ -3,6 +3,8 @@ import react from '@vitejs/plugin-react'
 import { VitePWA } from 'vite-plugin-pwa'
 import type { ConfigEnv, Plugin } from 'vite'
 
+const domain = 'digi-dev.work'
+
 const fullReloadAlways: Plugin = {
   name: 'full-reload-always',
   apply: 'serve',
@@ -70,11 +72,11 @@ export default defineConfig(({ mode }: ConfigEnv) => {
     ],
     server: {
       host: true,
-      allowedHosts: ['digi-dev.work'],
+      allowedHosts: [domain],
     },
     preview: {
       host: true,
-      allowedHosts: ['digi-dev.work'],
+      allowedHosts: [domain],
     },
   }
 })
