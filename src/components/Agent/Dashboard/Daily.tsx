@@ -1,5 +1,4 @@
 import { Box, Card, Grid, Typography } from '@mui/material';
-import { PieChart, DefaultizedPieValueType } from '@mui/x-charts';
 import {
   GaugeContainer,
   GaugeReferenceArc,

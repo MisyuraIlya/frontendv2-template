@@ -3,7 +3,6 @@
     @typescript-eslint/no-unused-vars 
 */
 import Dexie from 'dexie'
-import { settings } from '../settings'
 class MyDatabase extends Dexie {
   users
   products
