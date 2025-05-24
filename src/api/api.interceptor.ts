@@ -1,6 +1,6 @@
 import axios, { AxiosResponse, InternalAxiosRequestConfig } from 'axios'
 import { AuthService } from '../services/auth.service'
-import { onAsk, onInfoAlert } from '../utils/MySweetAlert'
+import { onInfoAlert } from '../utils/MySweetAlert'
 
 interface ExtendedAxiosRequestConfig extends InternalAxiosRequestConfig {
   _retry?: boolean
