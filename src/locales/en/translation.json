@@ -284,7 +284,8 @@
     "agentDashboard": { "label": "dashboard" },
     "approve": { "label": "approve documents" },
     "agentStatistics": { "label": "agent statistics" },
-    "agentDocumentOffline": { "label": "offline documents" }
+    "agentDocumentOffline": { "label": "offline documents" },
+    "cron": { "label": "fetch manager" }
   },
   "agentDashBoard": {
     "mainInfo": {

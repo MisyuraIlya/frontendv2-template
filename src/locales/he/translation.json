@@ -285,7 +285,8 @@
     "agentDashboard": { "label": "דאשבורד" },
     "approve": { "label": "הזמנות לאישור" },
     "agentStatistics": { "label": "ביצועי סוכנים" },
-    "agentDocumentOffline": { "label": "מסמכי אופליין" }
+    "agentDocumentOffline": { "label": "מסמכי אופליין" },
+    "cron": { "label": "ניהול משיכה" }
   },
 
   "agentDashBoard": {

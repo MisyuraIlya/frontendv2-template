@@ -14,15 +14,34 @@ interface UserCreateDocResponse {
 
 export const AuthService = {
   async login(username: string, password: string): Promise<LoginResponse> {
-    const response = await axios.post(
-      `${import.meta.env.VITE_API}/auth/login`,
-      {
-        username,
-        password,
-      },
-      { withCredentials: true }
-    )
-    return response.data
+    try {
+      const response = await axios.post(
+        `${import.meta.env.VITE_API}/auth/login`,
+        { username, password },
+        { withCredentials: true }
+      )
+      return response.data
+    } catch (err: any) {
+      if (axios.isAxiosError(err) && err.response) {
+        return err.response.data
+      }
+      throw err
+    }
+  },
+  async refresh(username: string, password: string): Promise<IResponse<{}>> {
+    try {
+      const response = await axios.post(
+        `${import.meta.env.VITE_API}/auth/refresh`,
+        { username, password },
+        { withCredentials: true }
+      )
+      return response.data
+    } catch (err: any) {
+      if (axios.isAxiosError(err) && err.response) {
+        return err.response.data
+      }
+      throw err
+    }
   },
   async validation(
     userExId: string,

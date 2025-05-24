@@ -93,6 +93,8 @@ export const useAuth = create(
         try {
           set({ loading: true })
           const response = await AuthService.login(username, password)
+          console.log('response',response)
+
           if (response?.status) {
             set({ user: response.data, coreUser: response.data })
             if (
@@ -111,7 +113,7 @@ export const useAuth = create(
               location.reload()
             }, 1500)
           } else {
-            onErrorAlert('שגיאה', '')
+            onErrorAlert('שגיאה', response?.message)
           }
         } catch (e) {
           console.error('[ERROR AUTH SERVICE]', e)

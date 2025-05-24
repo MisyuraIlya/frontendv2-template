@@ -24,6 +24,7 @@ import BonusItemPage from './pages/BonusItemPage'
 import AttributesEditPage from './pages/AttributesEditPage'
 import AttributeDetailedEditPage from './pages/AttributeDetailedEditPage'
 import DynamicTablePage from './pages/DynamicTablePage'
+import CronManagerPage from './pages/CronManagerPage'
 const RouterApp = () => {
   const { isAuthrized } = useAuthProvider()
 
@@ -94,6 +95,10 @@ const RouterApp = () => {
             <Route
               path={URLS.ADMIN_EDIT_ATTRIBUTE_DETAILED.ROUTER}
               element={<AttributeDetailedEditPage />}
+            />
+            <Route
+              path={URLS.CRON_MANAGER.ROUTER}
+              element={<CronManagerPage/>}
             />
           </Route>
         </Routes>

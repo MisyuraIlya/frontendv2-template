@@ -1,4 +1,6 @@
 import axios, { AxiosResponse, InternalAxiosRequestConfig } from 'axios'
+import { AuthService } from '../services/auth.service'
+import { onAsk, onInfoAlert } from '../utils/MySweetAlert'
 
 interface ExtendedAxiosRequestConfig extends InternalAxiosRequestConfig {
   _retry?: boolean
@@ -6,12 +8,11 @@ interface ExtendedAxiosRequestConfig extends InternalAxiosRequestConfig {
 
 const api = axios.create({
   baseURL: import.meta.env.VITE_API,
-  withCredentials: true,    // ← send & receive cookies
+  withCredentials: true,   
 })
 
 api.interceptors.request.use(
   config => {
-    // nothing else to do—cookies go automatically
     return config
   },
   err => Promise.reject(err)
@@ -22,17 +23,25 @@ api.interceptors.response.use(
   async error => {
     const originalReq = error.config as ExtendedAxiosRequestConfig
 
-    // on 401, try one refresh + retry
     if (error.response?.status === 401 && !originalReq._retry) {
       originalReq._retry = true
       try {
-        // call your refresh endpoint; cookies are sent & set automatically
-        await axios.post(
-          `${import.meta.env.VITE_API}/auth/refresh`,
-          {}, 
-          { withCredentials: true }
-        )
-        // retry the original request, with fresh cookies
+        const userdata = localStorage.getItem('user-storage')
+        if(userdata){
+          const username = JSON.parse(userdata).state.agent.username ?? JSON.parse(userdata).state.user.username
+          const password = JSON.parse(userdata).state.agent.password ?? JSON.parse(userdata).state.user.password
+          const response = await AuthService.refresh(username,password)
+          if (!response?.status) {
+            await onInfoAlert('תם תוקף שימוש במערכת', 'אנא התחבר מחדש')
+            setTimeout(() => {
+                localStorage.clear()
+                window.location.replace('/')
+                window.location.href = '/'
+                window.location.assign('/')
+            }
+            , 3000)
+          }
+        }
         return api(originalReq)
       } catch (refreshErr) {
         return Promise.reject(refreshErr)

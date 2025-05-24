@@ -20,8 +20,14 @@ import { useNavigate } from 'react-router-dom'
 import SettingsSuggestIcon from '@mui/icons-material/SettingsSuggest'
 import useDirection from '../../../hooks/useDirection'
 import { useTranslation } from 'react-i18next'
+import MoreTimeIcon from '@mui/icons-material/MoreTime';
 
 export const AdminURL = {
+  CRON_MANAGER: {
+    LINK: URLS.CRON_MANAGER.LINK,
+    LABEL: URLS.CRON_MANAGER.LABEL,
+    ICON: <MoreTimeIcon sx={{ fontSize: '25px' }} />,
+  },
   CATALOG_EDIT: {
     LINK: URLS.ADMIN_EDIT_CATALOG.LINK,
     LABEL: URLS.ADMIN_EDIT_CATALOG.LABEL,
@@ -67,6 +73,7 @@ export const AdminURL = {
     LABEL: URLS.ADMIN_NOTIFICATIONS.LABEL,
     ICON: <NotificationAddIcon sx={{ fontSize: '25px' }} />,
   },
+  
 }
 
 const AdminDrawver = () => {

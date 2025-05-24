@@ -154,4 +154,9 @@ export const URLS: Record<string, IRoute> = {
     LINK: `/documentPage/offline/${dateFrom}/${dateTo}`,
     LABEL: 'urls.agentDocumentOffline.label', // e.g. "מסמכי אופליין"
   },
+  CRON_MANAGER: {
+    LINK: `/cron/manager`,
+    LABEL: 'urls.cron.label', 
+    ROUTER: '/cron/manager',
+  },
 }
