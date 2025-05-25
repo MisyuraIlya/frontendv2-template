@@ -70,6 +70,14 @@ const useDataAgentClients = () => {
     ? ['agentClients', agentId, page, search, status, isOnline]
     : null
 
+  const swrOptions = {
+    revalidateOnMount: true,
+    revalidateOnFocus: false,
+    revalidateOnReconnect: false,
+    errorRetryCount: 0,
+    dedupingInterval: 1000 * 60 * 5, 
+  }
+
   const { data, error, isValidating, mutate } = useSWR<IAgentServiceResponse>(
     key,
     async ([, id, pg, srch, st, online]) => {
@@ -79,9 +87,7 @@ const useDataAgentClients = () => {
         return fetchOffline(Number(id), pg as number, srch as string, st as string)
       }
     },
-    {
-      revalidateOnReconnect: true,
-    }
+    swrOptions
   )
 
   return {

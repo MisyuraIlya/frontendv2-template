@@ -15,7 +15,7 @@ const fetchData = async (userId: string | number): Promise<IDynamicTables> => {
 const useUserProfileData = () => {
   const { user } = useAuth()
   const userId = user?.id
-  const key = userId ? `/apiv2/userProfile/${userId}` : null
+  const key = userId ? `/userProfile/${userId}` : null
 
   const { data, error, isLoading, mutate } = useSWR<IDynamicTables>(key, () =>
     fetchData(userId as string | number)

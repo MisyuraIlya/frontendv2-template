@@ -10,10 +10,21 @@ const useDataNotificationUser = () => {
   const { user } = useAuth()
   const userId = user?.id
 
+  const swrOptions = {
+    revalidateOnMount: true,
+    revalidateOnFocus: true,
+    revalidateOnReconnect: true,
+    errorRetryCount: 0,
+    dedupingInterval: 1000 * 60 * 5, 
+  }
+
   const key = userId ? `api/notifications/${userId}` : null
-  const { data, error, isLoading, mutate } = useSWR(key, () =>
-    fetchData(userId as number | string)
+  const { data, error, isLoading, mutate } = useSWR(
+    key,
+    () => fetchData(userId as number | string),
+    swrOptions
   )
+
   const updateNotificationUser = async (obj: {
     id: number
     isRead: boolean

@@ -13,9 +13,18 @@ const useDataPurchesHistory = (productId: number) => {
   const { user } = useAuth()
   const shouldFetch = user?.extId && productId
 
+  const swrOptions = {
+    revalidateOnMount: true,
+    revalidateOnFocus: false,
+    revalidateOnReconnect: false,
+    errorRetryCount: 0,
+    dedupingInterval: 1000 * 60 * 5, 
+  }
+
   const { data, error, isLoading, mutate } = useSWR<PurchaseHistoryItem[]>(
     shouldFetch ? `/api/purchaseHistory/${user.id}/${productId}` : null,
-    () => fetchData(user!.id!, productId)
+    () => fetchData(user!.id!, productId),
+    swrOptions
   )
 
   return {

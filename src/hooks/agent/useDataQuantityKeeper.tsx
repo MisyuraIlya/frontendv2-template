@@ -11,10 +11,19 @@ const fetchData = async (
 const useDataQuantityKeeper = (userId?: string | number | null) => {
   const { user } = useAuth()
 
+  const swrOptions = {
+    revalidateOnMount: true,
+    revalidateOnFocus: false,
+    revalidateOnReconnect: false,
+    errorRetryCount: 0,
+    dedupingInterval: 1000 * 60 * 60 * 2, 
+  }
+
   const id = userId ?? user?.id
   const { data, isLoading, mutate } = useSWR<IQuantityKeeper[]>(
     id ? `salesQuantityKeeper/${id}` : null,
-    () => fetchData(id as number | string)
+    () => fetchData(id as number | string),
+    swrOptions
   )
 
   return {

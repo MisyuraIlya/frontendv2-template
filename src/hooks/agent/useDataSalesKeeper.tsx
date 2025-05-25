@@ -12,9 +12,18 @@ const useDataSalesKeeper = (userId?: string | number) => {
 
   const shouldFetch = Boolean(id)
 
+  const swrOptions = {
+    revalidateOnMount: true,
+    revalidateOnFocus: false,
+    revalidateOnReconnect: false,
+    errorRetryCount: 0,
+    dedupingInterval: 1000 * 60 * 60 * 2, 
+  }
+
   const { data, isLoading, mutate } = useSWR(
     shouldFetch ? `salesKeeper/${id}` : null,
-    () => fetchData(id as string | number)
+    () => fetchData(id as string | number),
+    swrOptions
   )
 
   return {

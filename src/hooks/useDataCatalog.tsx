@@ -120,6 +120,15 @@ const useDataCatalog = (
     }
   }
 
+  const swrOptions = {
+    revalidateOnMount: false,
+    revalidateOnFocus: false,
+    revalidateOnReconnect: false,
+    errorRetryCount: 0,
+    dedupingInterval: 1000 * 60 * 5, 
+  }
+
+  
   const { data, error, isLoading, isValidating, mutate } = useSWR<
     GetCatalogResponse,
     any,
@@ -127,7 +136,9 @@ const useDataCatalog = (
   >(
     key,
     fetcher,
-    { revalidateOnReconnect: true }
+    { 
+      ...swrOptions 
+    }
   )
 
   return {

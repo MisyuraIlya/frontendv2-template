@@ -10,6 +10,14 @@ const useDataCategories = () => {
   const { isOnline } = useOffline()
   const shouldFetch = Boolean(user || settings?.isOpenWorld)
 
+  const swrOptions = {
+    revalidateOnMount: true,
+    revalidateOnFocus: false,
+    revalidateOnReconnect: false,
+    errorRetryCount: 0,
+    dedupingInterval: 1000 * 60 * 60 * 2, 
+  }
+
   const { data, error, isValidating, mutate } = useSWR(
     shouldFetch ? ['categoriesApp', isOnline] : null,
     async ([, online]) => {
@@ -25,7 +33,7 @@ const useDataCategories = () => {
       }
     },
     {
-      revalidateOnReconnect: true,
+      ...swrOptions
     }
   )
   return {
