@@ -35,7 +35,7 @@ const DynamicTable: FC<DynamicTableProps> = ({ data, isLoading }) => {
           }}
         >
           <img
-            src={`${emptyDoc}`}
+            src={emptyDoc}
             alt="Empty Document"
           />
         </Box>

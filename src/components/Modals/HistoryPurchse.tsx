@@ -22,6 +22,7 @@ import { useMobile } from '../../provider/MobileProvider'
 import { useTranslation } from 'react-i18next'
 import useDirection from '../../hooks/useDirection'
 import logo from '../../assets/images/logo.png'
+import empyDocument from '../../assets/images/empyDocument.svg'
 
 type TablePopUpProps = {
   active: boolean
@@ -158,7 +159,7 @@ const HistoryPurchse: FC<TablePopUpProps> = ({ active, setActive }) => {
             }}
           >
             <img
-              src={`${import.meta.env.VITE_MEDIA}/empyDocument.svg`}
+              src={empyDocument}
               alt={t('purchaseHistory.noRecords') || ''}
             />
           </Box>

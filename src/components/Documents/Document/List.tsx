@@ -70,7 +70,7 @@ const List = () => {
           }}
         >
           <img
-            src={`${emptyDoc}`}
+            src={emptyDoc}
             alt="Empty document"
           />
         </Box>

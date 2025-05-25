@@ -23,6 +23,7 @@ import { useMobile } from '../../provider/MobileProvider'
 import hooks from '../../hooks'
 import { useTranslation } from 'react-i18next'
 import logo from '../../assets/images/logo.png'
+import empyDocument from '../../assets/images/empyDocument.svg'
 
 type TablePopUpProps = {
   active: boolean
@@ -167,7 +168,7 @@ const WarehouseDetailed: FC<TablePopUpProps> = ({ active, setActive }) => {
               }}
             >
               <img
-                src={`${import.meta.env.VITE_MEDIA}/empyDocument.svg`}
+                src={empyDocument}
                 alt="no data"
               />
             </Box>
@@ -251,7 +252,7 @@ const WarehouseDetailed: FC<TablePopUpProps> = ({ active, setActive }) => {
               }}
             >
               <img
-                src={`${import.meta.env.VITE_MEDIA}/empyDocument.svg`}
+                src={empyDocument}
                 alt="no data"
               />
             </Box>
