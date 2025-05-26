@@ -1,4 +1,4 @@
-import { defineConfig} from 'vite'
+import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import { VitePWA } from 'vite-plugin-pwa'
 import type { ConfigEnv, Plugin } from 'vite'
@@ -25,13 +25,6 @@ export default defineConfig(({ mode }: ConfigEnv) => {
         ? [
             VitePWA({
               registerType: 'autoUpdate',
-              strategies: 'injectManifest',
-              srcDir: 'src',
-              filename: 'sw.js',
-              injectManifest: {
-                swSrc: 'src/sw.ts',
-                swDest: 'sw.js',
-              },
               includeAssets: ['favicon.ico', 'robots.txt', 'icons/*.png'],
               manifest: {
                 name: 'My Vite PWA',
