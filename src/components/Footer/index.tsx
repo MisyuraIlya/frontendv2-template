@@ -16,6 +16,7 @@ import { SupportService } from '../../services/support.service'
 import { onErrorAlert, onSuccessAlert } from '../../utils/MySweetAlert'
 import { useTranslation } from 'react-i18next'
 import CompanyLogo from '../../assets/images/company.png'
+import { settings } from '../../settings'
 const Footer = () => {
   const {
     handleSubmit,
@@ -317,21 +318,21 @@ const Footer = () => {
                   color="#FFFFFF99"
                   sx={{ paddingTop: '10px', letterSpacing: '1.5px' }}
                 >
-                  {t('footer.description1')}
+                  {settings?.footerDescription1}
                 </Typography>
                 <Typography
                   variant="body2"
                   color="#FFFFFF99"
                   sx={{ paddingTop: '10px', letterSpacing: '1.5px' }}
                 >
-                  {t('footer.description2')}
+                 {settings?.footerDescription2}
                 </Typography>
                 <Typography
                   variant="body2"
                   color="#FFFFFF99"
                   sx={{ paddingTop: '10px', letterSpacing: '1.5px' }}
                 >
-                  {t('footer.description3')}
+                  {settings?.footerDescription3}
                 </Typography>
               </Box>
               <Grid
@@ -346,7 +347,7 @@ const Footer = () => {
                 </Grid>
                 <Grid size={{ xs: isMobile ? 10 : 11 }}>
                   <Typography variant="body2" color="white">
-                    {t('footer.address')}
+                    {settings?.location}
                   </Typography>
                 </Grid>
                 <Grid size={{ xs: isMobile ? 2 : 1 }}>
@@ -356,7 +357,7 @@ const Footer = () => {
                 </Grid>
                 <Grid size={{ xs: isMobile ? 10 : 11 }}>
                   <Typography variant="body2" color="white">
-                    {t('footer.phone')}
+                    {settings?.phone}
                   </Typography>
                 </Grid>
                 <Grid size={{ xs: isMobile ? 2 : 1 }}>
@@ -366,7 +367,7 @@ const Footer = () => {
                 </Grid>
                 <Grid size={{ xs: isMobile ? 10 : 11 }}>
                   <Typography variant="body2" color="white">
-                    {t('footer.email')}
+                    {settings?.email}
                   </Typography>
                 </Grid>
               </Grid>

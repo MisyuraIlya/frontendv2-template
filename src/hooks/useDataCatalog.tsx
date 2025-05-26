@@ -3,7 +3,6 @@ import { useLocation, useParams } from 'react-router-dom'
 import { useAuth } from '../store/auth.store'
 import services from '../services'
 import { useCart } from '../store/cart.store'
-import { settings } from '../settings'
 import { useOffline } from '../provider/OfflineProvider'
 import { ProductRepository } from '../db'
 
@@ -13,8 +12,8 @@ const fetchData = async (
   lvl3: string | number,
   searchParams: string,
   documentType: CatalogDocumentType,
-  user: IUser,
-  mode: IDocumentType
+  mode: IDocumentType,
+  user?: IUser
 ): Promise<GetCatalogResponse> => {
   return services.CatalogService.GetCatalog(
     lvl1,
@@ -23,7 +22,7 @@ const fetchData = async (
     searchParams,
     documentType,
     mode,
-    user,
+    user, 
   )
 }
 
@@ -50,10 +49,8 @@ const useDataCatalog = (
 
   const docType = document ?? urlDocType!
   const shouldFetch =
-    !!user &&
     !!docType &&
-    !!selectedMode?.value &&
-    (user || settings?.isOpenWorld)
+    !!selectedMode?.value
 
   const params = shouldFetch
     ? {
@@ -63,7 +60,7 @@ const useDataCatalog = (
         search: search || location.search,
         documentType: docType,
         mode: selectedMode.value,
-        userId: Number(user!.id),
+        userId: user?.id,            
       }
     : null
 
@@ -81,7 +78,7 @@ const useDataCatalog = (
         search: string
         documentType: CatalogDocumentType
         mode: IDocumentType
-        userId: number
+        userId?: number
       },
       boolean
     ]
@@ -92,14 +89,18 @@ const useDataCatalog = (
       : `?search=${p.search}`
 
     if (online) {
+      const currentUser = p.userId != null
+        ? { ...user!, id: p.userId }
+        : undefined
+
       return fetchData(
         p.lvl1,
         p.lvl2,
         p.lvl3,
         searchParamString,
         p.documentType,
-        { ...user!, id: p.userId },
-        p.mode
+        p.mode,
+        currentUser,
       )
     } else {
       const offlineResult = await ProductRepository.getCatalog(
@@ -121,14 +122,13 @@ const useDataCatalog = (
   }
 
   const swrOptions = {
-    revalidateOnMount: false,
+    revalidateOnMount: true,
     revalidateOnFocus: false,
     revalidateOnReconnect: false,
     errorRetryCount: 0,
-    dedupingInterval: 1000 * 60 * 5, 
+    dedupingInterval: 1000 * 60 * 5,
   }
 
-  
   const { data, error, isLoading, isValidating, mutate } = useSWR<
     GetCatalogResponse,
     any,
@@ -136,15 +136,13 @@ const useDataCatalog = (
   >(
     key,
     fetcher,
-    { 
-      ...swrOptions 
-    }
+    swrOptions
   )
 
   return {
     data,
     isLoading,
-    isError: error,
+    isError: !!error,
     isValidating,
     mutate,
   }

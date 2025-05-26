@@ -38,7 +38,7 @@ const List = () => {
       navigate(`/documentItemPage/history/${element?.id}`)
     } else {
       navigate(
-        `/documentItemPage/${element?.documentType.trim()}/${element?.documentNumber}`
+        `/documentItemPage/${element?.documentType}/${element?.documentNumber}`
       )
     }
   }

@@ -70,7 +70,7 @@ interface GlobalSettings {
 
   oneSignalKey: string
   paymentSystem: 'none' | 'tranzilla' | 'yadsarig'
-  erp: 'SAP' | 'PRIORITY'
+  erp: 'SAP' | 'PRIORITY' | 'HASAVSHEVET'
 
   categoryLvlsNumber: number
   showCategoryNavBar: boolean
