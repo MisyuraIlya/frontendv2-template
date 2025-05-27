@@ -3,12 +3,12 @@ interface ICart {
   price: float
   product: IProduct
   quantity: number
+  packQuantity: number
   sku: string
   stock: number
   total: float
   comment: string
   isBonus: boolean
-  choosedPackQuantity: number
 }
 
 type IDocumentType = 'order' | 'quote' | 'return' | 'draft'

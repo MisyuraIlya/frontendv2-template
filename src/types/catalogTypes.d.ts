@@ -21,7 +21,7 @@ interface IProduct {
   discount: number
   ordern: number
   productAttributes: IProductAttributes[]
-  packProducts: packProducts[]
+  productPackages: IProductPackage[]
   bonuses: IBonus[]
   link: string
   linkTitle: string
@@ -29,15 +29,8 @@ interface IProduct {
   isSpecial: boolean
 }
 
-interface packProducts {
+interface IProductPackage {
   id: number
-  pack: IPack
-}
-
-interface IPack {
-  id: number
-  extId: string
-  name: string
   quantity: number
 }
 

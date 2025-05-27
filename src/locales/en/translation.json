@@ -83,6 +83,7 @@
       "outOfStock": "out of stock",
       "promotion": "promotion",
       "bonus": "bonus",
+      "selectPackagePlaceholder":"pack quantity",
       "totalPricePackageName": "total price for package",
       "addToCartOrder": "add to cart",
       "addToCartPriceOffer": "add to price offer",

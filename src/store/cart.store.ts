@@ -18,7 +18,7 @@ interface useCartState {
   setDeliveryAt: (deliveryAt: moment.Moment | null) => void
   getCartItem: (product: { sku: string }) => ICart | null
   recalculateBonuses: () => void
-  addToCart: (product: IProduct) => void
+  addToCart: (product: IProduct, packQuantity?: number) => void
   increaseCart: (sku: string) => void
   decreaseCart: (sku: string) => void
   deleteFromCart: (sku: string) => void
@@ -115,6 +115,7 @@ export const useCart = create(
           updatedCart.push({
             sku,
             quantity,
+            packQuantity: 1,
             product,
             stock: product.stock,
             price: 0,
@@ -122,17 +123,13 @@ export const useCart = create(
             discount: 0,
             total: 0,
             isBonus: true,
-            choosedPackQuantity:
-              product?.packProducts?.[0]?.pack?.quantity ??
-              product?.packQuantity ??
-              1,
           })
         })
 
         set({ cart: updatedCart })
       },
 
-      addToCart: (product: IProduct) => {
+      addToCart: (product: IProduct, packQuantity?: number) => {
         const cart = get().cart
         const existing = cart.find(
           (item) => item.sku === product.sku && !item.isBonus
@@ -145,16 +142,13 @@ export const useCart = create(
             sku: product.sku,
             quantity: 1,
             product,
+            packQuantity: packQuantity ?? 1,
             stock: product.stock,
             price: product.finalPrice,
             discount: product.discount,
             comment: '',
             total: product.finalPrice,
             isBonus: false,
-            choosedPackQuantity:
-              product?.packProducts?.[0]?.pack?.quantity ??
-              product?.packQuantity ??
-              1,
           })
         }
         set({ cart })

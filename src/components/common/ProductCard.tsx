@@ -19,6 +19,7 @@ import { useAuth } from '../../store/auth.store'
 import useDirection from '../../hooks/useDirection'
 import { useTranslation } from 'react-i18next'
 import logo from '../../assets/images/logo.png'
+import ProductPackageAddToCart from './ProductPacakgeAddToCart'
 
 interface ProductCardProps {
   product: IProduct
@@ -298,7 +299,11 @@ const ProductCard: FC<ProductCardProps> = ({ product, listView = false }) => {
                     </Box>
                   </>
                 )}
-
+                {product.productPackages?.length > 0 ? (
+                  <Box sx={{ padding: 2 }}>
+                      <ProductPackageAddToCart product={product}/>
+                  </Box>
+                ) : null}
                 <AddToCart item={product} />
               </Box>
             </Box>

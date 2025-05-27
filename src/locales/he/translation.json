@@ -84,6 +84,7 @@
       "outOfStock": "אזל המלאי",
       "promotion": "מבצע",
       "bonus": "בונוס",
+      "selectPackagePlaceholder":"בחירת כמות",
       "totalPricePackageName": "סה״כ להזמנה ל- קרטון",
       "addToCartOrder": "הוספה לסל",
       "addToCartPriceOffer": "הוספה להצעת מחיר",
