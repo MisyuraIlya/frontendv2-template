@@ -31,7 +31,6 @@ const ProductPackageAddToCart: FC<ProductPackageAddToCartProps> = ({ product }) 
 
   useEffect(() => {
     if(cartItem){
-        setSelectedPackId()
     }
   },[])
 

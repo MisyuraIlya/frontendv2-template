@@ -17,11 +17,10 @@ export const PushProvider: FC<PushProviderProps> = ({ children }) => {
   useEffect(() => {
     if (!('serviceWorker' in navigator) || !user) return;
     let swReg: ServiceWorkerRegistration;
-
     (async () => {
+
       swReg = await navigator.serviceWorker.register('/service-worker.js');
-      const resp = await fetch('/push-subscription/vapidPublicKey');
-      const { publicKey } = await resp.json();
+      const { data: { publicKey } } = await apiInterceptor.get('/push-subscription/vapidPublicKey');
       const sub = await swReg.pushManager.subscribe({
         userVisibleOnly: true,
         applicationServerKey: urlBase64ToUint8Array(publicKey),

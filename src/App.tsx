@@ -10,9 +10,9 @@ import { AdapterMoment } from '@mui/x-date-pickers/AdapterMoment'
 import { AuthProvider } from './provider/AuthProvider'
 import { MobileProvider } from './provider/MobileProvider'
 import { OfflineProvider } from './provider/OfflineProvider'
-import { OneSignalProvider } from './provider/OneSignalProvider'
 import { ModalsProvider } from './provider/ModalProvider'
 import { NotificationsProvider } from './provider/PushNotification'
+import { PushProvider } from './provider/PushNotificationProvider'
 
 const supportedLangs = ['he', 'en'] as const
 const defaultLng = 'he'
@@ -50,13 +50,13 @@ function AppWithRouter() {
             <AuthProvider>
               <MobileProvider>
                 <OfflineProvider>
-                  <OneSignalProvider>
-                    <ModalsProvider>
+                  <ModalsProvider>
+                    <PushProvider>
                       <NotificationsProvider>
                         <AppRoutes />
                       </NotificationsProvider>
-                    </ModalsProvider>
-                  </OneSignalProvider>
+                    </PushProvider>
+                  </ModalsProvider>
                 </OfflineProvider>
               </MobileProvider>
             </AuthProvider>
