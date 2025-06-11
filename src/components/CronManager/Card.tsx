@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import moment from 'moment';
 import {
   Card,
   CardContent,
@@ -66,6 +67,10 @@ const CronJobCard: React.FC<CronJobCardProps> = ({ displayName, jobName }) => {
     }
   };
 
+  const durationStr = cron?.duration != null
+    ? moment.utc(cron.duration).format('m [דקות] s [שניות]')
+    : '—';
+
   return (
     <Card variant="outlined" sx={{ mb: 3 }}>
       <CardContent>
@@ -80,20 +85,20 @@ const CronJobCard: React.FC<CronJobCardProps> = ({ displayName, jobName }) => {
                   disabled={toggling}
                 />
               }
-              label={cron.isActive ? 'Active' : 'Inactive'}
+              label={cron.isActive ? 'פעיל' : 'לא פעיל'}
             />
 
             <Typography variant="body2">
-              Last run: {cron.lastFetchTime ? new Date(cron.lastFetchTime).toLocaleString() : '—'}
+              הריצה האחרונה: {cron.lastFetchTime ? new Date(cron.lastFetchTime).toLocaleString('he-IL') : '—'}
             </Typography>
             <Typography variant="body2">
-              Duration: {cron.duration != null ? `${cron.duration} ms` : '—'}
+              משך זמן: {durationStr}
             </Typography>
             <Typography variant="body2">
-              Status: {cron.status ? 'Error' : 'Success'}
+              סטטוס: {cron.status ? 'שגיאה' : 'הצלחה'}
             </Typography>
             <Typography variant="body2" sx={{ fontStyle: 'italic' }}>
-              {cron.running ? 'Running…' : 'Idle'}
+              {cron.running ? 'בריצה…' : 'ממתין'}
             </Typography>
           </>
         )}
@@ -109,7 +114,7 @@ const CronJobCard: React.FC<CronJobCardProps> = ({ displayName, jobName }) => {
           disabled={loading || !cron?.isActive || cron?.running}
           startIcon={loading ? <CircularProgress size={16} /> : null}
         >
-          {cron?.running ? 'Running' : 'Run Now'}
+          {cron?.running ? 'מריץ' : 'הפעל כעת'}
         </Button>
       </CardActions>
     </Card>

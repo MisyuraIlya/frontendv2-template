@@ -1,4 +1,3 @@
-// src/components/cron/CronScheduler.tsx
 import React, { useEffect, useState } from 'react';
 import moment, { Moment } from 'moment';
 import { Box, Typography, TextField } from '@mui/material';
@@ -38,19 +37,19 @@ const CronScheduler: React.FC<CronSchedulerProps> = ({ id, jobName, label }) => 
       .catch((err) => console.error(`Failed to update ${label}:`, err));
   };
 
-  if (loading) return <Typography>Loading schedule…</Typography>;
+  if (loading) return <Typography>טוען לוח זמנים…</Typography>;
 
   return (
     <Box sx={{ mb: 2, p: 2, border: '1px solid #eee', borderRadius: 1 }}>
       <Typography variant="subtitle2" gutterBottom>
-        Schedule “{label}”
+        לוח זמנים של “{label}”
       </Typography>
 
       <TimePicker
-        label="Run at"
+        label="הפעל בשעה"
         value={value}
         onChange={handleChange}
-        enableAccessibleFieldDOMStructure={false}      
+        enableAccessibleFieldDOMStructure={false}
         slots={{ textField: TextField }}
         slotProps={{ textField: { size: 'small' } }}
       />

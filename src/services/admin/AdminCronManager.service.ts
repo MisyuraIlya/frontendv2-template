@@ -7,6 +7,13 @@ export interface IResponse<T> {
 }
 
 export const AdminCronManager = {
+  async getAll(): Promise<ICron[]> {
+    const response = await apiInterceptor.get<ICron[]>(
+      `${import.meta.env.VITE_API}/cron`
+    );
+    return response.data;
+  },
+
   async getSetting(id: number): Promise<ICron> {
     const response = await apiInterceptor.get<ICron>(
       `${import.meta.env.VITE_API}/cron/${id}`

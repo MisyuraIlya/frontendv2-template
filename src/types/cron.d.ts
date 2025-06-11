@@ -1,6 +1,7 @@
 interface ICron {
     id: number
     jobName: string
+    label: string
     cronTime: string
     lastFetchTime: string
     isActive: boolean
