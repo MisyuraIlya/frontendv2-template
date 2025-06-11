@@ -7,133 +7,40 @@ export interface IResponse<T> {
 }
 
 export const AdminCronManager = {
-  async getAgents(): Promise<IResponse<{}>> {
-    const response = await apiInterceptor.get<IResponse<{}>>(
-      `${import.meta.env.VITE_API}/admin/sync-agent`
-    );
-    return response.data;
-  },
-  async getAgentStatus(): Promise<{ isSyncing: boolean }> {
-    const response = await apiInterceptor.get<{ isSyncing: boolean }>(
-      `${import.meta.env.VITE_API}/admin/status-agent`
+  async getSetting(id: number): Promise<ICron> {
+    const response = await apiInterceptor.get<ICron>(
+      `${import.meta.env.VITE_API}/cron/${id}`
     );
     return response.data;
   },
 
-  async getUsers(): Promise<IResponse<{}>> {
-    const response = await apiInterceptor.get<IResponse<{}>>(
-      `${import.meta.env.VITE_API}/admin/sync-users`
-    );
-    return response.data;
-  },
-  async getUsersStatus(): Promise<{ isSyncing: boolean }> {
-    const response = await apiInterceptor.get<{ isSyncing: boolean }>(
-      `${import.meta.env.VITE_API}/admin/status-users`
+  async getStatus(jobName: string): Promise<ICron> {
+    const response = await apiInterceptor.get<ICron>(
+      `${import.meta.env.VITE_API}/cron/status/${jobName}`
     );
     return response.data;
   },
 
-  async getCategories(): Promise<IResponse<{}>> {
-    const response = await apiInterceptor.get<IResponse<{}>>(
-      `${import.meta.env.VITE_API}/admin/sync-category`
+  async create(jobName: string, cronTime: string): Promise<ICron> {
+    const response = await apiInterceptor.post<IResponse<ICron>>(
+      `${import.meta.env.VITE_API}/cron`,
+      { jobName, cronTime }
     );
-    return response.data;
-  },
-  async getCategoryStatus(): Promise<{ isSyncing: boolean }> {
-    const response = await apiInterceptor.get<{ isSyncing: boolean }>(
-      `${import.meta.env.VITE_API}/admin/status-category`
-    );
-    return response.data;
+    return response.data.data;
   },
 
-  async getProducts(): Promise<IResponse<{}>> {
-    const response = await apiInterceptor.get<IResponse<{}>>(
-      `${import.meta.env.VITE_API}/admin/sync-products`
+  async update(id: number, obj: any): Promise<ICron> {
+    const response = await apiInterceptor.put<IResponse<ICron>>(
+      `${import.meta.env.VITE_API}/cron/${id}`,
+      obj
     );
-    return response.data;
-  },
-  async getProductsStatus(): Promise<{ isSyncing: boolean }> {
-    const response = await apiInterceptor.get<{ isSyncing: boolean }>(
-      `${import.meta.env.VITE_API}/admin/status-products`
-    );
-    return response.data;
+    return response.data.data;
   },
 
-  async getPriceLists(): Promise<IResponse<{}>> {
-    const response = await apiInterceptor.get<IResponse<{}>>(
-      `${import.meta.env.VITE_API}/admin/sync-price-lists`
+  async run(jobName: string): Promise<{ status: boolean; message: string }> {
+    const response = await apiInterceptor.post<IResponse<null>>(
+      `${import.meta.env.VITE_API}/cron/run/${jobName}`
     );
-    return response.data;
-  },
-  async getPriceListsStatus(): Promise<{ isSyncing: boolean }> {
-    const response = await apiInterceptor.get<{ isSyncing: boolean }>(
-      `${import.meta.env.VITE_API}/admin/status-price-lists`
-    );
-    return response.data;
-  },
-
-  async getPriceListDetailed(): Promise<IResponse<{}>> {
-    const response = await apiInterceptor.get<IResponse<{}>>(
-      `${import.meta.env.VITE_API}/admin/sync-price-list-detailed`
-    );
-    return response.data;
-  },
-  async getPriceListDetailedStatus(): Promise<{ isSyncing: boolean }> {
-    const response = await apiInterceptor.get<{ isSyncing: boolean }>(
-      `${import.meta.env.VITE_API}/admin/status-price-list-detailed`
-    );
-    return response.data;
-  },
-
-  async getPriceListUser(): Promise<IResponse<{}>> {
-    const response = await apiInterceptor.get<IResponse<{}>>(
-      `${import.meta.env.VITE_API}/admin/sync-price-list-user`
-    );
-    return response.data;
-  },
-  async getPriceListUserStatus(): Promise<{ isSyncing: boolean }> {
-    const response = await apiInterceptor.get<{ isSyncing: boolean }>(
-      `${import.meta.env.VITE_API}/admin/status-price-list-user`
-    );
-    return response.data;
-  },
-
-  async getAttributesMain(): Promise<IResponse<{}>> {
-    const response = await apiInterceptor.get<IResponse<{}>>(
-      `${import.meta.env.VITE_API}/admin/sync-attributes-main`
-    );
-    return response.data;
-  },
-  async getAttributesMainStatus(): Promise<{ isSyncing: boolean }> {
-    const response = await apiInterceptor.get<{ isSyncing: boolean }>(
-      `${import.meta.env.VITE_API}/admin/status-attributes-main`
-    );
-    return response.data;
-  },
-
-  async getAttributesSub(): Promise<IResponse<{}>> {
-    const response = await apiInterceptor.get<IResponse<{}>>(
-      `${import.meta.env.VITE_API}/admin/sync-attributes-sub`
-    );
-    return response.data;
-  },
-  async getAttributesSubStatus(): Promise<{ isSyncing: boolean }> {
-    const response = await apiInterceptor.get<{ isSyncing: boolean }>(
-      `${import.meta.env.VITE_API}/admin/status-attributes-sub`
-    );
-    return response.data;
-  },
-
-  async getAttributesProduct(): Promise<IResponse<{}>> {
-    const response = await apiInterceptor.get<IResponse<{}>>(
-      `${import.meta.env.VITE_API}/admin/sync-attributes-product`
-    );
-    return response.data;
-  },
-  async getAttributesProductStatus(): Promise<{ isSyncing: boolean }> {
-    const response = await apiInterceptor.get<{ isSyncing: boolean }>(
-      `${import.meta.env.VITE_API}/admin/status-attributes-product`
-    );
-    return response.data;
+    return { status: response.data.status, message: response.data.message };
   },
 };

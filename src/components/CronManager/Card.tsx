@@ -1,61 +1,119 @@
-import React, { useState, useEffect, useCallback } from 'react';
-import { Box, Typography, Button, Alert } from '@mui/material';
+import React, { useState, useEffect } from 'react';
+import {
+  Card,
+  CardContent,
+  CardActions,
+  Button,
+  Typography,
+  CircularProgress,
+  Divider,
+  Switch,
+  FormControlLabel,
+} from '@mui/material';
+import { AdminCronManager } from '../../services/admin/AdminCronManager.service';
 
 interface CronJobCardProps {
   displayName: string;
-  fetcher: () => Promise<IResponse<{}>>;
-  statusFetcher: () => Promise<{ isSyncing: boolean }>;
+  jobName: string;
 }
 
-const Card: React.FC<CronJobCardProps> = ({ displayName, fetcher, statusFetcher }) => {
-  const [isSyncing, setIsSyncing] = useState<boolean>(false);
-  const [message, setMessage] = useState<string | null>(null);
+const CronJobCard: React.FC<CronJobCardProps> = ({ displayName, jobName }) => {
+  const [loading, setLoading] = useState(false);
+  const [cron, setCron] = useState<ICron | null>(null);
+  const [toggling, setToggling] = useState(false);
 
-  const loadStatus = useCallback(async () => {
+  const loadStatus = async () => {
     try {
-      const { isSyncing } = await statusFetcher();
-      setIsSyncing(isSyncing);
-    } catch {
-      setIsSyncing(false);
+      const data = await AdminCronManager.getStatus(jobName);
+      setCron(data);
+    } catch (err) {
+      console.error(err);
     }
-  }, [statusFetcher]);
+  };
 
   useEffect(() => {
     loadStatus();
-    const interval = setInterval(loadStatus, 5000);
-    return () => clearInterval(interval);
-  }, [loadStatus]);
+    let iv: NodeJS.Timeout;
+    if (cron?.running) {
+      iv = setInterval(loadStatus, 5000);
+    }
+    return () => iv && clearInterval(iv);
+  }, [cron?.running]);
 
-  const handleFetch = async () => {
-    setMessage(null);
+  const handleRun = async () => {
+    if (!cron?.isActive) return;
+    setLoading(true);
     try {
-      const { message } = await fetcher();
-      setMessage(message);
-      setIsSyncing(true);
-    } catch {
-      setMessage('Failed to start sync');
+      await AdminCronManager.run(jobName);
+    } catch (err: any) {
+      console.error(err.response?.data?.message || err.message);
+    } finally {
+      setLoading(false);
+      loadStatus();
+    }
+  };
+
+  const handleToggleActive = async () => {
+    if (!cron) return;
+    setToggling(true);
+    try {
+      await AdminCronManager.update(cron.id, { isActive: !cron.isActive });
+      await loadStatus();
+    } catch (err) {
+      console.error('Failed to toggle active state', err);
+    } finally {
+      setToggling(false);
     }
   };
 
   return (
-    <Box sx={{ p: 2, border: '1px solid', borderColor: 'grey.300', borderRadius: 1 }}>
-      <Typography variant="h6" gutterBottom>
-        {displayName}
-      </Typography>
+    <Card variant="outlined" sx={{ mb: 3 }}>
+      <CardContent>
+        <Typography variant="h6">{displayName}</Typography>
+        {cron && (
+          <>
+            <FormControlLabel
+              control={
+                <Switch
+                  checked={cron.isActive}
+                  onChange={handleToggleActive}
+                  disabled={toggling}
+                />
+              }
+              label={cron.isActive ? 'Active' : 'Inactive'}
+            />
 
-      <Button variant="contained" onClick={handleFetch} disabled={isSyncing}>
-        {isSyncing ? `${displayName} Syncing…` : `Fetch ${displayName}`}
-      </Button>
+            <Typography variant="body2">
+              Last run: {cron.lastFetchTime ? new Date(cron.lastFetchTime).toLocaleString() : '—'}
+            </Typography>
+            <Typography variant="body2">
+              Duration: {cron.duration != null ? `${cron.duration} ms` : '—'}
+            </Typography>
+            <Typography variant="body2">
+              Status: {cron.status ? 'Error' : 'Success'}
+            </Typography>
+            <Typography variant="body2" sx={{ fontStyle: 'italic' }}>
+              {cron.running ? 'Running…' : 'Idle'}
+            </Typography>
+          </>
+        )}
+      </CardContent>
 
-      {message && (
-        <Box mt={1}>
-          <Alert severity={isSyncing ? 'info' : 'success'}>
-            {message}
-          </Alert>
-        </Box>
-      )}
-    </Box>
+      <Divider />
+
+      <CardActions>
+        <Button
+          size="small"
+          variant="contained"
+          onClick={handleRun}
+          disabled={loading || !cron?.isActive || cron?.running}
+          startIcon={loading ? <CircularProgress size={16} /> : null}
+        >
+          {cron?.running ? 'Running' : 'Run Now'}
+        </Button>
+      </CardActions>
+    </Card>
   );
 };
 
-export default Card;
+export default CronJobCard;
