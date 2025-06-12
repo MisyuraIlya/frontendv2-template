@@ -10,7 +10,7 @@ interface CronSchedulerProps {
   label: string;
 }
 
-const CronScheduler: React.FC<CronSchedulerProps> = ({ id, jobName, label }) => {
+const CronScheduler: React.FC<CronSchedulerProps> = ({ id, label }) => {
   const [value, setValue] = useState<Moment | null>(moment().second(0));
   const [loading, setLoading] = useState(true);
 

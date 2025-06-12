@@ -71,7 +71,9 @@ const AppBarComponent = () => {
                 </IconButton>
               )}
               {user && <Left.NotificationButton />}
-              <Left.LanguageSwitcher />
+              {settings.isMultiLanguage &&
+                <Left.LanguageSwitcher />
+              }
             </Grid>
           </Grid>
         </Container>

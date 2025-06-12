@@ -76,6 +76,7 @@ interface GlobalSettings {
   showCategoryNavBar: boolean
   homePageAllCategoriesComponent: boolean
   allowRegistration: boolean
+  isMultiLanguage: boolean
 }
 
 

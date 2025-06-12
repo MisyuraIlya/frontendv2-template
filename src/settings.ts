@@ -21,4 +21,5 @@ export const settings: GlobalSettings = {
   showCategoryNavBar: false,
   homePageAllCategoriesComponent: true,
   allowRegistration: true,
+  isMultiLanguage: false,
 }

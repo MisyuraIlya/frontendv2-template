@@ -28,6 +28,7 @@ import { useOffline } from '../../../provider/OfflineProvider'
 import OfflineBlur from '../../common/OfflineBlur'
 import { useTranslation } from 'react-i18next'
 import useDirection from '../../../hooks/useDirection'
+import { NotificationToggle } from './NotificationToggle'
 
 
 
@@ -218,6 +219,9 @@ const MenuProfile: FC<MenuProfileProps> = ({ handleClose }) => {
           <Divider />
         </Box>
       )}
+      <MenuItem>
+       <NotificationToggle />
+      </MenuItem>
       <MenuItem onClick={() => handleLogOut()}>
         <ListItemIcon>
           <ExitToAppIcon color="error" />
