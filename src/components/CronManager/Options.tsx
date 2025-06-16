@@ -110,7 +110,7 @@ const Options: React.FC = () => {
   };
 
   const handleSnackClose = (
-    event?: React.SyntheticEvent | Event,
+    _: React.SyntheticEvent | Event,
     reason?: string
   ) => {
     if (reason === 'clickaway') return;
