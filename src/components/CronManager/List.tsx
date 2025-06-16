@@ -1,30 +1,54 @@
 import React from 'react';
-import useSWR from 'swr';
-import { Grid, Box, Typography, CircularProgress } from '@mui/material';
-import CronScheduler from './CronScheduler';
-import CronJobCard from './Card';
+import useSWR, { mutate } from 'swr';
+import {
+  Grid,
+  Box,
+  Typography,
+  CircularProgress,
+} from '@mui/material';
 import { AdminCronManager } from '../../services/admin/AdminCronManager.service';
+import CronCard from './CronCard';
 
-const fetcher = () => AdminCronManager.getAll();
+const fetchCrons = () => AdminCronManager.getAll();
+const fetchStatus = () => AdminCronManager.statusCron();
 
 const List: React.FC = () => {
-  const { data: cronJobs, error, isLoading } = useSWR<ICron[]>('cronJobs', fetcher);
+  const {
+    data: cronJobs,
+    error: jobsError,
+    isLoading: jobsLoading,
+  } = useSWR<ICron[]>('cronJobs', fetchCrons);
 
-  if (isLoading) {
+  const {
+    data: statusData,
+    error: statusError,
+  } = useSWR<{ status: boolean }>(
+    'cronStatus',
+    fetchStatus,
+    { refreshInterval: 10000 }
+  );
+
+  if (jobsLoading) {
     return (
       <Box sx={{ p: 3, textAlign: 'center' }}>
         <CircularProgress />
       </Box>
     );
   }
-
-  if (error) {
+  if (jobsError || statusError) {
     return (
       <Box sx={{ p: 3 }}>
         <Typography color="error">טעינת משימות הקרון נכשלה.</Typography>
       </Box>
     );
   }
+
+  const isCronRunning = statusData?.status ?? false;
+
+  const handleRun = async (jobName: string) => {
+    await AdminCronManager.run(jobName);
+    mutate('cronStatus');
+  };
 
   return (
     <Box sx={{ p: 3 }}>
@@ -35,14 +59,10 @@ const List: React.FC = () => {
         {cronJobs && cronJobs.length > 0 ? (
           cronJobs.map((job) => (
             <Grid size={{xs:12,md:6}} key={job.id}>
-              <CronScheduler
-                id={job.id}
-                jobName={job.jobName}
-                label={job.label}
-              />
-              <CronJobCard
-                displayName={job.label}
-                jobName={job.jobName}
+              <CronCard
+                job={job}
+                isCronRunning={isCronRunning}
+                onRun={handleRun}
               />
             </Grid>
           ))

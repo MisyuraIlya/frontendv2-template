@@ -8,4 +8,11 @@ interface ICron {
     status: boolean
     duration: number
     running: boolean
+    error: string
+}
+
+interface ICronSettings {
+    id: number,
+    cronTime: string
+    isActive: boolean
 }
